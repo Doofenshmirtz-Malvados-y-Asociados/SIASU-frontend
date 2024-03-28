@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarHomepageComponent } from './components/navbar-homepage/navbar-homepage.component';
-import { IndexComponent } from './pages/index/index.component';
+import { IndexPageComponent } from './index-page/index-page.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, IndexComponent, NavbarHomepageComponent],
+  imports: [RouterOutlet, IndexPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
