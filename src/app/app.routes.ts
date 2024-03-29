@@ -1,13 +1,10 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { IndexPageComponent } from './index-page/index-page.component';
 
 export const routes: Routes = [
     {
         path: '',
         title: 'SIASU Homepage',
-        component: AppComponent,
+        component: IndexPageComponent,
     },
-    {
-
-    }
 ];
