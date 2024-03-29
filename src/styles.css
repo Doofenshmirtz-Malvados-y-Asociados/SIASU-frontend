@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  background-color: rgb(14, 13, 30);
+  background-color: #0a0a0a;
 }
 
 .inter {
