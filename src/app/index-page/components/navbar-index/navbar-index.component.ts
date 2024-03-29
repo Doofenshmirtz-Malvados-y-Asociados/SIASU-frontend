@@ -5,7 +5,13 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './navbar-index.component.html',
-  styles: ``
+  styles: `
+    :host {
+      position: fixed;
+      z-index: 10;
+      width: 100vw;
+    }
+  `
 })
 export class NavbarIndexComponent {
 
