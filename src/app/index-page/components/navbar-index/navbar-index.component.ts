@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
   styles: `
     :host {
       position: fixed;
-      z-index: 10;
+      z-index: 20;
       width: 100vw;
     }
   `

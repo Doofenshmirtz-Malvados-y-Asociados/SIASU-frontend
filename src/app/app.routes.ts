@@ -4,7 +4,7 @@ import { IndexPageComponent } from './index-page/index-page.component';
 export const routes: Routes = [
     {
         path: '',
-        title: 'SIASU Homepage',
+        title: 'SIASU',
         component: IndexPageComponent,
     },
 ];
