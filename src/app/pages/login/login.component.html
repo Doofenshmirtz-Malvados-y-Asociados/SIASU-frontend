@@ -1,0 +1,18 @@
+<div class="w-full h-full px-10 py-8 flex justify-end" id="background">
+    <div class="w-1/2 h-full p-4 bg-neutral-950/90 text-white backdrop-blur-xl rounded-lg">
+        <div class="w-full flex justify-center">
+            <button 
+                [ngClass]="typeForm === false ? 'px-4 py-2 w-1/3 text-lg rounded-s-full bg-blue-700/80 hover:bg-blue-600/80 text-blue-200 hover:text-white transition-all duration-300' : 'px-4 py-2 w-1/3 text-lg rounded-s-full bg-blue-800/30 hover:bg-blue-800/80 text-blue-200 hover:text-white transition-all duration-300'"
+                (click)="changeToLogIn()"
+            >
+                Iniciar Sesión
+            </button>
+            <button 
+                [ngClass]="typeForm ? 'px-4 py-2 w-1/3 text-lg rounded-e-full bg-blue-700/80 hover:bg-blue-600/80 text-blue-200 hover:text-white transition-all duration-300' : 'px-4 py-2 w-1/3 text-lg rounded-e-full bg-blue-800/30 hover:bg-blue-800/80 text-blue-200 hover:text-white transition-all duration-300'"
+                (click)="changeToRegister()"
+            >
+                Registrarme
+            </button>
+        </div>
+    </div>
+</div>
