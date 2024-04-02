@@ -1,11 +1,12 @@
-import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import {FormGroup, FormControl} from '@angular/forms';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'LoginPage',
   standalone: true,
-  imports: [NgClass],
+  imports: [ReactiveFormsModule, RouterLink, RouterOutlet],
   templateUrl: './login.component.html',
   styles: `
     :host {
@@ -22,13 +23,8 @@ import { Component } from '@angular/core';
     `
 })
 export class LoginPage {
-  typeForm = false;
-
-  changeToRegister() {
-    this.typeForm = true;
-  }
-
-  changeToLogIn() {
-    this.typeForm = false;
-  }
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
 }
