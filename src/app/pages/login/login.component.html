@@ -8,17 +8,7 @@
             <p class="lg:text-5xl inter text-center font-semibold tracking-tighter">Iniciar sesión</p>
             
             <p class="text-center mt-6 text-red-300 font-bold italic">
-                @if (
-                    loginForm.get('email')?.invalid &&
-                    loginForm.get('email')?.errors && 
-                    (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)
-                ) {
-                    @if (loginForm.get('email')?.getError('required')) {
-                        Email requerido
-                    } @else {
-                        Email invalido
-                    }       
-                }
+                {{errorMessage}}
             </p>
             
             <form class="flex flex-col mt-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">

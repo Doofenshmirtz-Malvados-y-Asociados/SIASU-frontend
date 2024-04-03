@@ -18,7 +18,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   `
 })
 export class LoginPage {
-  errorMessage = 'Dios ayudame';
+  errorMessage = '';
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -26,6 +26,26 @@ export class LoginPage {
   });
 
   onSubmit() {
-    console.log(this.loginForm.get('email')?.errors)
+    const isValid = this.validation();
+    console.log(this.loginForm.get('password')?.errors)
+  }
+
+  validation(): boolean {
+    if (this.loginForm.get('email')?.hasError('required')) {
+      this.errorMessage = 'Email requerido';
+      return false;
+    } else if (this.loginForm.get('email')?.hasError('email')) {
+      this.errorMessage = 'Email invalido';
+      return false;
+    } else if (this.loginForm.get('password')?.hasError('required')) {
+      this.errorMessage = 'Contraseña requerida';
+      return false;
+    } else if (this.loginForm.get('password')?.hasError('minlength')) {
+      this.errorMessage = 'La contraseña debe de 8 caracteres minimo';
+      return false;
+    }
+    
+    this.errorMessage = '';
+    return true
   }
 }
