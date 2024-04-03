@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import {FormGroup, FormControl} from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
@@ -18,8 +18,13 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class RegisterPage {
   registerForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.email),
+    password: new FormControl('', Validators.minLength(8)),
   });
+
+  onSubmit() {
+    console.log(this.registerForm.valid);
+    console.log(this.registerForm.value.email);
+  }
 }
