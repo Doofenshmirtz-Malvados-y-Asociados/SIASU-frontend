@@ -6,9 +6,23 @@
 
         <div>
             <p class="lg:text-5xl inter text-center font-semibold tracking-tighter">Iniciar sesión</p>
-    
-            <form class="flex flex-col mt-6" [formGroup]="loginForm">
-                <input 
+            
+            <p class="text-center mt-6 text-red-300 font-bold italic">
+                @if (
+                    loginForm.get('email')?.invalid &&
+                    loginForm.get('email')?.errors && 
+                    (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)
+                ) {
+                    @if (loginForm.get('email')?.getError('required')) {
+                        Email requerido
+                    } @else {
+                        Email invalido
+                    }       
+                }
+            </p>
+            
+            <form class="flex flex-col mt-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <input
                     class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20
                         placeholder:italic placeholder:text-gray-400
                     " 
@@ -27,10 +41,12 @@
                     placeholder="Ingresa tu contraseña"
                 />
     
-                <button class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
+                <button [ngClass]="{'hover:text-white': loginForm.valid, 'cursor-not-allowed': !loginForm.valid}" class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
                     <span class="relative z-10">Enviar</span>
                     <span class="absolute inset-0 overflow-hidden rounded-md">
-                        <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-purple-800  to-violet-800 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
+                        @if (loginForm.valid) {
+                            <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-purple-800  to-violet-800 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
+                        }
                     </span>
                 </button>
             </form>

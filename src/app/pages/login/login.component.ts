@@ -1,12 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import {FormGroup, FormControl} from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'LoginPage',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, RouterOutlet],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, RouterOutlet],
   templateUrl: './login.component.html',
   styles: `
     :host {
@@ -14,17 +15,17 @@ import { RouterLink, RouterOutlet } from '@angular/router';
       width: 100vw;
       height: 100vh;
     }
-    
-    #background {
-      background: url('/assets/musa.jpeg');
-      background-position: center;
-      background-size: cover;
-    }
-    `
+  `
 })
 export class LoginPage {
+  errorMessage = 'Dios ayudame';
+
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
+
+  onSubmit() {
+    console.log(this.loginForm.get('email')?.errors)
+  }
 }

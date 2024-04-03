@@ -36,7 +36,7 @@
                     placeholder="Ingresa tu contraseña"
                 />
     
-                <button [class.hover:text-white]="registerForm.valid" class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 transition-all duration-300" [disabled]="!registerForm.valid">
+                <button [ngClass]="{'hover:text-white': registerForm.valid, 'cursor-not-allowed': !registerForm.valid}" class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
                     <span class="relative z-10">Enviar</span>
                     <span class="absolute inset-0 overflow-hidden rounded-md">
                         @if (registerForm.valid) {
