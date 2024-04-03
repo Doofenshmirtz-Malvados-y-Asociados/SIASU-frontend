@@ -6,7 +6,11 @@
 
         <div>
             <p class="lg:text-5xl inter text-center font-semibold tracking-tighter">Registrarme</p>
-    
+            
+            <p class="text-center mt-6 text-red-300 font-bold italic">
+                {{errorMessage}}
+            </p>
+            
             <form class="flex flex-col mt-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <input 
                     class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20

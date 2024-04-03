@@ -27,5 +27,28 @@ export class RegisterPage {
   });
 
   onSubmit() {
+    const isValid = this.validation();
+  }
+
+  validation(): boolean {
+    if (this.registerForm.get('name')?.hasError('required')) {
+      this.errorMessage = 'Nombre requerido';
+      return false;
+    } else if (this.registerForm.get('email')?.hasError('required')) {
+      this.errorMessage = 'Email requerido';
+      return false;
+    } else if (this.registerForm.get('email')?.hasError('email')) {
+      this.errorMessage = 'Email invalido';
+      return false;
+    } else if (this.registerForm.get('password')?.hasError('required')) {
+      this.errorMessage = 'Contraseña requerida';
+      return false;
+    } else if (this.registerForm.get('password')?.hasError('minlength')) {
+      this.errorMessage = 'La contraseña debe de 8 caracteres minimo';
+      return false;
+    }
+    
+    this.errorMessage = '';
+    return true
   }
 }
