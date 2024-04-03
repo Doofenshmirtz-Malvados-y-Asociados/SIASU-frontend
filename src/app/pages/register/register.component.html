@@ -5,9 +5,18 @@
         </a>
 
         <div>
-            <p class="lg:text-5xl inter text-center font-semibold tracking-tighter">Iniciar sesión</p>
+            <p class="lg:text-5xl inter text-center font-semibold tracking-tighter">Registrarme</p>
     
-            <form class="flex flex-col mt-6" [formGroup]="loginForm">
+            <form class="flex flex-col mt-6" [formGroup]="registerForm">
+                <input 
+                    class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20
+                        placeholder:italic placeholder:text-gray-400
+                    " 
+                    type="name" 
+                    formControlName="name" 
+                    name="name" 
+                    placeholder="Ingresa tu nombre completo"
+                />
                 <input 
                     class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20
                         placeholder:italic placeholder:text-gray-400
@@ -37,10 +46,10 @@
         </div>
 
         <p class="text-center mt-20 text-gray-500">
-            ¿No tienes cuenta? 
-            <a class="cursor-pointer text-white" routerLink="/register">Registrate</a>.
+            ¿Ya tienes una cuenta? 
+            <a class="cursor-pointer text-white" routerLink="/login">Inicia Sesión</a>.
         </p>
     </div>
 
 </div>
-<div class="absolute -z-10 w-80 h-80 bg-purple-900/30 rounded-full blur-3xl top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"></div>
+<div class="absolute -z-10 w-80 h-80 bg-emerald-900/40 rounded-full blur-3xl top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"></div>
