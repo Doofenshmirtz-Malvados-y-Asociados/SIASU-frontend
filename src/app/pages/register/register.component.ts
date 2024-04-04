@@ -24,6 +24,9 @@ export class RegisterPage {
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    isStudent: new FormControl(false),
+    career: new FormControl(''),
+    admission: new FormControl(''),
   });
 
   onSubmit() {
@@ -45,6 +48,15 @@ export class RegisterPage {
       return false;
     } else if (this.registerForm.get('password')?.hasError('minlength')) {
       this.errorMessage = 'La contraseña debe de 8 caracteres minimo';
+      return false;
+    } else if (this.registerForm.value.isStudent && this.registerForm.value.career === '') {
+      this.errorMessage = 'Selecciona una carrera';
+      return false;
+    } else if (this.registerForm.value.isStudent && this.registerForm.value.admission === '') {
+      this.errorMessage = 'Selecciona una fecha de admisión';
+      return false;
+    } else if (this.registerForm.value.isStudent && this.registerForm.value.admission && (new Date(Date.parse(this.registerForm.value.admission)) > new Date())) {
+      this.errorMessage = 'Selecciona una fecha de admisión valida';
       return false;
     }
     

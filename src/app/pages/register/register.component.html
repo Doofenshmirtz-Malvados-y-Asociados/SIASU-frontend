@@ -1,16 +1,16 @@
 <div class="w-full h-full flex justify-center backdrop-blur-xl">
-    <div class="w-1/4 h-full flex flex-col justify-around m-auto z-10 p-4 text-white rounded-lg">
+    <div class="w-1/4 h-full flex flex-col justify-between m-auto z-10 p-4 text-white rounded-lg">
         <a routerLink="/">
             <img class=" m-auto invert w-16" src="/assets/logo-min.png" />
         </a>
 
-        <div>
+        <div class="mt-12">
             <p class="lg:text-5xl inter text-center font-semibold tracking-tighter">Registrarme</p>
             
             <p class="text-center mt-6 text-red-300 font-bold italic">
                 {{errorMessage}}
             </p>
-            
+
             <form class="flex flex-col mt-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                 <input 
                     class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20
@@ -39,13 +39,42 @@
                     name="password" 
                     placeholder="Ingresa tu contraseña"
                 />
+                <label class="text-center my-2 text-gray-400">
+                    <input 
+                        class="accent-gray-300 dark:[color-scheme:dark]" 
+                        type="checkbox"
+                        formControlName="isStudent"
+                        name="isStudent"
+                    />
+                    Soy estudiante universitario de UdeG.
+                </label>
+
+                @if (registerForm.value.isStudent) {
+                    <label for="career" class="w-full text-gray-400">
+                        Selecciona una carrera: 
+                        <select name="career" formControlName="career" class="w-full my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20 text-gray-400">
+                            <option value="INCO">Ingeniería en Computación</option>
+                            <option value="INFO">Ingeniería en Informatica</option>
+                            <option value="INRO">Ingeniería Robótica</option>
+                            <option value="INBI">Ingeniería Biomédica</option>
+                        </select>
+                    </label>
+
+                    <label for="admission" class="w-full text-gray-400">
+                        Ingresa la fecha en la que fuiste admitido en la universidad: 
+                        <input 
+                            class="my-2 py-2 px-4 dark:[color-scheme:dark] decoration-transparent block w-full bg-gray-700/40 rounded-xl border border-gray-400/20 placeholder:italic placeholder:text-gray-400" 
+                            type="date" 
+                            formControlName="admission" 
+                            name="admission" 
+                        />
+                    </label>
+                }
     
-                <button [ngClass]="{'hover:text-white': registerForm.valid, 'cursor-not-allowed': !registerForm.valid}" class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
+                <button class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
                     <span class="relative z-10">Enviar</span>
                     <span class="absolute inset-0 overflow-hidden rounded-md">
-                        @if (registerForm.valid) {
-                            <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-emerald-800 to-lime-700 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
-                        }
+                        <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-emerald-800 to-lime-700 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
                     </span>
                 </button>
             </form>

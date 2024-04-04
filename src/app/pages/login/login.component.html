@@ -31,12 +31,10 @@
                     placeholder="Ingresa tu contraseña"
                 />
     
-                <button [ngClass]="{'hover:text-white': loginForm.valid, 'cursor-not-allowed': !loginForm.valid}" class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
+                <button class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
                     <span class="relative z-10">Enviar</span>
                     <span class="absolute inset-0 overflow-hidden rounded-md">
-                        @if (loginForm.valid) {
-                            <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-purple-800  to-violet-800 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
-                        }
+                        <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-purple-800  to-violet-800 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
                     </span>
                 </button>
             </form>
