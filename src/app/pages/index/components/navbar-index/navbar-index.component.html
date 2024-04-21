@@ -1,12 +1,23 @@
-<nav class="w-full py-5 m-auto text-gray-300 bg-[#0a0a0a]/70 backdrop-blur flex justify-around px-8">
-    <a routerLink="">
-        <img class="invert w-10" src="/assets/logo-min.png" alt="Logotipo SIASU" />
-    </a>
-    <a routerLink="/login">
-        <button
-            class="px-4 py-2 rounded-sm bg-blue-800/50 hover:bg-blue-800/80 text-blue-200 hover:text-white transition-all duration-300 text-sm"
-        >
-            Iniciar Sesión
-        </button>
-    </a>
+<nav class="w-full py-5 m-auto text-gray-300 px-8">
+    <div class="w-4/5 m-auto flex justify-between">
+        <a routerLink="">
+            <img class="invert w-10" src="/assets/logo-min.png" alt="Logotipo SIASU" />
+        </a>
+        <div class="p-1 border border-gray-400/20 rounded bg-gray-200/20 backdrop-blur gap-2 flex">
+            <a routerLink="/login">
+                <button
+                    class="px-4 py-2 hover:bg-gradient-to-r rounded hover:bg-gray-950/40 text-white transition-all duration-300 text-sm"
+                >
+                    Iniciar Sesión
+                </button>
+            </a>
+            <a routerLink="/register">
+                <button
+                    class="px-4 py-2 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 bg-size-200 hover:bg-pos-100 rounded text-white transition-all duration-300 text-sm"
+                >
+                    Registrarme
+                </button>
+            </a>
+        </div>
+    </div>
 </nav>
