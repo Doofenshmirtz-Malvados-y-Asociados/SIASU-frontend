@@ -46,5 +46,20 @@
         </p>
     </div>
 
+    @if (fetchStatus() === enum.completed) {
+        <SuccessPopUp 
+            title="¡Registro Exitoso!"
+            aditionalInfo="Revisa tu correo para activar tu cuenta. Si no lo encuentras revisa tu carpeta de SPAM por un correo del equipo de SIASU."
+            redirectTo="/"
+        />
+    } @else if (fetchStatus() === enum.error) {
+        <ErrorPopUp 
+            title="Tenemos dificultades"
+            aditionalInfo="Tu solicitud no ha podido ser completada, todos tenemos malos dias, intenta de nuevo en unos momentos."
+            [toggleValue]="enum.notSend"
+            [toggleFn]="fetchStatus.set"
+        />
+    }
+
 </div>
 <div class="absolute -z-10 w-80 h-80 bg-purple-900/30 rounded-full blur-3xl top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"></div>

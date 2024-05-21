@@ -1,0 +1,17 @@
+<div class="absolute z-20 w-96 h-52 p-4 text-center bg-neutral-950 border-2 border-red-400/30 rounded-lg text-gray-300 top-1/2 -translate-y-1/2">
+    <div class="relative">
+
+        <svg class="absolute w-20 top-0 right-0 translate-x-1/2 -translate-y-1/2 fill-red-600" data-testid="geist-icon" stroke-linejoin="round" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM10.5 11.5607L9.96967 11.0303L8 9.06066L6.03033 11.0303L5.5 11.5607L4.43934 10.5L4.96967 9.96967L6.93934 8L4.96967 6.03033L4.43934 5.5L5.5 4.43934L6.03033 4.96967L8 6.93934L9.96967 4.96967L10.5 4.43934L11.5607 5.5L11.0303 6.03033L9.06066 8L11.0303 9.96967L11.5607 10.5L10.5 11.5607Z"></path></svg>
+
+        <p class="font-bold text-2xl">{{title}}</p>
+        <p class="mt-4 text-sm text-left">{{aditionalInfo}}</p>
+        
+        <button (click)="toggleFn(toggleValue)" class="group relative text-center w-40 h-12 mt-4 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
+            <span class="relative z-10">Ok</span>
+            <span class="absolute inset-0 overflow-hidden rounded-md">
+                <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-red-900 to-red-600 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
+            </span>
+        </button>
+    </div>
+</div>
+<div class="absolute cursor-not-allowed z-10 w-full h-full bg-black/70"></div>
