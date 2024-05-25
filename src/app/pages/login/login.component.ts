@@ -1,13 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { SuccessPopupComponent } from '../../components/success-popup/success-popup.component';
+import { ErrorPopupComponent } from '../../components/error-popup/error-popup.component';
+import { HttpErrorResponse } from '@angular/common/http';
+
+
+enum fetchType {
+  notSend,
+  completed, 
+  error,
+  unauthorized,
+}
+
 
 @Component({
   selector: 'LoginPage',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, RouterOutlet],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, RouterOutlet, SuccessPopupComponent, ErrorPopupComponent],
   templateUrl: './login.component.html',
   styles: `
     :host {
@@ -18,16 +31,41 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   `
 })
 export class LoginPage {
+  constructor(
+    private authClient: AuthService,
+    private router: Router
+  ) {}
+
+  enum: typeof fetchType = fetchType;
+
   errorMessage = '';
+  fetchStatus = signal<fetchType>(fetchType.notSend);
+
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
 
+
   onSubmit() {
     const isValid = this.validation();
-    console.log(this.loginForm.get('password')?.errors)
+    
+    if (!isValid) 
+      return
+    
+    this.authClient.login(
+      this.loginForm.value.email || '', 
+      this.loginForm.value.password || ''
+    )
+    .subscribe({
+      next: () => this.router.navigate(['/dashboard']),
+      error: (e: HttpErrorResponse ) => {
+        if (e.status === 401) this.fetchStatus.set(fetchType.unauthorized)
+        else this.fetchStatus.set(fetchType.error)
+      }
+    })
+    
   }
 
   validation(): boolean {

@@ -1,31 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { SuccessPopupComponent } from "../../components/success-popup/success-popup.component";
+import { ErrorPopupComponent } from '../../components/error-popup/error-popup.component';
 
 type fetchType = 'notSend' | 'completed' | 'error';
 
 @Component({
-  selector: 'RegisterPage',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, RouterOutlet],
-  templateUrl: './register.component.html',
-  styles: `
+    selector: 'RegisterPage',
+    standalone: true,
+    templateUrl: './register.component.html',
+    styles: `
     :host {
       display: block;
       width: 100vw;
       height: 100vh;
     }
-  `
+  `,
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, RouterOutlet, SuccessPopupComponent, ErrorPopupComponent]
 })
 export class RegisterPage {
   constructor(
     private authClient: AuthService,
   ) {}
   
-  fetchStatus: fetchType = 'notSend';
+  fetchStatus = signal<fetchType>('notSend');
   errorMessage = '';
 
   registerForm = new FormGroup({
@@ -38,7 +40,7 @@ export class RegisterPage {
   });
 
   resetFetchStatus() {
-    this.fetchStatus = 'notSend'
+    this.fetchStatus.set('notSend')
   }
 
   onSubmit() {
@@ -63,9 +65,9 @@ export class RegisterPage {
       career: this.registerForm.value.career || ''
     })
     .subscribe(
-      data => {
-        if (data) this.fetchStatus = 'completed'
-        else this.fetchStatus = 'error'
+      success => {
+        if (success) this.fetchStatus.set('completed')
+        else this.fetchStatus.set('error')
       }
     )
 
