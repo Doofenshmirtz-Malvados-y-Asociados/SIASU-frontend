@@ -6,12 +6,14 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { SuccessPopupComponent } from '../../components/success-popup/success-popup.component';
 import { ErrorPopupComponent } from '../../components/error-popup/error-popup.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 enum fetchType {
   notSend,
   completed, 
-  error
+  error,
+  unauthorized,
 }
 
 
@@ -56,12 +58,13 @@ export class LoginPage {
       this.loginForm.value.email || '', 
       this.loginForm.value.password || ''
     )
-    .subscribe(
-      (success) => {
-        if (success) this.router.navigate(['/'])
+    .subscribe({
+      next: () => this.router.navigate(['/dashboard']),
+      error: (e: HttpErrorResponse ) => {
+        if (e.status === 401) this.fetchStatus.set(fetchType.unauthorized)
         else this.fetchStatus.set(fetchType.error)
       }
-    )
+    })
     
   }
 

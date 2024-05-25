@@ -59,6 +59,13 @@
             [toggleValue]="enum.notSend"
             [toggleFn]="fetchStatus.set"
         />
+    } @else if (fetchStatus() === enum.unauthorized) {
+        <ErrorPopUp 
+            title="Contraseña invalida"
+            aditionalInfo="Revisa que las credenciales que ingresaste sean correctas e intentalo de nuevo."
+            [toggleValue]="enum.notSend"
+            [toggleFn]="fetchStatus.set"
+        />
     }
 
 </div>
