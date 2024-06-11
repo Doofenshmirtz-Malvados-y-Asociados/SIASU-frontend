@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   imports: [
     CommonModule,
   ],
-  template: `<p>dashboard works!</p>`,
+  templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent { }
