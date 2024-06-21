@@ -1,18 +1,21 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { RegisterInputUser } from './interfaces/register.interface';
 import { Observable, catchError, map, of, tap, throwError } from "rxjs";
 import { LoginResponse } from './interfaces/loginResponse.interface';
 import { AuthStatus } from './interfaces/authStatus.enum';
 import { User } from './interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(
-    private http: HttpClient
-  ) { }
+  
+  constructor() { }
+
+  private router : Router = inject(Router)
+  private http: HttpClient = inject(HttpClient)
 
   private _currentUser = signal<User | null>(null)
   private _authStatus = signal<AuthStatus>(AuthStatus.notAuthenticated)
@@ -69,5 +72,6 @@ export class AuthService {
     localStorage.removeItem('token')
     this._authStatus.set(AuthStatus.notAuthenticated)
     this._currentUser.set(null)
+    this.router.navigateByUrl('/')
   }
 }

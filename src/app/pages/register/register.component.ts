@@ -67,7 +67,9 @@ export class RegisterPage {
     .subscribe(
       success => {
         if (success) this.fetchStatus.set('completed')
-        else this.fetchStatus.set('error')
+        else {
+          this.fetchStatus.set('error')
+        }
       }
     )
 
