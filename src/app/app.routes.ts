@@ -4,6 +4,7 @@ import { LoginPage } from './pages/login/login.component';
 import { RegisterPage } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { isAuthenticatedGuard } from './auth/guards/isAuthenticated.guard';
+import { EstadisticasComponent } from './pages/dashboard/estadisticas/estadisticas.component';
 
 export const routes: Routes = [
     {
@@ -25,6 +26,13 @@ export const routes: Routes = [
         path: 'dashboard',
         title: 'Dashboard',
         component: DashboardComponent,
-        canActivate: [ isAuthenticatedGuard ]
+        canActivate: [isAuthenticatedGuard],
+        children: [
+            { 
+                path: 'estadisticas',
+                title: 'Estadisticas',
+                component: EstadisticasComponent
+            }
+        ]
     }
 ];
