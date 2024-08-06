@@ -27,6 +27,8 @@ export class AuthService {
     this._currentUser.set(user)
     this._authStatus.set(AuthStatus.authenticated)
     localStorage.setItem('token', token)
+    if (user.career)
+      localStorage.setItem('career', user.career.toString())
 
     return true
   }
@@ -69,7 +71,7 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('token')
+    localStorage.clear()
     this._authStatus.set(AuthStatus.notAuthenticated)
     this._currentUser.set(null)
     this.router.navigateByUrl('/')
