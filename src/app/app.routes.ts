@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { isAuthenticatedGuard } from './auth/guards/isAuthenticated.guard';
 import { EstadisticasComponent } from './pages/dashboard/estadisticas/estadisticas.component';
 import { CarreraComponent } from './pages/dashboard/carrera/carrera.component';
+import { CarrerasComponent } from './pages/dashboard/carreras/carreras.component';
 
 export const routes: Routes = [
     {
@@ -38,7 +39,12 @@ export const routes: Routes = [
                 path: 'carrera',
                 title: 'Carrera',
                 component: CarreraComponent
-            }
+            },
+            {
+                path: 'carreras',
+                title: 'carreras',
+                component: CarrerasComponent
+            },
         ]
     }
 ];
