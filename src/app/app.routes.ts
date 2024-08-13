@@ -5,6 +5,7 @@ import { RegisterPage } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { isAuthenticatedGuard } from './auth/guards/isAuthenticated.guard';
 import { EstadisticasComponent } from './pages/dashboard/estadisticas/estadisticas.component';
+import { ConfiguracionComponent } from './pages/dashboard/configuracion/configuracion.component';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,11 @@ export const routes: Routes = [
                 path: 'estadisticas',
                 title: 'Estadisticas',
                 component: EstadisticasComponent
+            },
+            {
+                path: 'configuracion',
+                title: 'Configuración',
+                component: ConfiguracionComponent
             }
         ]
     }

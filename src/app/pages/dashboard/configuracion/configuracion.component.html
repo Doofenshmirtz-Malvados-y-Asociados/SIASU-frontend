@@ -1,0 +1,36 @@
+
+<main class="px-8 py-4 w-full h-full flex flex-col">
+    <div class="border-b border-[#27272a] pb-4 w-full grid gap-2">
+        <h2 class="text-3xl font-bold text-[#fafafa]">Configuración</h2>
+        <p class="text-[#a8a29e]">Modifica o cambia tus credenciales y tu carrera universitaria</p>
+    </div>
+
+    <div class="py-4 flex flex-grow">
+        <div class="w-1/6 flex flex-col pr-4 border-r h-full border-[#27272a]">
+            <a class="rounded-lg cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-[#ffffff] h-9 p-2 hover:underline bg-[#292524]">Cuenta</a>
+            <a class="rounded-lg cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-[#ffffff] h-9 p-2 hover:bg-transparent hover:underline">Carrera</a>
+            <a class="rounded-lg cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-[#ffffff] h-9 p-2 hover:bg-transparent hover:underline">Eliminar mi cuenta</a>
+        </div>
+        <div class="pl-4 py-2 w-full">
+            <section class="border-b border-[#27272a] pb-4 w-full">
+                <h3 class="font-bold text-xl">Cuenta</h3>
+                <p class="text-[#a8a29e]">Ajusta tu configuración de cuenta. Modifica tu e-mail o tu contraseña.</p>
+            </section>
+            <section class="py-2 grid grid-cols-1 gap-12">
+                <div>
+                    <h4 class="font-semibold text-lg my-2">Email</h4>
+                    <input type="email" value="" placeholder="Tu email..." class="flex h-10 w-full rounded-md border bg-transparent px-3 py-1 text-md shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
+                </div>
+                <div>
+                    <h4 class="font-semibold text-lg my-2">Contraseña</h4>
+                    <input type="password" value="" placeholder="8 caracteres minimo..." class="flex my-2 h-10 w-full rounded-md border bg-transparent px-3 py-1 text-md shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
+                    <p class="my-2">Confirma tu contraseña</p>
+                    <input type="password" value="" disabled placeholder="Confirma tu contraseña..." class="flex my-2 h-10 w-full rounded-md border bg-transparent px-3 py-1 text-md shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
+                </div>
+                <div class="grid place-items-center">
+                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#ea580c] text-[#fafaf9] hover:bg-[#ea580c]/90 h-10 px-4 py-2 w-40">Guardar cambios</button>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
