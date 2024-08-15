@@ -1,36 +1,82 @@
-
-<main class="px-8 py-4 w-full h-full flex flex-col">
+<main class="p-12 w-full h-full flex flex-col">
     <div class="border-b border-[#27272a] pb-4 w-full grid gap-2">
         <h2 class="text-3xl font-bold text-[#fafafa]">Configuración</h2>
         <p class="text-[#a8a29e]">Modifica o cambia tus credenciales y tu carrera universitaria</p>
     </div>
-
-    <div class="py-4 flex flex-grow">
-        <div class="w-1/6 flex flex-col pr-4 border-r h-full border-[#27272a]">
-            <a class="rounded-lg cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-[#ffffff] h-9 p-2 hover:underline bg-[#292524]">Cuenta</a>
-            <a class="rounded-lg cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-[#ffffff] h-9 p-2 hover:bg-transparent hover:underline">Carrera</a>
-            <a class="rounded-lg cursor-pointer font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-[#ffffff] h-9 p-2 hover:bg-transparent hover:underline">Eliminar mi cuenta</a>
+    
+    <div class="pt-4 w-2/4 m-auto h-4/5 overflow-scroll no-scrollbar relative border border-[#27272a]">
+            <div class="h-full p-4 mb-20">
+                <section class="border-b border-[#27272a] p-4 w-full">
+                    <h3 class="font-bold text-xl">Cuenta</h3>
+                    <p class="text-[#a8a29e]">Ajusta tu configuración de cuenta. Modifica tu e-mail o tu contraseña.</p>
+                </section>
+                <details
+                    class="my-4">
+                    <summary class="flex border bg-secondary border-border flex-1 items-center justify-between p-4 font-medium">
+                        Cuenta 
+                        <svg class="group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </summary>
+                    <section class="p-4 grid grid-cols-1 gap-4 border border-border">
+                        <div>
+                            <p class="font-semibold mb-2 text-lg">Email</p>
+                            <input type="email" [placeholder]="user?.email"
+                                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2 text-lg">Contraseña</p>
+                            <input type="password" value="" placeholder="8 caracteres minimo..."
+                                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                            <p class="my-2">Confirma tu contraseña</p>
+                            <input type="password" value="" disabled placeholder="Confirma tu contraseña..."
+                                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" />
+                        </div>
+                    </section>
+                </details>
+                <details
+                    class="my-4">
+                    <summary class="flex border bg-secondary border-border flex-1 items-center justify-between p-4 font-medium">
+                        Carrera 
+                        <svg class="group-hover:rotate-180" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </summary>
+                    <section class="p-4 grid grid-cols-1 gap-4 border border-border">
+                        <div>
+                            <p class="font-semibold text-lg">Carrera</p>
+                            <p class="mb-2 text-sm text-muted-foreground"><span class="font-semibold">Advertencia: </span>Solo puedes modificar tu carrera una vez cada seis meses</p>
+                            <select [value]="user?.career_id" class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+                                <option value="0">Sin carrera</option>
+                                <option value="1">Ingeniería en Computación (INCO)</option>
+                                <option value="2">Ingeniería en Computación (ICOM)</option>
+                                <option value="3">Ingeniería en Informática (INNI)</option>
+                                <option value="4">Ingeniería en Informática (INFO)</option>
+                                <option value="5">Ingeniería en Robótica</option>
+                                <option value="6">Ingeniería en Comunicaciones y Electrónica</option>
+                                <option value="7">Ingeniería Biomédica</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-lg">Fecha de admisión</p>
+                            <input type="date" value="" placeholder="8 caracteres minimo..."
+                                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" disabled />
+                        </div>
+                    </section>
+                </details>
+            </div>
+            <div class="flex justify-end w-full gap-4 bg-secondary p-4 mt-8 sticky bottom-0 right-0">
+                <button class="text-sm font-medium  text-primary/70 hover:text-primary hover:underline h-10 cursor-pointer hover:bg-black/70 justify-center whitespace-nowrap rounded-md px-6">Cancelar</button>
+                <button 
+                    class="justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 w-40"
+                    [disabled]="!isModified"
+                >
+                    Guardar cambios
+                </button>
+            </div>
         </div>
-        <div class="pl-4 py-2 w-full">
-            <section class="border-b border-[#27272a] pb-4 w-full">
-                <h3 class="font-bold text-xl">Cuenta</h3>
-                <p class="text-[#a8a29e]">Ajusta tu configuración de cuenta. Modifica tu e-mail o tu contraseña.</p>
-            </section>
-            <section class="py-2 grid grid-cols-1 gap-12">
-                <div>
-                    <h4 class="font-semibold text-lg my-2">Email</h4>
-                    <input type="email" value="" placeholder="Tu email..." class="flex h-10 w-full rounded-md border bg-transparent px-3 py-1 text-md shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
-                </div>
-                <div>
-                    <h4 class="font-semibold text-lg my-2">Contraseña</h4>
-                    <input type="password" value="" placeholder="8 caracteres minimo..." class="flex my-2 h-10 w-full rounded-md border bg-transparent px-3 py-1 text-md shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
-                    <p class="my-2">Confirma tu contraseña</p>
-                    <input type="password" value="" disabled placeholder="Confirma tu contraseña..." class="flex my-2 h-10 w-full rounded-md border bg-transparent px-3 py-1 text-md shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" />
-                </div>
-                <div class="grid place-items-center">
-                    <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#ea580c] text-[#fafaf9] hover:bg-[#ea580c]/90 h-10 px-4 py-2 w-40">Guardar cambios</button>
-                </div>
-            </section>
-        </div>
-    </div>
 </main>

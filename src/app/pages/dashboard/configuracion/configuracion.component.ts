@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-configuracion',
@@ -14,5 +15,8 @@ import { Component } from '@angular/core';
   `
 })
 export class ConfiguracionComponent {
+  private authClient: AuthService = inject(AuthService)
+  user = this.authClient.currentUser()
 
+  isModified = false;
 }
