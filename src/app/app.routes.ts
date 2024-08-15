@@ -7,6 +7,7 @@ import { isAuthenticatedGuard } from './auth/guards/isAuthenticated.guard';
 import { EstadisticasComponent } from './pages/dashboard/estadisticas/estadisticas.component';
 import { CarreraComponent } from './pages/dashboard/carrera/carrera.component';
 import { CarrerasComponent } from './pages/dashboard/carreras/carreras.component';
+import { ConfiguracionComponent } from './pages/dashboard/configuracion/configuracion.component';
 
 export const routes: Routes = [
     {
@@ -34,6 +35,11 @@ export const routes: Routes = [
                 path: 'estadisticas',
                 title: 'Estadisticas',
                 component: EstadisticasComponent
+            },
+            {
+                path: 'configuracion',
+                title: 'Configuración',
+                component: ConfiguracionComponent
             },
             {
                 path: 'carrera',
