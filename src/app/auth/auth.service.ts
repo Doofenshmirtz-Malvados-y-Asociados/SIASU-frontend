@@ -27,8 +27,8 @@ export class AuthService {
     this._currentUser.set(user)
     this._authStatus.set(AuthStatus.authenticated)
     localStorage.setItem('token', token)
-    if (user.career)
-      localStorage.setItem('career', user.career.toString())
+    if (user.career_id)
+      localStorage.setItem('career', user.career_id.toString())
 
     return true
   }

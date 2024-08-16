@@ -17,6 +17,8 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class DashboardComponent {
   private authClient: AuthService = inject(AuthService)
+  
+  user = this.authClient.currentUser()
 
   onLogout() {
     this.authClient.logout()

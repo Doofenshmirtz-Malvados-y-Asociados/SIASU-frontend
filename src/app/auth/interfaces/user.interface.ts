@@ -1,5 +1,5 @@
 export interface User {
     email: string;
     name: string;
-    career: number
+    career_id?: number
 }

@@ -1,24 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CareerService } from '../../../services/carrera.service';
 import { Career } from '../../../interfaces/career.interface';
+import { ResponseService } from '../../../services/respuestas.service';
+import { AuthService } from '../../../auth/auth.service';
+import { User } from '../../../auth/interfaces/user.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carreras',
   standalone: true,
-  imports: [],
-  providers: [CareerService],
+  imports: [RouterLink],
+  providers: [CareerService, ResponseService],
   templateUrl: './carreras.component.html',
   styleUrl: './carreras.component.css'
 })
 export class CarrerasComponent {
-  constructor(private readonly careerService: CareerService) {}
+  constructor(private readonly careerClient: CareerService, private readonly responseClient: ResponseService) {}
+  
+  private authClient: AuthService = inject(AuthService)
+  
   data: any
-  career_id: any
+  user = this.authClient.currentUser()
+  response: any = "hola"
 
   ngOnInit() {
-    this.career_id = localStorage.getItem("career");
-    this.careerService.getCareers().subscribe(career => {this.data = career});
+    this.careerClient.getCareers().subscribe(career => {this.data = career});
+    if (!this.user?.career_id) {
+      this.responseClient.getResponseByUser(this.user!.email).subscribe(res => {this.response = res})
+      console.log(this.response)
+    }
   }
-
-  
 }

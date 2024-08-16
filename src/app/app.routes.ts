@@ -42,14 +42,14 @@ export const routes: Routes = [
                 component: ConfiguracionComponent
             },
             {
-                path: 'carrera',
-                title: 'Carrera',
-                component: CarreraComponent
-            },
-            {
                 path: 'carreras',
                 title: 'carreras',
                 component: CarrerasComponent
+            },
+            {
+                path: 'carreras/:id',
+                title: 'Carreras',
+                component: CarreraComponent
             },
         ]
     }

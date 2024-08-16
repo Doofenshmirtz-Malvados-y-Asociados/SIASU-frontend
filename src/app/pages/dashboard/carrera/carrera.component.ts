@@ -12,8 +12,11 @@ import { CareerService } from '../../../services/carrera.service';
 export class CarreraComponent {
   constructor(private readonly careerService: CareerService) {}
 
+  
+
   ngOnInit() {
-    localStorage.getItem("career") ?? ''
+    localStorage.getItem("career")
+
   }
   onSubmit() {
   }
