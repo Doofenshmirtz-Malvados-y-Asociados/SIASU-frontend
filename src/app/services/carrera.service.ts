@@ -9,11 +9,10 @@ export class CareerService {
     constructor(private http: HttpClient) {}
 
     public getCareers(): Observable<Career> {
-        return this.http.get<Career>("http://localhost:3000/career/findAll");
+        return this.http.get<Career>("http://localhost:3000/career/")
     }
 
-    public getCareer(): Observable<Career> {
-        return this.http.get<Career>("http://localhost:3000/career/findById/")
+    public getCareer(id: string): Observable<Career> {
+        return this.http.get<Career>(`http://localhost:3000/career/${id}`)
     }
 }
-
