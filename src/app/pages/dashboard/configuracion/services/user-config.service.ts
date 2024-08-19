@@ -1,10 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserConfiguration } from '../dto/UserConfigurationUpdate.interface';
 import { catchError, map, Observable, of } from 'rxjs';
-import { AuthService } from '../../../../auth/auth.service';
 
 
+interface accountData {
+  email: string;
+  name: string;
+}
+
+interface careerSettings {
+  email: string;
+  career_id: number;
+  signedUpAt: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +22,22 @@ export class UserConfigService {
   constructor() { }
 
   private http: HttpClient = inject(HttpClient)
-  private authClient: AuthService = inject(AuthService)
 
-  user_email = this.authClient.currentUser()?.email
-  
-  updateConfiguration(userConfig: UserConfiguration): Observable<boolean> {
-    return this.http.post(`http://localhost:3000/auth/changePassword`, userConfig)
+  changeAccountSettings(accountData: accountData) {
+    return this.http.patch(`http://localhost:3000/user/${accountData.email}`, {
+      name: accountData.name
+    })
       .pipe(
-        map(user => {
-          console.log(user)
-          return !!user
-        }),
-        catchError(e => {
-          return of(false)
-        })
+        map(user => !!user),
+        catchError(e => of(false))
+      )
+  }
+  
+  changeCareerSettings(careerSettings: careerSettings) {
+    return this.http.post(`http://localhost:3000/career-user`, careerSettings)
+      .pipe(
+        map(user => !!user),
+        catchError(e => of(false))
       )
   }
 }
