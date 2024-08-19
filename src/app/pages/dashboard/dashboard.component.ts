@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { ToastNotificationsComponent } from '../../components/toast-notifications/toast-notifications.component';
 
 @Component({
   selector: 'Dashboard',
@@ -10,7 +11,8 @@ import { AuthService } from '../../auth/auth.service';
     CommonModule,
     RouterLink,
     RouterLinkActive,
-    RouterOutlet
+    RouterOutlet,
+    ToastNotificationsComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',

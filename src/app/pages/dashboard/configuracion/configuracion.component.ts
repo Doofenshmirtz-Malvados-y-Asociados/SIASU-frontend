@@ -4,6 +4,7 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { matchValues } from '../../../shared/MatchValues.directive';
 import { UserConfigService } from './services/user-config.service';
+import { ToastNotificationsService } from '../../../components/toast-notifications/services/toast-notifications.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { UserConfigService } from './services/user-config.service';
 export class ConfiguracionComponent implements OnInit {
   private authClient: AuthService = inject(AuthService)
   private userClient: UserConfigService = inject(UserConfigService)
+  private notificationService: ToastNotificationsService = inject(ToastNotificationsService)
   
   user = this.authClient.currentUser()
   initialCareer = this.user?.career_id;
@@ -40,7 +42,7 @@ export class ConfiguracionComponent implements OnInit {
   
   onAccountSettingsFormSubmit() {
     if (!this.accountSettingsForm.valid) {
-      console.log('AHHH, ESTA MAL')
+      this.notificationService.add("Nombre no valido", "Ingresa un nombre valido", 'error')
       return;
     }
 
@@ -48,7 +50,7 @@ export class ConfiguracionComponent implements OnInit {
       email: this.user!.email,
       name: this.accountSettingsForm.value?.name || ''
     }).subscribe(
-      () => console.log("Si")
+      () => this.notificationService.add("Nombre modificado", "Para reflejar los cambios debes de ingresar de nuevo")
     )
   }
 
@@ -61,11 +63,14 @@ export class ConfiguracionComponent implements OnInit {
 
   onSecuritySettingsFormSubmit() {
     if (!this.securitySettingsForm?.valid) {
+      this.notificationService.add("Contraseña no valida", "Verifica que ingresaste la misma contraseña en ambos campos", 'error')
       return;
     }
 
     this.authClient.changePassword(this.securitySettingsForm.value.password || '')
-      .subscribe(() => console.log("Si"))
+      .subscribe(
+        () => this.notificationService.add("Contraseña modificada", "Utiliza tu nueva contraseña cuando ingreses de nuevo")
+      )
   }
 
 
@@ -77,9 +82,10 @@ export class ConfiguracionComponent implements OnInit {
 
   onCareerSettingsFormSubmit() {
     if (!this.careerSettingsForm?.valid) {
+      this.notificationService.add("Carrera invalida", "Revisa que los datos que ingresaste sean correctos", 'error')
       return;
     } else if (this.initialCareer == this.careerSettingsForm.value.career_id) {
-      console.log("Misma carrera")
+      this.notificationService.add("Misma carrera", "Cambia de carrera para guardar los cambios", 'error')
       return;
     }
 
@@ -90,7 +96,9 @@ export class ConfiguracionComponent implements OnInit {
       email: this.user?.email || '',
       signedUpAt: dateTime
     })
-      .subscribe(() => console.log("Si"))
+      .subscribe(
+        () => this.notificationService.add("Carrera modificada", "Para reflejar los cambios debes de ingresar de nuevo")
+      )
   }
 
 
