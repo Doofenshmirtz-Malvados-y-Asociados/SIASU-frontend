@@ -68,6 +68,21 @@ export class AuthService {
       )
   }
 
+  changePassword(password: string): Observable<boolean> {
+    return this.http.post(`http://localhost:3000/auth/changePassword`, {
+      email: this.currentUser()?.email,
+      password: password
+    })
+      .pipe(
+        map(user => {
+          return !!user
+        }),
+        catchError(e => {
+          return of(false)
+        })
+      )
+  }
+
   logout(): void {
     localStorage.removeItem('token')
     this._authStatus.set(AuthStatus.notAuthenticated)

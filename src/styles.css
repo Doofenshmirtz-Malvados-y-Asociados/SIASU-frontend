@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  background-color: #0b0b0b;
+  background-color: #000000;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -42,15 +42,33 @@ body,html {
 }
 
 .link-active {
-  border-left-width: 1px;
-  border-left-color: #FFFFFF;
+  background-color: #e2e2e2;
 }
 
 .link-active > svg {
-  fill: #FFFFFF;
+  fill: #18181b;
+}
+
+.link-active:hover > svg {
+  fill: #e2e2e2;
 }
 
 .header-section {
   background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 450"><defs><filter id="bbblurry-filter" x="-100%" y="-100%" width="400%" height="400%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="130" x="0%" y="0%" width="100%" height="100%" in="SourceGraphic" edgeMode="none" result="blur"></feGaussianBlur></filter></defs><g filter="url(%23bbblurry-filter)"><ellipse rx="134" ry="150" cx="164.26522518976512" cy="272.5790296757061" fill="hsla(31, 100%, 50%, 1.00)"></ellipse><ellipse rx="134" ry="150" cx="426.51005138050425" cy="213.3656144575639" fill="hsla(353, 98%, 41%, 1.00)"></ellipse></g></svg>');
   background-size: cover;
+}
+
+.config-button-selected {
+  background-color: #292524;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
