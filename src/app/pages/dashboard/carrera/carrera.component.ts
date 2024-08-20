@@ -4,11 +4,12 @@ import { AuthService } from '../../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { CareerCourseService } from '../../../services/carreraMateria.service';
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'app-carrera',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, MatIconModule],
   providers: [CareerService, CareerCourseService],
   templateUrl: './carrera.component.html',
   styleUrl: './carrera.component.css'
@@ -27,7 +28,7 @@ export class CarreraComponent {
   courses: any
   data: any
   color: string = ""
-  intensity: Array<string> = ["-200/75", "-300/75", "-400/75", "-500/75", "-600/75", "-700/75", "-800/75", "-900/75", "-950/75"]
+  intensity: Array<string> = ["-200", "-300", "-400", "-500", "-600", "-700", "-800", "-900", "-950"]
 
   ngOnInit() {
     this.careerClient.getCareer(this.career_id!).subscribe({
@@ -70,15 +71,15 @@ export class CarreraComponent {
   }
 
   getClassTitle() {
-    return "text-" + this.color + "-400"
+    return "txt-" + this.color + "-400"
   }
 
   getClassContent() {
-    return "text-" + this.color + "-200"
+    return "txt-" + this.color + "-200"
   }
 
   getClassBackground(semester: number) {
-    return "bg-" + this.color + this.intensity[semester - 1]
+    return "back-" + this.color + this.intensity[semester - 1]
   }
 
   getClassText(semester: number) {
@@ -86,5 +87,9 @@ export class CarreraComponent {
       return 'text-gray-800'
     else
       return 'text-gray-200'
+  }
+
+  getClassCareers() {
+    return "back-" + this.color + "-300"
   }
 }
