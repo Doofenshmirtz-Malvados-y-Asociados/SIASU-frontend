@@ -1,104 +1,101 @@
-<div class="w-full h-full flex justify-center backdrop-blur-xl">
-    <div class="w-1/4 h-full flex flex-col justify-between m-auto z-10 p-4 text-white rounded-lg">
-        <a routerLink="/">
-            <img class=" m-auto invert w-16" src="/assets/logo-min.png" />
-        </a>
+<div class="w-full h-full grid grid-cols-5">
+    <div class="flex justify-center col-span-2">
+        <div class="h-full w-full p-12 flex flex-col justify-start register-form text-white rounded-lg relative">
+            <div class="w-full absolute top-4 left-0">
+                <a routerLink="/">
+                    <img class=" m-auto invert w-16" src="/assets/logo-min.png" />
+                </a>
+                <p class="lg:text-5xl mt-4 inter text-center font-semibold tracking-tighter">Registrarme</p>
+            </div>
 
-        <div class="mt-12">
-            <p class="lg:text-5xl inter text-center font-semibold tracking-tighter">Registrarme</p>
-            
-            <p class="text-center mt-6 text-red-300 font-bold italic">
-                {{errorMessage}}
-            </p>
+            <div class="w-full m-auto pt-16">
+                <p class="text-center mt-6 text-red-300 font-bold italic">
+                    {{errorMessage}}
+                </p>
 
-            <form class="flex flex-col mt-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <input 
-                    class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20
-                        placeholder:italic placeholder:text-gray-400
-                    " 
-                    type="name" 
-                    formControlName="name" 
-                    name="name" 
-                    placeholder="Ingresa tu nombre completo"
-                />
-                <input 
-                    class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20
-                        placeholder:italic placeholder:text-gray-400
-                    " 
-                    type="email" 
-                    formControlName="email" 
-                    name="email" 
-                    placeholder="Ingresa tu dirección de correo"
-                />
-                <input 
-                    class="my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20
-                        placeholder:italic placeholder:text-gray-400
-                    " 
-                    type="password" 
-                    formControlName="password" 
-                    name="password" 
-                    placeholder="Ingresa tu contraseña"
-                />
-                <label class="text-center my-2 text-gray-400">
+                <form class="flex flex-col mt-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <input 
-                        class="accent-gray-300 dark:[color-scheme:dark]" 
-                        type="checkbox"
-                        formControlName="isStudent"
-                        name="isStudent"
+                        class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                        type="name" 
+                        formControlName="name" 
+                        name="name" 
+                        placeholder="Ingresa tu nombre completo"
                     />
-                    Soy estudiante universitario de UdeG.
-                </label>
-
-                @if (registerForm.value.isStudent) {
-                    <label for="career" class="w-full text-gray-400">
-                        Selecciona una carrera: 
-                        <select name="career" formControlName="career" class="dark:[color-scheme:dark] w-full my-2 py-2 px-4 bg-gray-700/40 rounded-xl border border-gray-400/20 text-gray-400">
-                            <option class="bg-gray-700/90" value="INCO">Ingeniería en Computación</option>
-                            <option class="bg-gray-700/90" value="INFO">Ingeniería en Informatica</option>
-                            <option class="bg-gray-700/90" value="INRO">Ingeniería Robótica</option>
-                            <option class="bg-gray-700/90" value="INBI">Ingeniería Biomédica</option>
-                        </select>
-                    </label>
-
-                    <label for="admission" class="w-full text-gray-400">
-                        Ingresa la fecha en la que fuiste admitido en la universidad: 
+                    <input 
+                        class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                        type="email" 
+                        formControlName="email" 
+                        name="email" 
+                        placeholder="Ingresa tu dirección de correo"
+                    />
+                    <input 
+                        class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                        type="password" 
+                        formControlName="password" 
+                        name="password" 
+                        placeholder="Ingresa tu contraseña"
+                    />
+                    <label class="text-center my-2 text-gray-400">
                         <input 
-                            class="my-2 py-2 px-4 dark:[color-scheme:dark] decoration-transparent block w-full bg-gray-700/40 rounded-xl border border-gray-400/20 placeholder:italic placeholder:text-gray-400" 
-                            type="date" 
-                            formControlName="admission" 
-                            name="admission" 
+                            class="accent-gray-300 dark:[color-scheme:dark]" 
+                            type="checkbox"
+                            formControlName="isStudent"
+                            name="isStudent"
                         />
+                        Soy estudiante universitario de UdeG.
                     </label>
-                }
-    
-                <button class="group relative text-center w-40 h-12 mt-8 m-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
-                    <span class="relative z-10">Enviar</span>
-                    <span class="absolute inset-0 overflow-hidden rounded-md">
-                        <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-emerald-800 to-lime-700 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
-                    </span>
-                </button>
-            </form>
+
+                    @if (registerForm.value.isStudent) {
+                        <label for="career" class="w-full text-gray-400">
+                            Selecciona una carrera: 
+                            <select name="career" formControlName="career" class="dark:[color-scheme:dark] w-full ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic">
+                                <option class="bg-gray-700/90" value="INCO">Ingeniería en Computación</option>
+                                <option class="bg-gray-700/90" value="INFO">Ingeniería en Informatica</option>
+                                <option class="bg-gray-700/90" value="INRO">Ingeniería Robótica</option>
+                                <option class="bg-gray-700/90" value="INBI">Ingeniería Biomédica</option>
+                            </select>
+                        </label>
+
+                        <label for="admission" class="w-full text-gray-400">
+                            Ingresa la fecha en la que fuiste admitido en la universidad: 
+                            <input 
+                                class="dark:[color-scheme:dark] decoration-transparent w-full ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                                type="date" 
+                                formControlName="admission" 
+                                name="admission" 
+                            />
+                        </label>
+                    }
+        
+                    <button class="group relative text-center w-40 h-12 mt-4 m-auto overflow-hidden overflow-x-hidden rounded-md bg-secondary px-8 py-2 text-gray-400 hover:text-black transition-all duration-300">
+                        <span class="relative z-10">Enviar</span>
+                        <span class="absolute inset-0 overflow-hidden rounded-md">
+                            <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-white to-gray-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
+                        </span>
+                    </button>
+                </form>
+            </div>
+
+            <p class="text-center w-full text-muted-foreground absolute bottom-4 left-0">
+                ¿Ya tienes una cuenta? 
+                <a class="cursor-pointer text-foreground" routerLink="/login">Inicia Sesión</a>.
+            </p>
         </div>
 
-        <p class="text-center mt-20 text-gray-500">
-            ¿Ya tienes una cuenta? 
-            <a class="cursor-pointer text-white" routerLink="/login">Inicia Sesión</a>.
-        </p>
+        @if (fetchStatus() === 'completed') {
+            <SuccessPopUp 
+                title="¡Registro Exitoso!"
+                aditionalInfo="Revisa tu correo para activar tu cuenta. Si no lo encuentras revisa tu carpeta de SPAM por un correo del equipo de SIASU."
+                redirectTo="/login"
+            />
+        } @else if (fetchStatus() === 'error') {
+            <ErrorPopUp 
+                title="Tenemos dificultades"
+                aditionalInfo="Tu solicitud no ha podido ser completada, todos tenemos malos dias, intenta de nuevo en unos momentos."
+                toggleValue="notSend"
+                [toggleFn]="fetchStatus.set"
+            />
+        }
     </div>
-
-    @if (fetchStatus() === 'completed') {
-        <SuccessPopUp 
-            title="¡Registro Exitoso!"
-            aditionalInfo="Revisa tu correo para activar tu cuenta. Si no lo encuentras revisa tu carpeta de SPAM por un correo del equipo de SIASU."
-            redirectTo="/login"
-        />
-    } @else if (fetchStatus() === 'error') {
-        <ErrorPopUp 
-            title="Tenemos dificultades"
-            aditionalInfo="Tu solicitud no ha podido ser completada, todos tenemos malos dias, intenta de nuevo en unos momentos."
-            toggleValue="notSend"
-            [toggleFn]="fetchStatus.set"
-        />
-    }
+    <div class="col-span-3 h-full register-image"></div>
 </div>
-<div class="absolute -z-10 w-80 h-80 bg-emerald-900/40 rounded-full blur-3xl top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"></div>
