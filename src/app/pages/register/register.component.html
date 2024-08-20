@@ -1,78 +1,95 @@
 <div class="w-full h-full grid grid-cols-5">
     <div class="flex justify-center col-span-2">
         <div class="h-full w-full p-12 flex flex-col justify-start register-form text-white rounded-lg relative">
-            <div class="w-full absolute top-4 left-0">
+            <div class="w-full absolute top-40 left-0">
                 <a routerLink="/">
                     <img class=" m-auto invert w-16" src="/assets/logo-min.png" />
                 </a>
                 <p class="lg:text-5xl mt-4 inter text-center font-semibold tracking-tighter">Registrarme</p>
             </div>
 
-            <div class="w-full m-auto pt-16">
+            <div class="w-full h-1/2 m-auto pt-16">
                 <p class="text-center mt-6 text-red-300 font-bold italic">
                     {{errorMessage}}
                 </p>
 
                 <form class="flex flex-col mt-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <input 
-                        class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
-                        type="name" 
-                        formControlName="name" 
-                        name="name" 
-                        placeholder="Ingresa tu nombre completo"
-                    />
-                    <input 
-                        class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
-                        type="email" 
-                        formControlName="email" 
-                        name="email" 
-                        placeholder="Ingresa tu dirección de correo"
-                    />
-                    <input 
-                        class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
-                        type="password" 
-                        formControlName="password" 
-                        name="password" 
-                        placeholder="Ingresa tu contraseña"
-                    />
-                    <label class="text-center my-2 text-gray-400">
+                    @if (registerFormPage === 0) {
                         <input 
-                            class="accent-gray-300 dark:[color-scheme:dark]" 
-                            type="checkbox"
-                            formControlName="isStudent"
-                            name="isStudent"
+                            class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                            type="name" 
+                            formControlName="name" 
+                            name="name" 
+                            placeholder="Ingresa tu nombre completo"
                         />
-                        Soy estudiante universitario de UdeG.
-                    </label>
+                        <input 
+                            class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                            type="email" 
+                            formControlName="email" 
+                            name="email" 
+                            placeholder="Ingresa tu dirección de correo"
+                        />
+                        <input 
+                            class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                            type="password" 
+                            formControlName="password" 
+                            name="password" 
+                            placeholder="Ingresa tu contraseña"
+                        />
+                        
 
-                    @if (registerForm.value.isStudent) {
-                        <label for="career" class="w-full text-gray-400">
-                            Selecciona una carrera: 
-                            <select name="career" formControlName="career" class="dark:[color-scheme:dark] w-full ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic">
-                                <option class="bg-gray-700/90" value="INCO">Ingeniería en Computación</option>
-                                <option class="bg-gray-700/90" value="INFO">Ingeniería en Informatica</option>
-                                <option class="bg-gray-700/90" value="INRO">Ingeniería Robótica</option>
-                                <option class="bg-gray-700/90" value="INBI">Ingeniería Biomédica</option>
-                            </select>
-                        </label>
-
-                        <label for="admission" class="w-full text-gray-400">
-                            Ingresa la fecha en la que fuiste admitido en la universidad: 
+                        <button (click)="increaseFormPage(1)" class="group relative text-center w-40 h-12 mt-4 m-auto overflow-hidden overflow-x-hidden rounded-md bg-secondary px-8 py-2 text-gray-400 hover:text-black transition-all duration-300">
+                            <span class="relative z-10">Siguiente</span>
+                            <span class="absolute inset-0 overflow-hidden rounded-md">
+                                <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-white to-gray-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
+                            </span>
+                        </button>
+                    } @else {
+                        <p (click)="increaseFormPage(-1)" class="flex place-items-center gap-2 text-muted-foreground cursor-pointer hover:text-foreground transition-colors duration-200">
+                            <svg data-testid="geist-icon" height="16" stroke-linejoin="round" viewBox="0 0 16 16" width="16" style="color: currentcolor;"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.46966 13.7803L6.99999 14.3107L8.06065 13.25L7.53032 12.7197L3.56065 8.75001H14.25H15V7.25001H14.25H3.56065L7.53032 3.28034L8.06065 2.75001L6.99999 1.68935L6.46966 2.21968L1.39644 7.2929C1.00592 7.68342 1.00592 8.31659 1.39644 8.70711L6.46966 13.7803Z" fill="currentColor"></path></svg>
+                            Regresar
+                        </p>
+                        <label class="text-center my-2 text-gray-400">
                             <input 
-                                class="dark:[color-scheme:dark] decoration-transparent w-full ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
-                                type="date" 
-                                formControlName="admission" 
-                                name="admission" 
+                                class="accent-gray-300 dark:[color-scheme:dark]" 
+                                type="checkbox"
+                                formControlName="isStudent"
+                                name="isStudent"
                             />
+                            Soy estudiante universitario de DIVTIC (CUCEI).
                         </label>
+                        @if (registerForm.value.isStudent) {
+                            <label for="career" class="w-full text-gray-400">
+                                Selecciona una carrera: 
+                                <select name="career" formControlName="career" class="dark:[color-scheme:dark] w-full ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic">
+                                    <option class="bg-gray-700/90" value="INCO">Ingeniería en Computación (INCO)</option>
+                                    <option class="bg-gray-700/90" value="ICOM">Ingeniería en Computación (ICOM)</option>
+                                    <option class="bg-gray-700/90" value="INNI">Ingeniería en Informatica (INNI)</option>
+                                    <option class="bg-gray-700/90" value="INFO">Ingeniería en Informatica (INFO)</option>
+                                    <option class="bg-gray-700/90" value="INCE">Ingeniería en Comunicaciones y Electrónica</option>
+                                    <option class="bg-gray-700/90" value="INRO">Ingeniería Robótica</option>
+                                    <option class="bg-gray-700/90" value="INBI">Ingeniería Biomédica</option>
+                                </select>
+                            </label>
+    
+                            <label for="admission" class="w-full text-gray-400">
+                                Ingresa la fecha en la que fuiste admitido en la universidad: 
+                                <input 
+                                    class="dark:[color-scheme:dark] decoration-transparent w-full ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
+                                    type="date" 
+                                    formControlName="admission" 
+                                    name="admission" 
+                                />
+                            </label>
+                        }
+                        <button class="group relative text-center w-40 h-12 mt-4 m-auto overflow-hidden overflow-x-hidden rounded-md bg-secondary px-8 py-2 text-gray-400 hover:text-black transition-all duration-300">
+                            <span class="relative z-10">Enviar</span>
+                            <span class="absolute inset-0 overflow-hidden rounded-md">
+                                <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-white to-gray-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
+                            </span>
+                        </button>
                     }
         
-                    <button class="group relative text-center w-40 h-12 mt-4 m-auto overflow-hidden overflow-x-hidden rounded-md bg-secondary px-8 py-2 text-gray-400 hover:text-black transition-all duration-300">
-                        <span class="relative z-10">Enviar</span>
-                        <span class="absolute inset-0 overflow-hidden rounded-md">
-                            <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-white to-gray-500 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
-                        </span>
-                    </button>
                 </form>
             </div>
 

@@ -29,6 +29,7 @@ export class RegisterPage {
   
   fetchStatus = signal<fetchType>('notSend');
   errorMessage = '';
+  registerFormPage = 0;
 
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -72,7 +73,6 @@ export class RegisterPage {
         }
       }
     )
-
   }
 
   validation(): boolean {
@@ -104,5 +104,9 @@ export class RegisterPage {
     
     this.errorMessage = '';
     return true
+  }
+
+  increaseFormPage(n : number) {
+    this.registerFormPage += n;
   }
 }
