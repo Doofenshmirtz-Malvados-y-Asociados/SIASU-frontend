@@ -3,28 +3,28 @@
         <span class="absolute h-full inset-0"></span>
         <p class="relative">Examen vocacional</p>
     </div>
-    <form class="h-[90%] px-2 py-4 space-y-4 flex flex-col">
-        <div class="h-[15%] w-full content-center border rounded-lg text-center border-gray-400/20 bg-black text-lg font-semibold p-8">
+    <form class="relative h-[90%] px-2 py-4 space-y-4 flex flex-col">
+        <div class="h-[12%] w-full content-center border rounded-lg text-center border-gray-400/20 bg-black text-lg font-semibold p-8">
             {{typeOfQuestions}} {{questions[typeOfQuestions][indexQuestion]}}
         </div>
-        <div class="flex h-[63%] w-fit mx-auto">
+        <div class="flex w-fit mx-auto">
             <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=1><p class="h-5 mx-auto">1</p></div>
             <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=2><p class="h-5 mx-auto">2</p></div>
             <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=3><p class="h-5 mx-auto">3</p></div>
             <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=4><p class="h-5 mx-auto">4</p></div>
             <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=5><p class="h-5 mx-auto">5</p></div>
         </div>
-        <select #questionType (change)="onChange()" [value]="typeOfQuestions" class="flex self-end mr-5 h-[5%] w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
+        <select #questionType (change)="onChange()" [value]="typeOfQuestions" class="flex absolute bottom-[100px] self-end mr-5 h-12 w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
             <option value="Te gusta...">Gustos</option>
             <option value="Eres...">Personalidad</option>
             <option value="Tienes capacidad para...">Capacidades</option>
         </select>
-        <div class="border rounded-2xl border-yellow-800 w-full h-[3%] flex justify-center">
+        <div class="absolute bottom-[60px] border rounded-2xl border-yellow-800 h-7 flex justify-center" style="width: calc(100% - 1rem);">
             @for (answer of answers[typeOfQuestions]; track answer){
                 <button (click)="change($index)" [ngClass]="['border-yellow-800 w-full', firstLastPosition($first, $last), indexAnswer($index)]"></button>
             }
         </div>
-        <button (click)="onSubmit()" class="group relative text-center w-40 h-[5%] mt-8 self-end mr-5 overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
+        <button (click)="onSubmit()" class="absolute group bottom-3 text-center w-40 h-10 self-end mr-5 overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
             <span class="relative z-10">Enviar</span>
             <span class="absolute inset-0 overflow-hidden rounded-md">
                 <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-purple-800  to-violet-800 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
