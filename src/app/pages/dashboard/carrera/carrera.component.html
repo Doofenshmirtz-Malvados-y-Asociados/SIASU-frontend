@@ -11,11 +11,11 @@
             <span class="w-3/12">Creditos: 
                 <span [ngClass]="['', getClassContent()]">{{data.credits}}</span>
             </span>
-            <a class="w-1/12 bg-red-100 text-cyan-400">Agregar
-
+            <a routerLink="../" class="w-1/12 ">
+                <mat-icon>class</mat-icon>
             </a>
-            <a [ngClass]="['1/12', getClassCareers()]">Carreras
-                <mat-icon>home</mat-icon>
+            <a routerLink="../" class="w-1/12">
+                <mat-icon>list</mat-icon>
             </a>
         </div>
         <div class="h-5/6 grid grid-cols-5 gap-8 border border-border bg-background overflow-scroll no-scrollbar p-8">
@@ -24,7 +24,7 @@
                     <img class="absolute w-full min-h-full bg-origin-border opacity-30 brightness-[3]" src="./../../../../assets/bg-minicourse.jpg" alt="background"/>
                     <div class="absolute flex h-full w-full p-2">
                         <p [ngClass]="['w-1/12 h-full content-start text-lg text-left', getClassText(course.semester)]">{{course.semester}}</p>
-                        <a [ngClass]="['w-11/12 h-full content-center text-base overflow-scroll no-scrollbar', getClassText(course.semester)] ">{{course.course.name}}</a>
+                        <a [routerLink]="['/:',course.id]" [ngClass]="['w-11/12 h-full content-center text-base overflow-scroll no-scrollbar', getClassText(course.semester)] ">{{course.course.name}}</a>
                     </div>
                     
                 </div>

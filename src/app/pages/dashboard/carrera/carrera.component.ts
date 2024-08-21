@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CareerService } from '../../../services/carrera.service';
 import { AuthService } from '../../../auth/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { CareerCourseService } from '../../../services/carreraMateria.service';
 import { MatIconModule } from '@angular/material/icon'
@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon'
 @Component({
   selector: 'app-carrera',
   standalone: true,
-  imports: [NgClass, MatIconModule],
+  imports: [NgClass, MatIconModule, RouterLink],
   providers: [CareerService, CareerCourseService],
   templateUrl: './carrera.component.html',
   styleUrl: './carrera.component.css'
