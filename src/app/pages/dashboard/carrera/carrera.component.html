@@ -1,0 +1,28 @@
+<div class="h-full border border-border  px-16 pt-4 pb-16">
+    <div [ngClass]="'h-1/6 rounded-lg content-center text-center text-5xl font-bold '+ getClassTitle()">
+        <h1 class="h-full">{{data.alias}}</h1>
+    </div>
+    <div class="h-5/6 space-y-8">
+        <div class="h-[8%] grid grid-cols-3 w-full text-center border-b-2 border-border text-lg font-semibold px-8">
+            <span [ngClass]="getClassContent()">{{data.alias}} - {{data.name}}</span>
+            <span>Duración:
+                <span [ngClass]="getClassContent()">{{data.length}} semestres</span>
+            </span>
+            <span>Creditos: 
+                <span [ngClass]="getClassContent()">{{data.credits}}</span>
+            </span>
+        </div>
+        <div class="h-5/6 grid grid-cols-5 gap-8 border border-border bg-background overflow-scroll no-scrollbar p-8">
+            @for(course of courses; track course.courseId) {
+                <div [ngClass]="['relative', 'h-[10vh]', 'flex', getClassBackground(course.semester), 'rounded-lg', 'font-bold', 'text-center', 'overflow-y-hidden', 'no-scrollbar']">
+                    <img class="absolute w-full bg-origin-border opacity-30 brightness-[3]" src="./../../../../assets/bg-minicourse.jpg" alt="background"/>
+                    <div class="absolute flex h-full w-full p-2">
+                        <p [ngClass]="['w-1/12', 'h-full', 'content-start', 'text-lg', 'text-left', getClassText(course.semester)]">{{course.semester}}</p>
+                        <a [ngClass]="['w-11/12', 'h-full', 'content-center', 'text-base', getClassText(course.semester)] ">{{course.course.name}}</a>
+                    </div>
+                    
+                </div>
+            }
+        </div>
+    </div>
+</div>

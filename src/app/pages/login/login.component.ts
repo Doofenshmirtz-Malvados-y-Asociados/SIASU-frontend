@@ -55,8 +55,8 @@ export class LoginPage {
       return
     
     this.authClient.login(
-      this.loginForm.value.email || '', 
-      this.loginForm.value.password || ''
+      this.loginForm.value.email ?? '', 
+      this.loginForm.value.password ?? ''
     )
     .subscribe({
       next: () => this.router.navigate(['/dashboard']),

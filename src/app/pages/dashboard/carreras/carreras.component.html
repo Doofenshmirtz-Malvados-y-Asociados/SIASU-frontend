@@ -1,0 +1,18 @@
+<div class="border border-border h-full pw-2">
+    <h1 class="relative h-[10%] rounded-lg content-center text-center text-5xl font-bold text-yellow-400 shadow-lg shadow-">
+        Carreras
+    </h1>
+    <div class="grid grid-cols-4 gap-x-4 gap-y-8 max-h-[90%] px-4 py-4">
+        @for (item of data; track item.id) {
+            @if (item.id == user?.career_id) {
+                <a [routerLink]="[item.id]" class="border rounded-lg border-yellow-700 bg-yellow-200/5 h-auto py-8 text-center content-center text-yellow-100 font-semibold text-xl">
+                    {{item.alias}} - {{item.name}}
+                </a>
+            } @else {
+                <a [routerLink]="[item.id]" class="border rounded-lg border-border bg-background min-h-32 p-8 text-center content-center text-gray-100 font-semibold text-xl">
+                    {{item.alias}} - {{item.name}}
+                </a>
+            }
+        }
+    </div>
+</div>
