@@ -1,5 +1,5 @@
-<div class="h-full border border-border px-16 pt-4 pb-16">
-    <div [ngClass]="'h-1/6 rounded-lg content-center text-center text-5xl font-bold '+ getClassTitle()">
+<div class="h-full px-16 pt-4 pb-16">
+    <div [ngClass]="'h-1/6 content-center text-center text-5xl font-bold '+ getClassTitle()">
         <h1 class="h-full">{{data.alias}}</h1>
     </div>
     <div class="h-5/6 space-y-8">
@@ -18,7 +18,7 @@
                 <mat-icon>list</mat-icon>
             </a>
         </div>
-        <div class="h-5/6 grid grid-cols-5 gap-8 border border-border bg-background overflow-scroll no-scrollbar p-8">
+        <div class="h-5/6 grid grid-cols-5 gap-8 rounded-md border border-border bg-background overflow-scroll no-scrollbar p-8">
             @for(course of courses; track course.courseId) {
                 <div [ngClass]="['relative h-[10vh] flex', getClassBackground(course.semester), 'rounded-lg font-bold text-center overflow-hidden no-scrollbar']">
                     <img class="absolute w-full min-h-full bg-origin-border opacity-30 brightness-[3]" src="./../../../../assets/bg-minicourse.jpg" alt="background"/>

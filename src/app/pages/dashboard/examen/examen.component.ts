@@ -106,9 +106,9 @@ export class ExamenComponent {
 
   indexAnswer(index: number){
     if(index === this.indexQuestion)
-      return 'bg-yellow-500/50 hover:bg-yellow-400/50'
+      return 'bg-yellow-500/70 hover:bg-yellow-400/50'
     else if (this.answers[this.typeOfQuestions][index] !== 0)
-      return 'bg-yellow-700/50 hover:bg-yellow-400/50'
+      return 'bg-yellow-700 hover:bg-yellow-400/50'
     else
       return 'bg-yellow-200/50 hover:bg-yellow-300/50'
   }

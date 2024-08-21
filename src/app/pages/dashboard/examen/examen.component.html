@@ -1,18 +1,17 @@
-<div class="border rounded-lg border-gray-400/20 bg-[#0a0a0a] h-full pw-2">
-    <div class="relative h-[10%] rounded-lg content-center text-center text-5xl font-bold text-sky-400 shadow-lg shadow-">
-        <span class="absolute h-full inset-0"></span>
-        <p class="relative">Examen vocacional</p>
+<div class="h-full px-16 pt-4 pb-16">
+    <div class="h-1/6 content-center text-center text-5xl font-bold text-sky-400">
+        <h1 class="h-full">Examen vocacional</h1>
     </div>
     <form class="relative h-[90%] px-2 py-4 space-y-4 flex flex-col">
-        <div class="h-[12%] w-full content-center border rounded-lg text-center border-gray-400/20 bg-black text-lg font-semibold p-8">
+        <div class="h-[12%] w-full content-center border text-center border-border bg-black text-lg font-semibold p-8">
             {{typeOfQuestions}} {{questions[typeOfQuestions][indexQuestion]}}
         </div>
         <div class="flex w-fit mx-auto">
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=1><p class="h-5 mx-auto">1</p></div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=2><p class="h-5 mx-auto">2</p></div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=3><p class="h-5 mx-auto">3</p></div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=4><p class="h-5 mx-auto">4</p></div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-red-950 hover:accent-red-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=5><p class="h-5 mx-auto">5</p></div>
+            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=1><p class="h-5 mx-auto">1</p></div>
+            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=2><p class="h-5 mx-auto">2</p></div>
+            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=3><p class="h-5 mx-auto">3</p></div>
+            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=4><p class="h-5 mx-auto">4</p></div>
+            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=5><p class="h-5 mx-auto">5</p></div>
         </div>
         <select #questionType (change)="onChange()" [value]="typeOfQuestions" class="flex absolute bottom-[100px] self-end mr-5 h-12 w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
             <option value="Te gusta...">Gustos</option>
