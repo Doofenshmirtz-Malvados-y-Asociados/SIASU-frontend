@@ -5,7 +5,11 @@ import { RegisterPage } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { isAuthenticatedGuard } from './auth/guards/isAuthenticated.guard';
 import { EstadisticasComponent } from './pages/dashboard/estadisticas/estadisticas.component';
+import { CarreraComponent } from './pages/dashboard/carrera/carrera.component';
+import { CarrerasComponent } from './pages/dashboard/carreras/carreras.component';
 import { ConfiguracionComponent } from './pages/dashboard/configuracion/configuracion.component';
+import { VocacionalComponent } from './pages/dashboard/vocacional/vocacional.component';
+import { ExamenComponent } from './pages/dashboard/examen/examen.component';
 
 export const routes: Routes = [
     {
@@ -38,7 +42,27 @@ export const routes: Routes = [
                 path: 'configuracion',
                 title: 'Configuración',
                 component: ConfiguracionComponent
-            }
+            },
+            {
+                path: 'carreras',
+                title: 'carreras',
+                component: CarrerasComponent
+            },
+            {
+                path: 'carreras/:id',
+                title: 'Carreras',
+                component: CarreraComponent
+            },
+            {
+                path: 'vocacional',
+                title: 'Vocacional',
+                component: VocacionalComponent
+            },
+            {
+                path: 'vocacional/examen',
+                title: 'Examen',
+                component: ExamenComponent
+            },
         ]
     }
 ];

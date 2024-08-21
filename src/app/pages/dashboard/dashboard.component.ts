@@ -19,6 +19,8 @@ import { ToastNotificationsComponent } from '../../components/toast-notification
 })
 export class DashboardComponent {
   private authClient: AuthService = inject(AuthService)
+  
+  user = this.authClient.currentUser()
 
   onLogout() {
     this.authClient.logout()
