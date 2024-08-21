@@ -48,7 +48,7 @@ export class FunctionsSectionComponent {
     },
     theme: {
       mode: 'dark',
-      palette: 'palette7'
+      palette: 'palette10'
     }
   };
 }
