@@ -8,6 +8,8 @@ import { EstadisticasComponent } from './pages/dashboard/estadisticas/estadistic
 import { CarreraComponent } from './pages/dashboard/carrera/carrera.component';
 import { CarrerasComponent } from './pages/dashboard/carreras/carreras.component';
 import { ConfiguracionComponent } from './pages/dashboard/configuracion/configuracion.component';
+import { VocacionalComponent } from './pages/dashboard/vocacional/vocacional.component';
+import { ExamenComponent } from './pages/dashboard/examen/examen.component';
 
 export const routes: Routes = [
     {
@@ -50,6 +52,16 @@ export const routes: Routes = [
                 path: 'carreras/:id',
                 title: 'Carreras',
                 component: CarreraComponent
+            },
+            {
+                path: 'vocacional',
+                title: 'Vocacional',
+                component: VocacionalComponent
+            },
+            {
+                path: 'vocacional/examen',
+                title: 'Examen',
+                component: ExamenComponent
             },
         ]
     }
