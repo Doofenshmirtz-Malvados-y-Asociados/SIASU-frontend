@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { CourseService } from '../../../services/curso.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Course } from '../../../interfaces/course.interface';
 import { CareerCourseService } from '../../../services/carreraCurso.service';
 
 @Component({
   selector: 'app-cursos',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, RouterLink],
   providers: [CareerCourseService, CourseService],
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.css'

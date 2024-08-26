@@ -13,7 +13,7 @@
             <section class="h-full flex flex-col w-1/3 border-r-2 border-border pr-4">
                 <h3 class="text-3xl font-semibold py-4">Carreras</h3>
                 @for(career of careers; track career.career_id) {
-                    <p class="border-b border-border text-muted-foreground text-xl content-center pt-4 pb-2">{{career.career.alias}} - {{career.career.name}}</p>
+                    <a [routerLink]="['../../carreras/',career.career_id]" class="border-b border-border text-muted-foreground text-xl content-center pt-4 pb-2">{{career.career.alias}} - {{career.career.name}}</a>
                 }
             </section>
             <section class="h-full w-2/3">
