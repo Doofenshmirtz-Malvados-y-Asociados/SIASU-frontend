@@ -3,7 +3,7 @@ import { CareerService } from '../../../services/carrera.service';
 import { AuthService } from '../../../auth/auth.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
-import { CareerCourseService } from '../../../services/carreraMateria.service';
+import { CareerCourseService } from '../../../services/carreraCurso.service';
 import { MatIconModule } from '@angular/material/icon'
 
 @Component({
