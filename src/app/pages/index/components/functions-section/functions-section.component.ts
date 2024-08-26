@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApexAxisChartSeries, ApexChart, ApexGrid, ApexTheme, ApexTitleSubtitle, ApexXAxis, ApexYAxis, NgApexchartsModule } from 'ng-apexcharts';
+import { ApexAxisChartSeries, ApexChart, ApexTheme, ApexTitleSubtitle, ApexXAxis, ApexYAxis, NgApexchartsModule } from 'ng-apexcharts';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -30,18 +30,31 @@ export class FunctionsSectionComponent {
       }
     ],
     chart: {
+      width: '100%',
+      height: '100%',
       type: "radar",
       background: 'transparent',
-      parentHeightOffset: 0,
-      offsetX: 0,
       toolbar: {
         show: false
       },
+      animations: {
+        enabled: true,
+        easing: 'easeinout',
+        speed: 800,
+        animateGradually: {
+            enabled: true,
+            delay: 3000
+        },
+        dynamicAnimation: {
+            enabled: true,
+            speed: 350
+        }
+      }
     },
     title: {
     },
     xaxis: {
-      categories: ["Desarrollo FrontEnd", "Desarrollo Backend", "Desarrollo Movil", "DBA", "UI/UX", "Cientifico de datos"]
+      categories: ["Desarrollo FrontEnd", "Desarrollo Backend", "DBA", "UI/UX", "Desarrollo Movil", "Cientifico de datos"]
     },
     yaxis: {
       show: false,
