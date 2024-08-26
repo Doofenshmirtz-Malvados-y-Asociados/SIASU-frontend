@@ -1,4 +1,4 @@
-<div class="h-full px-16 pt-4 pb-16">
+<div class="h-full p-12">
     <div [ngClass]="'h-1/6 content-center text-center text-5xl font-bold '+ getClassTitle()">
         <h1 class="h-full">{{data.alias}}</h1>
     </div>
@@ -24,9 +24,8 @@
                     <img class="absolute w-full min-h-full bg-origin-border opacity-30 brightness-[3]" src="./../../../../assets/bg-minicourse.jpg" alt="background"/>
                     <div class="absolute flex h-full w-full p-2">
                         <p [ngClass]="['w-1/12 h-full content-start text-lg text-left', getClassText(course.semester)]">{{course.semester}}</p>
-                        <a [routerLink]="['/:',course.id]" [ngClass]="['w-11/12 h-full content-center text-base overflow-scroll no-scrollbar', getClassText(course.semester)] ">{{course.course.name}}</a>
+                        <a [routerLink]="['../../cursos/',course.course_id]" [ngClass]="['w-11/12 h-full content-center text-base overflow-scroll no-scrollbar', getClassText(course.semester)] ">{{course.course.name}}</a>
                     </div>
-                    
                 </div>
             }
         </div>
