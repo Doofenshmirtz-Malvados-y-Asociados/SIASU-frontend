@@ -10,6 +10,7 @@ import { CarrerasComponent } from './pages/dashboard/carreras/carreras.component
 import { ConfiguracionComponent } from './pages/dashboard/configuracion/configuracion.component';
 import { VocacionalComponent } from './pages/dashboard/vocacional/vocacional.component';
 import { ExamenComponent } from './pages/dashboard/examen/examen.component';
+import { CursosComponent } from './pages/dashboard/cursos/cursos.component';
 
 export const routes: Routes = [
     {
@@ -52,6 +53,11 @@ export const routes: Routes = [
                 path: 'carreras/:id',
                 title: 'Carreras',
                 component: CarreraComponent
+            },
+            {
+                path: 'cursos/:id',
+                title: 'Cursos',
+                component: CursosComponent
             },
             {
                 path: 'vocacional',
