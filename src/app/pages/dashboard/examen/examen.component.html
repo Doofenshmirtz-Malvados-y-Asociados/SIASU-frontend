@@ -7,7 +7,16 @@
             {{typeOfQuestions}} {{questions[typeOfQuestions][indexQuestion]}}
         </div>
         <div class="flex w-fit mx-auto">
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=1><p class="h-5 mx-auto">1</p></div>
+            <div class="flex flex-col mt-10">
+                <label>
+                    <input class="mx-2 hidden peer" name="option" id="option1" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=1>
+                    <mat-icon class="peer-checked:text-red-600" >
+                        sentiment_satisfied
+                    </mat-icon>
+                </label>
+                
+                <p class="h-5 mx-auto">1</p>
+            </div>
             <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=2><p class="h-5 mx-auto">2</p></div>
             <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=3><p class="h-5 mx-auto">3</p></div>
             <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=4><p class="h-5 mx-auto">4</p></div>

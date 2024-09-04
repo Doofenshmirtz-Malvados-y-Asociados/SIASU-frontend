@@ -36,6 +36,24 @@ module.exports = {
         "pos-0": "0% 0%",
         "pos-100": "100% 100%",
       },
+      keyframes: {
+        slidein: {
+          from: {
+            opacity: "0",
+            transform: "translateY(-10px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
+      },
+      animation: { 
+        slidein200: "slidein 1s ease 200ms forwards", 
+        slidein1200: "slidein 1s ease 1200ms forwards", 
+        slidein2500: "slidein 1s ease 2500ms forwards", 
+        slidein3500: "slidein 1s ease 3500ms forwards", 
+      },
     },
   },
   plugins: [],
