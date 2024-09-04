@@ -5,11 +5,11 @@
     <div class="grid grid-cols-4 gap-8 max-h-5/6 py-8">
         @for (item of data; track item.id) {
             @if (item.id == user?.career_id) {
-                <a [routerLink]="[item.id]" class="border rounded-lg border-yellow-700 bg-yellow-200/5 min-h-32 p-8 text-center content-center text-yellow-100 font-semibold text-xl">
+                <a [routerLink]="[item.id]" class="border rounded-lg border-yellow-700 bg-yellow-200/5 min-h-32 p-8 text-center content-center text-yellow-100 font-semibold text-xl duration-200 hover:border-yellow-500 hover:shadow-md hover:shadow-yellow-700/60">
                     {{item.alias}} - {{item.name}}
                 </a>
             } @else {
-                <a [routerLink]="[item.id]" class="border rounded-lg border-border bg-background min-h-32 p-8 text-center content-center text-gray-100 font-semibold text-xl">
+                <a [routerLink]="[item.id]" class="border rounded-lg border-border bg-black min-h-32 p-8 text-center content-center text-gray-100 font-semibold text-xl duration-200 hover:border-gray-200 hover:shadow-md hover:shadow-gray-600">
                     {{item.alias}} - {{item.name}}
                 </a>
             }
