@@ -47,12 +47,17 @@ module.exports = {
             transform: "translateY(0)",
           },
         },
+        'slide-left': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(-100%)' },
+        },
       },
       animation: { 
         slidein200: "slidein 1s ease 200ms forwards", 
         slidein1200: "slidein 1s ease 1200ms forwards", 
         slidein2500: "slidein 1s ease 2500ms forwards", 
         slidein3500: "slidein 1s ease 3500ms forwards", 
+        'slide-left': 'slide-left 14s linear infinite',
       },
     },
   },

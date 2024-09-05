@@ -49,11 +49,14 @@ body,html {
 }
 
 .link-active {
-  background-color: #e2e2e2;
+  background: linear-gradient(90deg, #ea580c , #c026d3, #7c3aed);
+  background-size: 200%;
+  background-position: 0;
+  transition: all 0.3s;
 }
 
-.link-active > svg {
-  fill: #18181b;
+.link-active:hover {
+  background-position: 100%;
 }
 
 .link-active:hover > svg {
@@ -88,7 +91,6 @@ body,html {
 
 .register-image {
   background: url('/assets/register_background.jpg');
-  filter: grayscale();
   background-position: center;
   background-size: cover;
 }
@@ -122,4 +124,22 @@ apx-chart {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.glow-button {
+  text-shadow: none;
+  background: transparent;
+  cursor: pointer;
+  box-shadow: transparent;
+  transition: 0.5s ease;
+  user-select: none;
+}
+
+.glow-button:hover, .glow-button:focus {
+  color: #ffffff;
+  background: #7c3aed ;
+  border: 1px solid #7c3aed ;
+  text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff;
+  box-shadow: 0 0 5px #7c3aed , 0 0 20px #7c3aed , 0 0 50px #7c3aed ,
+    0 0 100px #7c3aed ;
 }
