@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profesion',
@@ -12,5 +13,9 @@ import { Component } from '@angular/core';
   }`
 })
 export class ProfesionComponent {
+  constructor(private readonly router: Router) {}
 
+  generateResults() {
+    this.router.navigateByUrl('/dashboard/profesion/resultados')
+  }
 }

@@ -125,7 +125,7 @@ body,html {
 }
 
 .chart-container {
-  width: 40rem;
+  width: 100% ;
   position: relative;
 }
 

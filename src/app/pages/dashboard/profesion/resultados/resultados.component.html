@@ -1,0 +1,81 @@
+<div class="p-12 w-full h-full flex flex-col">
+    <!-- Heading of the page -->
+    <div class="w-full grid gap-2">
+        <h2 class="text-3xl font-bold text-foreground">Resultados de Perfil Profesional</h2>
+        <p class="text-md text-muted-foreground">Creemos que estas son las carreras más afines a tí, recuerda que estas
+            son solo sugerencias, siempre debes de seguir tus sueños</p>
+    </div>
+
+    <section class="mt-8 bg-background h-full overflow-scroll flex flex-col gap-4">
+        <div class="border border-border rounded p-4 flex flex-col gap-2 h-fit">
+            <p class="text-3xl">Hola {{nombre}}</p>
+            <div class="text-muted-foreground flex justify-start place-items-center gap-2">
+                <p class="text-xs w-[25ch] text-muted-foreground">Tus ultimas recomendaciones fueron generadas:</p>
+                <p>{{formatedDate}}</p>
+            </div>
+        </div>
+        
+        <section class="flex gap-4">
+            <div class="min-h-[40rem] h-full w-1/2 p-4 flex justify-between border border-border">
+                <div class="rounded-md chart-container grid place-items-center">
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                        [yaxis]="chartOptions.yaxis" [title]="chartOptions.title" [theme]="chartOptions.theme"></apx-chart>
+                </div>
+            </div>
+            <div class="h-full w-1/2 p-4 flex flex-col gap-2 border border-border">
+                <p class="text-3xl sora text-foreground">Reporte:</p>
+                <div class="h-full flex flex-col">
+                    <div class="h-20 flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                        <p class="w-1/2">Carrera</p>
+                        <p class="w-1/4">Afinidad</p>
+                        <p class="w-1/4">Salario promedio</p>
+                        <p class="w-1/4">Tasa de Empleabilidad</p>
+                        <p class="w-1/4">Saber más</p>
+                    </div>
+                    <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                        <p class="w-1/2">Desarrollador Backend</p>
+                        <p class="w-1/4">98</p>
+                        <p class="w-1/4">$28,000</p>
+                        <p class="w-1/4">68%</p>
+                        <p class="w-1/4">-></p>
+                    </div>
+                    <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                        <p class="w-1/2">Cientifico de Datos</p>
+                        <p class="w-1/4">92</p>
+                        <p class="w-1/4">$49,000</p>
+                        <p class="w-1/4">42%</p>
+                        <p class="w-1/4">-></p>
+                    </div>
+                    <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                        <p class="w-1/2">Desarrollador Frontend</p>
+                        <p class="w-1/4">46</p>
+                        <p class="w-1/4">$18,000</p>
+                        <p class="w-1/4">72%</p>
+                        <p class="w-1/4">-></p>
+                    </div>
+                    <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                        <p class="w-1/2">UI/UX</p>
+                        <p class="w-1/4">45</p>
+                        <p class="w-1/4">$23,000</p>
+                        <p class="w-1/4">61%</p>
+                        <p class="w-1/4">-></p>
+                    </div>
+                    <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                        <p class="w-1/2">DBA</p>
+                        <p class="w-1/4">24</p>
+                        <p class="w-1/4">$26,000</p>
+                        <p class="w-1/4">55%</p>
+                        <p class="w-1/4">-></p>
+                    </div>
+                    <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                        <p class="w-1/2">Desarrollo Movil</p>
+                        <p class="w-1/4">12</p>
+                        <p class="w-1/4">$35,000</p>
+                        <p class="w-1/4">61%</p>
+                        <p class="w-1/4">-></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>

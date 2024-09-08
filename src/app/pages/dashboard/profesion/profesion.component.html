@@ -9,7 +9,7 @@
         <div class="grid place-items-center gap-2">
             <p class="text-xl text-center text-muted-foreground">Parece que no has obtenido recomendaciones para tu perfil profesional</p>
             <p class="text-center text-muted-foreground">¿Te gustaria obtener recomendaciones de perfiles profesionales?</p>
-            <button class='relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'>
+            <button (click)="generateResults()" class='relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'>
                 <span class='absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ea580c_0%,#c026d3_25%,#7c3aed_50%,#c026d3_75%,#ea580c_100%)]' ></span>
                 <span class='inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-background group-hover:bg-background/50 transition-all duration-300 px-4 py-2 text-md font-medium text-gray-50 backdrop-blur-3xl'>
                   Recomiendame profesiones
