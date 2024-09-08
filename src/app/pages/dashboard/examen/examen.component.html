@@ -1,32 +1,57 @@
 <div class="h-full p-12">
-    <div class="h-1/6 content-center text-center text-5xl font-bold text-sky-400">
-        <h1 class="h-full">Examen vocacional</h1>
+    <div class="h-fit my-6 content-center text-center text-5xl font-bold text-sky-400">
+        <h1 class="h-fit">Examen vocacional</h1>
     </div>
-    <form class="relative h-5/6 px-2 py-4 space-y-4 flex flex-col">
-        <div class="h-[12%] w-full content-center border text-center border-border bg-black text-lg font-semibold p-8">
-            {{typeOfQuestions}} {{questions[typeOfQuestions][indexQuestion]}}
+    <div class="flex justify-left">
+        <button (click)="onChange('Te gusta...')" [classList]="(this.typeOfQuestions === 'Te gusta...') ? 'w-2/12 p-2 font-bold border-b border-primary hover:bg-secondary animation duration-200 flex gap-2 place-items-center justify-center' : 'w-2/12 p-2 text-muted-foreground hover:bg-secondary hover:text-foreground animation duration-200 flex gap-2 place-items-center justify-center'">
+            Gustos
+        </button>
+        <button (click)="onChange('Eres...')" [classList]="(this.typeOfQuestions === 'Eres...') ? 'w-2/12 p-2 font-bold border-b border-primary hover:bg-secondary animation duration-200 flex gap-2 place-items-center justify-center' : 'w-2/12 p-2 text-muted-foreground hover:bg-secondary hover:text-foreground animation duration-200 flex gap-2 place-items-center justify-center'">
+            Personalidad
+        </button>
+        <button (click)="onChange('Tienes capacidad para...')" [classList]="(this.typeOfQuestions === 'Tienes capacidad para...') ? 'w-2/12 p-2 font-bold border-b border-primary hover:bg-secondary animation duration-200 flex gap-2 place-items-center justify-center' : 'w-2/12 p-2 text-muted-foreground hover:bg-secondary hover:text-foreground animation duration-200 flex gap-2 place-items-center justify-center'">
+            Capacidades
+        </button>
+    </div>
+    <form class="relative h-5/6 px-2 py-4 flex flex-col">
+        <div class="h-[12%] w-full content-center text-center font-semibold text-2xl p-8">
+            {{typeOfQuestions}}
         </div>
-        <div class="flex w-fit mx-auto">
-            <div class="flex flex-col mt-10">
-                <label>
-                    <input class="mx-2 hidden peer" name="option" id="option1" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=1>
-                    <mat-icon class="peer-checked:text-red-600" >
-                        sentiment_satisfied
-                    </mat-icon>
-                </label>
-                
-                <p class="h-5 mx-auto">1</p>
-            </div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=2><p class="h-5 mx-auto">2</p></div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=3><p class="h-5 mx-auto">3</p></div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=4><p class="h-5 mx-auto">4</p></div>
-            <div class="flex flex-col mt-10"><input class="mx-2 accent-yellow-900 hover:accent-orange-900 w-5 h-5" name="options" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=5><p class="h-5 mx-auto">5</p></div>
+        <div class="w-full content-center border text-center border-border bg-black text-lg font-semibold p-8">
+            {{questions[typeOfQuestions][indexQuestion]}}
         </div>
-        <select #questionType (change)="onChange()" [value]="typeOfQuestions" class="flex absolute bottom-[100px] self-end mr-5 h-12 w-52 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1">
-            <option value="Te gusta...">Gustos</option>
-            <option value="Eres...">Personalidad</option>
-            <option value="Tienes capacidad para...">Capacidades</option>
-        </select>
+        <div class="flex w-fit mx-auto mt-10">
+            <label class="mx-3">
+                <input class="mx-2 hidden peer" name="option" id="option1" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=1>
+                <mat-icon class="peer-checked:text-red-600 scale-150" >
+                    sentiment_very_dissatisfied
+                </mat-icon>
+            </label>
+            <label class="mx-3">
+                <input class="mx-2 hidden peer" name="option" id="option2" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=2>
+                <mat-icon class="peer-checked:text-red-600 scale-150" >
+                    sentiment_dissatisfied
+                </mat-icon>
+            </label>
+            <label class="mx-3">
+                <input class="mx-2 hidden peer" name="option" id="option3" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=3>
+                <mat-icon class="peer-checked:text-purple-700 scale-150" >
+                    sentiment_neutral
+                </mat-icon>
+            </label>
+            <label class="mx-3">
+                <input class="mx-2 hidden peer" name="option" id="option4" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=4>
+                <mat-icon class="peer-checked:text-green-600 scale-150" >
+                    sentiment_satisfied
+                </mat-icon>
+            </label>
+            <label class="mx-3">
+                <input class="mx-2 hidden peer" name="option" id="option5" ng-control="options" type="radio" [(ngModel)]="answers[typeOfQuestions][indexQuestion]" [value]=5>
+                <mat-icon class="peer-checked:text-green-600 scale-150" >
+                    sentiment_very_satisfied
+                </mat-icon>
+            </label>
+        </div>
         <div class="absolute bottom-[60px] border rounded-2xl border-yellow-800 h-7 flex justify-center" style="width: calc(100% - 1rem);">
             @for (answer of answers[typeOfQuestions]; track answer){
                 <button (click)="change($index)" [ngClass]="['border-yellow-800 w-full', firstLastPosition($first, $last), indexAnswer($index)]"></button>
@@ -39,4 +64,18 @@
             </span>
         </button>
     </form>
+    @if (fetchStatus() === 'completed') {
+        <SuccessPopUp 
+            title="¡Envio Exitoso!"
+            aditionalInfo="Tus respuestas han sido guardadas con éxito, se procesarán para la recomendación de carreras."
+            redirectTo="/dashboard/vocacional"
+        />
+    } @else if (fetchStatus() === 'error') {
+        <ErrorPopUp 
+            title="Tenemos dificultades"
+            aditionalInfo="Tu solicitud no ha podido ser completada, todos tenemos malos dias, intenta de nuevo en unos momentos."
+            toggleValue="notSend"
+            [toggleFn]="fetchStatus.set"
+        />
+    }
 </div>
