@@ -4,13 +4,13 @@ import { LoginPage } from './pages/login/login.component';
 import { RegisterPage } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { isAuthenticatedGuard } from './auth/guards/isAuthenticated.guard';
-import { EstadisticasComponent } from './pages/dashboard/estadisticas/estadisticas.component';
 import { CarreraComponent } from './pages/dashboard/carrera/carrera.component';
 import { CarrerasComponent } from './pages/dashboard/carreras/carreras.component';
 import { ConfiguracionComponent } from './pages/dashboard/configuracion/configuracion.component';
 import { VocacionalComponent } from './pages/dashboard/vocacional/vocacional.component';
 import { ExamenComponent } from './pages/dashboard/examen/examen.component';
 import { CursosComponent } from './pages/dashboard/cursos/cursos.component';
+import { ResultadosComponent } from './pages/dashboard/examen/resultados/resultados.component';
 
 export const routes: Routes = [
     {
@@ -34,11 +34,6 @@ export const routes: Routes = [
         component: DashboardComponent,
         canActivate: [isAuthenticatedGuard],
         children: [
-            { 
-                path: 'estadisticas',
-                title: 'Estadisticas',
-                component: EstadisticasComponent
-            },
             {
                 path: 'configuracion',
                 title: 'Configuración',
@@ -68,6 +63,11 @@ export const routes: Routes = [
                 path: 'vocacional/examen',
                 title: 'Examen',
                 component: ExamenComponent
+            },
+            {
+                path: 'vocacional/resultados',
+                title: 'Resultados del Examen Vocacional',
+                component: ResultadosComponent
             },
         ]
     }
