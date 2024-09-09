@@ -29,6 +29,11 @@ module.exports = {
         'chart-4': 'hsl(280 65% 60%)',
         'chart-5': 'hsl(340 75% 55%)'
       },
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(255, 255, 255, 0.35)",
+        ]
+      },
       backgroundSize: {
         "size-200": "200% 200%",
       },
