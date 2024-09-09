@@ -11,39 +11,87 @@
 }
 
 .back-sky-200 {
+    background-color: #bae5fdbb;
+    
+}
+.back-sky-200:hover {
     background-color: #bae6fd;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-300 {
-    background-color: #7dd3fc
+    background-color: #7dd3fcbb
+}
+
+.back-sky-300:hover {
+    background-color: #7dd3fc;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-400 {
-    background-color: #38bdf8
+    background-color: #38bdf8bb
+}
+
+.back-sky-400:hover {
+    background-color: #38bdf8;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-500 {
-    background-color: #0ea5e9
+    background-color: #0ea5e9bb
+}
+.back-sky-500:hover {
+    background-color: #0ea5e9;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-600 {
-    background-color: #0284c7
+    background-color: #0284c7bb
+}
+.back-sky-600:hover {
+    background-color: #0284c7;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-700 {
-    background-color: #0369a1
+    background-color: #0369a1bb
+}
+.back-sky-700:hover {
+    background-color: #0369a1;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-800 {
-    background-color: #075985
+    background-color: #075985bb
+}
+.back-sky-800:hover {
+    background-color: #075985;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-900 {
-    background-color: #0c4a6e
+    background-color: #0c4a6ebb
+}
+.back-sky-900:hover {
+    background-color: #0c4a6e;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .back-sky-950 {
-    background-color: #082f49
+    background-color: #082f49bb
+}
+.back-sky-950:hover {
+    background-color: #082f49;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 95, 141) 0px 5px 15px;
 }
 
 .txt-green-200 {
@@ -55,39 +103,84 @@
 }
 
 .back-green-200 {
+    background-color: #bbf7d0bb;
+}
+.back-green-200:hover {
     background-color: #bbf7d0;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-300 {
-    background-color: #86efac
+    background-color: #86efacbb
+}
+.back-green-300:hover {
+    background-color: #86efac;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-400 {
-    background-color: #4ade80
+    background-color: #4ade80bb
+}
+.back-green-400:hover {
+    background-color: #4ade80;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-500 {
-    background-color: #22c55e
+    background-color: #22c55ebb
+}
+.back-green-500:hover {
+    background-color: #22c55e;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-600 {
-    background-color: #16a34a
+    background-color: #16a34abb
+}
+.back-green-600:hover {
+    background-color: #16a34a;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-700 {
-    background-color: #15803d
+    background-color: #15803dbb
+}
+.back-green-700:hover {
+    background-color: #15803d;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-800 {
-    background-color: #166534
+    background-color: #166534bb
+}
+.back-green-800:hover {
+    background-color: #166534;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-900 {
-    background-color: #14532d
+    background-color: #14532dbb
+}
+.back-green-900:hover {
+    background-color: #14532d;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .back-green-950 {
-    background-color: #052e16
+    background-color: #052e16bb
+}
+.back-green-950:hover {
+    background-color: #052e16;
+    transition-duration: 300ms;
+    box-shadow: rgb(51, 141, 95) 0px 5px 15px;
 }
 
 .txt-orange-200 {
