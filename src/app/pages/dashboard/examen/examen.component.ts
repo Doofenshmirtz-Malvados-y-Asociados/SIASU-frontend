@@ -1,7 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../../auth/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, of } from 'rxjs';
+import { ToastNotificationsService } from '../../../components/toast-notifications/services/toast-notifications.service';
+import { SuccessPopupComponent } from "../../../components/success-popup/success-popup.component";
+import { ErrorPopupComponent } from "../../../components/error-popup/error-popup.component";
+
+type fetchType = 'notSend' | 'completed' | 'error';
 
 @Component({
   selector: 'app-examen',
@@ -10,13 +18,29 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    SuccessPopupComponent,
+    ErrorPopupComponent
+],
   templateUrl: './examen.component.html',
   styleUrl: './examen.component.css'
 })
 export class ExamenComponent {
+  constructor(
+    private authClient: AuthService,
+  ) {}
+
   @ViewChild('questionType') questionType!: ElementRef;
+  private http: HttpClient = inject(HttpClient);
+  private notificationService: ToastNotificationsService = inject(ToastNotificationsService);
+
+  fetchStatus = signal<fetchType>('notSend');
+  user = this.authClient.currentUser();
+
+  typeOfQuestions = "Te gusta...";
+  indexQuestion: number = 0;
+  
+
   questions: Record<string, string[]> = {
     "Te gusta...": [
       "Reparar objetos",
@@ -60,7 +84,6 @@ export class ExamenComponent {
       "Paciente explicando un tema",
       "Ansioso",
       "Una persona con habilidades artísticas",
-      "Creativo",
       "Ingenioso",
       "Analítico",
       "Bueno en matemáticas",
@@ -89,13 +112,16 @@ export class ExamenComponent {
       "Descubrir similitudes en objetos aparentemente distintos"
     ]
   };
+
   answers: Record<string, number[]> = {
     "Te gusta...": new Array(this.questions['Te gusta...'].length).fill(0),
     "Eres...": new Array(this.questions['Eres...'].length).fill(0),
     "Tienes capacidad para...": new Array(this.questions['Tienes capacidad para...'].length).fill(0)
   }
-  typeOfQuestions = "Te gusta...";
-  indexQuestion: number = 0;
+
+  resetFetchStatus() {
+    this.fetchStatus.set('notSend')
+  }
 
   firstLastPosition(first: boolean, last: boolean){
     if (first)
@@ -115,8 +141,8 @@ export class ExamenComponent {
       return 'bg-yellow-200/50 hover:bg-yellow-300/50'
   }
 
-  onChange() {
-    this.typeOfQuestions = this.questionType.nativeElement.value;
+  onChange(typeOfQuestion: string) {
+    this.typeOfQuestions = typeOfQuestion;
     this.indexQuestion = 0;
   }
   
@@ -126,14 +152,28 @@ export class ExamenComponent {
   
   onSubmit() {
     if(this.answers['Te gusta...'].filter((answer) => answer === 0).length > 0){
-      console.log("Faltan por contestar preguntas en la sección de gustos");
+      this.notificationService.add("Sección gustos", "Faltan por contestar preguntas en la sección de gustos", 'error');
     } else if(this.answers['Eres...'].filter((answer) => answer === 0).length > 0){
-      console.log("Faltan por contestar preguntas en la sección de personalidad");
+      this.notificationService.add("Sección personalidad", "Faltan por contestar preguntas en la sección de personalidad", 'error');
     } else if(this.answers['Tienes capacidad para...'].filter((answer) => answer === 0).length > 0){
-      console.log("Faltan por contestar preguntas en la sección de capacidades");
+      this.notificationService.add("Sección capacidades", "Faltan por contestar preguntas en la sección de capacidades", 'error');
     } else {
       const response = [...this.answers['Te gusta...'], ...this.answers['Eres...'], ...this.answers['Tienes capacidad para...']]
-      console.log(response);
+      this.http.post('http://localhost:3000/response/create', {user: this.user?.email, responses: response})
+        .pipe(
+          map(user => !!user),
+          catchError(e => of(false))
+        )
+        .subscribe(
+          success => {
+            if (success) {
+              this.fetchStatus.set('completed');
+            }
+            else {
+              this.fetchStatus.set('error');
+            }
+          }
+        )
     }
   }
 }

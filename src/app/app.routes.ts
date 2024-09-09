@@ -12,6 +12,8 @@ import { ExamenComponent } from './pages/dashboard/examen/examen.component';
 import { CursosComponent } from './pages/dashboard/cursos/cursos.component';
 import { ProfesionComponent } from './pages/dashboard/profesion/profesion.component';
 import { ResultadosProfesionComponent } from './pages/dashboard/profesion/resultados/resultados.component';
+import { ResultadosComponent } from './pages/dashboard/examen/resultados/resultados.component';
+
 
 export const routes: Routes = [
     {
@@ -74,6 +76,11 @@ export const routes: Routes = [
                 path: 'vocacional/examen',
                 title: 'Examen',
                 component: ExamenComponent
+            },
+            {
+                path: 'vocacional/resultados',
+                title: 'Resultados del Examen Vocacional',
+                component: ResultadosComponent
             },
         ]
     }
