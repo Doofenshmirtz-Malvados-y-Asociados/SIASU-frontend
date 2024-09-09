@@ -2,15 +2,15 @@
     <div class="h-fit py-4 content-center">
         <h1 class="text-3xl font-bold text-foreground">Examen vocacional</h1>
     </div>
-    <div class="flex justify-left">
+    <div class="flex justify-left border-b border-border">
         <button (click)="onChange('Te gusta...')" [classList]="(this.typeOfQuestions === 'Te gusta...') ? 'w-2/12 p-2 font-bold border-b border-primary hover:bg-secondary animation duration-200 flex gap-2 place-items-center justify-center' : 'w-2/12 p-2 text-muted-foreground hover:bg-secondary hover:text-foreground animation duration-200 flex gap-2 place-items-center justify-center'">
-            Gustos
+            <mat-icon >videogame_asset</mat-icon> Gustos
         </button>
         <button (click)="onChange('Eres...')" [classList]="(this.typeOfQuestions === 'Eres...') ? 'w-2/12 p-2 font-bold border-b border-primary hover:bg-secondary animation duration-200 flex gap-2 place-items-center justify-center' : 'w-2/12 p-2 text-muted-foreground hover:bg-secondary hover:text-foreground animation duration-200 flex gap-2 place-items-center justify-center'">
-            Personalidad
+           <mat-icon>psychology</mat-icon> Personalidad
         </button>
         <button (click)="onChange('Tienes capacidad para...')" [classList]="(this.typeOfQuestions === 'Tienes capacidad para...') ? 'w-2/12 p-2 font-bold border-b border-primary hover:bg-secondary animation duration-200 flex gap-2 place-items-center justify-center' : 'w-2/12 p-2 text-muted-foreground hover:bg-secondary hover:text-foreground animation duration-200 flex gap-2 place-items-center justify-center'">
-            Capacidades
+            <mat-icon>engineering</mat-icon>Capacidades
         </button>
     </div>
     <form class="relative h-5/6 px-2 py-4 flex flex-col">

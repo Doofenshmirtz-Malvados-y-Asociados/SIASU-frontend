@@ -4,17 +4,17 @@
     </div>
     <div class="h-5/6 space-y-8">
         <div class="h-[8%] flex w-full text-center border-b-2 space-x-2 border-border text-lg font-semibold py-1">
-            <span [ngClass]="['w-4/12 text-left content-center', getClassContent()]">{{data.name}}</span>
+            <span [ngClass]="['w-5/12 text-left content-center', getClassContent()]">{{data.name}}</span>
             <span class="w-3/12 content-center">Duración:
                 <span [ngClass]="['', getClassContent()]">{{data.length}} semestres</span>
             </span>
             <span class="w-3/12 content-center">Creditos: 
-                <span [ngClass]="['', getClassContent()]">{{data.credits}}</span>
+                <span [ngClass]="[getClassTitle()]">{{data.credits}}</span>
             </span>
-            <a routerLink="../" class="w-1/12 content-center fill-secondary-foreground duration-200 bg-secondary hover:bg-foreground rounded-lg hover:text-black">
+            <a routerLink="../" class="w-20 nav-item content-center fill-secondary-foreground duration-200 rounded-lg">
                 <mat-icon >class</mat-icon>
             </a>
-            <a routerLink="../" class="w-1/12 content-center fill-secondary-foreground duration-200  bg-secondary hover:bg-foreground rounded-lg hover:text-black">
+            <a routerLink="../" class="w-20 nav-item content-center fill-secondary-foreground duration-200 rounded-lg">
                 <mat-icon >list</mat-icon>
             </a>
         </div>
