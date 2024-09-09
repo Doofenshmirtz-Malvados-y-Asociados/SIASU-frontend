@@ -1,0 +1,78 @@
+<div class="p-12 w-full h-full flex flex-col">
+    <!-- Heading of the page -->
+    <div class="w-full grid gap-2">
+        <h2 class="text-3xl font-bold text-foreground">Resultados de Perfil Profesional</h2>
+        <p class="text-md text-muted-foreground">Creemos que estas son las carreras más afines a tí, recuerda que estas
+            son solo sugerencias, siempre debes de seguir tus sueños</p>
+    </div>
+
+    <section class="mt-8 bg-background h-full overflow-hidden grid grid-cols-4 grid-rows-7 gap-4">
+        <div class="border border-border col-span-1 rounded p-4 flex flex-col place-content-center gap-2">
+            <p class="text-xl">{{name}}</p>
+            <p class="text-lg text-muted-foreground">Estudiante de {{career}}</p>
+        </div>
+        <div class="border border-border col-span-1 rounded p-4 grid gap-0 place-items-center">
+            <div class="text-muted-foreground">
+                <p>Tus ultimas recomendaciones fueron generadas:</p>
+                <p>{{formatedDate}}</p>
+            </div>
+        </div>
+
+        <div class="p-4 col-span-2 row-span-7 flex flex-col gap-2 border border-border">
+            <p class="text-3xl sora text-foreground">Reporte:</p>
+            <div class="h-full flex flex-col">
+                <div class="h-20 flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">Carrera</p>
+                    <p class="w-1/4">Afinidad</p>
+                    <p class="w-1/4">Salario promedio</p>
+                    <p class="w-1/4">Saber más</p>
+                </div>
+                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">Desarrollador Backend</p>
+                    <p class="w-1/4">99</p>
+                    <p class="w-1/4">$27,632</p>
+                    <p class="w-1/4">-></p>
+                </div>
+                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">Cientifico de Datos</p>
+                    <p class="w-1/4">92</p>
+                    <p class="w-1/4">$40,498</p>
+                    <p class="w-1/4">-></p>
+                </div>
+                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">Desarrollador Frontend</p>
+                    <p class="w-1/4">46</p>
+                    <p class="w-1/4">$19,954</p>
+                    <p class="w-1/4">-></p>
+                </div>
+                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">UI/UX</p>
+                    <p class="w-1/4">45</p>
+                    <p class="w-1/4">$26,631</p>
+                    <p class="w-1/4">-></p>
+                </div>
+                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">DBA</p>
+                    <p class="w-1/4">24</p>
+                    <p class="w-1/4">$26,816</p>
+                    <p class="w-1/4">-></p>
+                </div>
+                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">Desarrollo Movil</p>
+                    <p class="w-1/4">12</p>
+                    <p class="w-1/4">$26,357</p>
+                    <p class="w-1/4">-></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="min-h-[40rem] col-span-2 row-span-6 p-4 flex justify-between border border-border">
+            <div class="rounded-md chart-container grid place-items-center">
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                    [yaxis]="chartOptions.yaxis" [title]="chartOptions.title" [theme]="chartOptions.theme"></apx-chart>
+            </div>
+        </div>
+        
+
+    </section>
+</div>
