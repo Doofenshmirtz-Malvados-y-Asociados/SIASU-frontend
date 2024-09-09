@@ -25,7 +25,8 @@ export type ChartOptions = {
 export class ResultadosProfesionComponent {
   private authService: AuthService = inject(AuthService);
 
-  nombre = this.authService.currentUser()?.name
+  name = this.authService.currentUser()?.name
+  career = this.authService.currentUser()?.career_id
   
   date = new Date().toLocaleDateString().split('/').map(p => p.padStart(2, '0'))
   formatedDate = `${this.date[0]}/${this.date[1]}/${this.date[2]}`
