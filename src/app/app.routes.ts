@@ -13,6 +13,8 @@ import { CursosComponent } from './pages/dashboard/cursos/cursos.component';
 import { ProfesionComponent } from './pages/dashboard/profesion/profesion.component';
 import { ResultadosProfesionComponent } from './pages/dashboard/profesion/resultados/resultados.component';
 import { ResultadosComponent } from './pages/dashboard/examen/resultados/resultados.component';
+import { PlaneacionComponent } from './pages/dashboard/planeacion/planeacion.component';
+import { ActualizarComponent } from './pages/dashboard/planeacion/actualizar/actualizar.component';
 
 
 export const routes: Routes = [
@@ -51,6 +53,16 @@ export const routes: Routes = [
                 path: 'configuracion',
                 title: 'Configuración',
                 component: ConfiguracionComponent
+            },
+            {
+                path: 'planeacion',
+                title: 'Planeación',
+                component: PlaneacionComponent
+            },
+            {
+                path: 'planeacion/actualizar',
+                title: 'Actualizar progreso de carrera',
+                component: ActualizarComponent
             },
             {
                 path: 'carreras',

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../../../auth/auth.service';
 import { ApexAxisChartSeries, ApexChart, ApexTheme, ApexTitleSubtitle, ApexXAxis, ApexYAxis, NgApexchartsModule } from 'ng-apexcharts';
+import { CareerIDToAlias } from '../../../../interfaces/careerIdtoAlias.enum';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -26,7 +27,7 @@ export class ResultadosProfesionComponent {
   private authService: AuthService = inject(AuthService);
 
   name = this.authService.currentUser()?.name
-  career = this.authService.currentUser()?.career_id
+  career = CareerIDToAlias[this.authService.currentUser()?.career_id || 0]
   
   date = new Date().toLocaleDateString().split('/').map(p => p.padStart(2, '0'))
   formatedDate = `${this.date[0]}/${this.date[1]}/${this.date[2]}`

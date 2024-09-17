@@ -55,6 +55,13 @@ body,html {
   background-position: 0;
 }
 
+.button-gray {
+  background: linear-gradient(90deg, #27272a, #27272a, #27272a, #27272a, #ea580c , #c026d3, #7c3aed);
+  transition: all 0.3s;
+  background-size: 300%;
+  background-position: 0;
+}
+
 .link-active {
   background: linear-gradient(90deg, #ffffff, #ffffff, #ffffff, #ffffff, #ea580c , #c026d3, #7c3aed);
   transition: all 0.3s;
@@ -62,7 +69,7 @@ body,html {
   background-position: 0;
 }
 
-.nav-item:hover, .link-active:hover {
+.nav-item:hover, .link-active:hover, .button-gray:hover {
   background-position: 100%;
 }
 
