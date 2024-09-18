@@ -1,6 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({

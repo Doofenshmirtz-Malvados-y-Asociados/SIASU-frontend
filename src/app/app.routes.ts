@@ -13,6 +13,7 @@ import { CursosComponent } from './pages/dashboard/cursos/cursos.component';
 import { ProfesionComponent } from './pages/dashboard/profesion/profesion.component';
 import { ResultadosProfesionComponent } from './pages/dashboard/profesion/resultados/resultados.component';
 import { ResultadosComponent } from './pages/dashboard/examen/resultados/resultados.component';
+import { HomeComponent } from './pages/dashboard/home/home.component';
 
 
 export const routes: Routes = [
@@ -37,6 +38,11 @@ export const routes: Routes = [
         component: DashboardComponent,
         canActivate: [isAuthenticatedGuard],
         children: [
+            {
+                path: '',
+                title: 'Home',
+                component: HomeComponent
+            },
             { 
                 path: 'profesion',
                 title: 'Perfil Profesional',

@@ -9,8 +9,7 @@ export class ResponseService {
     constructor (private http: HttpClient) {}
     
     public getResponseByUser(user: string): Observable<Response> {
-        console.log(this.http.get<Response>("http://localhost:3000/response/findOne?" + `user=${user}`))
-        return this.http.get<Response>("http://localhost:3000/response/findOne?" + `user=${user}`)
+        return this.http.get<Response>("http://localhost:3000/response/" + `${user}`)
         
     }
 }
