@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../../auth/auth.service';
+import { AuthService } from '../../../../../auth/auth.service';
+import { ToastNotificationsService } from '../../../../../components/toast-notifications/services/toast-notifications.service';
+import { Router, RouterLink } from '@angular/router';
 
 interface Course {
   id: string;
@@ -14,7 +16,7 @@ interface Course {
 @Component({
   selector: 'app-actualizar',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './actualizar.component.html',
   styles: `:host {
     display: block;
@@ -27,7 +29,13 @@ export class ActualizarComponent implements OnInit {
   // 1 -> Upload File
   // 2 -> Difficulty explanation
   // 3 -> Add difficulty and submit
-  constructor(private readonly httpClient: HttpClient, private fb: FormBuilder, private authClient: AuthService) { }
+  constructor(
+    private readonly httpClient: HttpClient, 
+    private fb: FormBuilder, 
+    private authClient: AuthService,
+    private toastClient: ToastNotificationsService,
+    private router: Router
+  ) { }
 
   typeOfLoad = 0;
 
@@ -51,8 +59,6 @@ export class ActualizarComponent implements OnInit {
       this.httpClient.post("http://localhost:3000/utils/load", formData)
         .subscribe({
           next: (res: any) => {
-            console.log(res)
-
             res.forEach((course: Course) => {
               this.addItem(course.id, course.name, course.score, course.difficulty, course.takenAt);
             })
@@ -63,8 +69,6 @@ export class ActualizarComponent implements OnInit {
         })
     }
   }
-
-
 
 
   ngOnInit() {
@@ -105,7 +109,12 @@ export class ActualizarComponent implements OnInit {
     this.httpClient.post("http://localhost:3000/course-user/bulk", data)
       .subscribe({
         next: (res: any) => {
-          console.log(res)
+          this.toastClient.add("Materias agregadas con exito", "Se te regresará automaticamente a la página anterior", "success")
+          
+          setTimeout(() => {
+            this.router.navigate(['/dashboard/planeacion']);
+          }, 3000);
+
         },
         error: error => console.error("Error: ", error),
       })

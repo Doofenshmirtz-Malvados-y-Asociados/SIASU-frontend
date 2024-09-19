@@ -1,0 +1,85 @@
+<div class="w-full h-full flex flex-col p-12">
+  <!-- Heading of the page -->
+  <div class="h-fit w-full py-4 flex justify-between">
+    <div class="grid gap-2">
+      <h1 class="text-3xl font-bold text-foreground">
+        Planeación de carga academica
+      </h1>
+      <p class="text-md text-muted-foreground">
+        En esta sección puedes ver tu progreso de la carrera y planear tu
+        siguiente semestre.
+      </p>
+    </div>
+    <div class="flex gap-4">
+      <a
+        routerLink="/dashboard/progreso"
+        class="button-gray inline-flex my-auto items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 shrink-0"
+      >
+        Regresar
+      </a>
+    </div>
+  </div>
+
+  <section
+    class="mt-8 bg-background rounded p-8 grid grid-cols-2 content-start h-full gap-4 border border-border overflow-scroll no-scrollbar"
+  >
+    @for (item of remainingCourses; track $index) {
+    <label
+      for="{{ item?.course_id }}"
+      class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+    >
+      <input
+        id="{{ item?.course_id }}"
+        type="checkbox"
+        value=""
+        class="hidden peer"
+      />
+      <div
+        class="py-2 px-4 border grid gap-2 border-muted bg-background w-full rounded parent peer-checked:[&>div>div>p:nth-child(1)]:bg-muted-foreground peer-checked:[&>div>div>p:nth-child(2)]:bg-muted-foreground group hover:border-muted-foreground/50 peer-checked:border-muted-foreground"
+      >
+        <div class="flex justify-between">
+          <p class="">{{ item?.course?.name }}</p>
+          <div class="flex gap-2">
+            <p
+              class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
+            >
+              4 HPS
+            </p>
+            <p
+              class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
+            >
+              {{ item?.course?.credits }} creditos
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-between">
+          <p class="text-muted-foreground">
+            Dificultad promedio: <span class="font-black">84</span>
+          </p>
+          <a
+            routerLink="/dashboard/cursos/{{ item?.course_id }}"
+            class="text-muted-foreground flex gap-2 place-items-center hover:text-foreground cursor-pointer"
+          >
+            Ver más de la materia
+            <svg
+              data-testid="geist-icon"
+              height="16"
+              stroke-linejoin="round"
+              viewBox="0 0 16 16"
+              width="16"
+              style="color: currentcolor"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M9.53033 2.21968L9 1.68935L7.93934 2.75001L8.46967 3.28034L12.4393 7.25001H1.75H1V8.75001H1.75H12.4393L8.46967 12.7197L7.93934 13.25L9 14.3107L9.53033 13.7803L14.6036 8.70711C14.9941 8.31659 14.9941 7.68342 14.6036 7.2929L9.53033 2.21968Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </label>
+    }
+  </section>
+</div>
