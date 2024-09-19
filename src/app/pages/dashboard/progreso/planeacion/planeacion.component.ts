@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PlaneacionService } from './planeacion.service';
+import { ProgresoService } from '../progreso.service';
 
 @Component({
   selector: 'app-planeacion',
@@ -14,16 +14,15 @@ import { PlaneacionService } from './planeacion.service';
   }`
 })
 export class PlaneacionComponent implements OnInit {
-  private planeacionService: PlaneacionService = inject(PlaneacionService)
+  private progresoService: ProgresoService = inject(ProgresoService)
 
   remainingCourses: any = []
 
   ngOnInit(): void {
-    this.planeacionService.getCoursesRemaining()
+    this.progresoService.getCoursesRemaining()
       .subscribe({
         next: (res) => {
           this.remainingCourses = res
-          console.log(this.remainingCourses)
         },
         error: (e) => console.error(e)
       })

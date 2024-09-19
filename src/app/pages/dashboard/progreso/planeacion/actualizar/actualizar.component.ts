@@ -112,7 +112,7 @@ export class ActualizarComponent implements OnInit {
           this.toastClient.add("Materias agregadas con exito", "Se te regresará automaticamente a la página anterior", "success")
           
           setTimeout(() => {
-            this.router.navigate(['/dashboard/planeacion']);
+            this.router.navigate(['/dashboard/progreso']);
           }, 3000);
 
         },
