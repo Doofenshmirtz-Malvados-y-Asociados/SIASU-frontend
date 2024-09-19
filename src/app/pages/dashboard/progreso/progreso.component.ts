@@ -94,7 +94,7 @@ export class ProgresoComponent implements OnInit {
       labels: ["Cursados", "Restantes"],
       chart: {
         type: "donut",
-        height: 125,
+        height: 150,
         stacked: true,
         stackType: "100%",
         background: 'transparent',
