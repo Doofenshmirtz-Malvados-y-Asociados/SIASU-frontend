@@ -79,105 +79,15 @@
             </div>
         } @else if (filter === 0) {
             @for (item of coursesTaken; track $index) {
-                <div
-                class="w-full ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                <a
-                    routerLink="/dashboard/cursos/{{ item?.course_id }}"
-                    class="text-muted-foreground flex gap-2 place-items-center hover:text-foreground cursor-pointer"
-                >
-                    <div
-                    class="py-2 px-4 border grid gap-2 border-muted bg-background w-full rounded parent hover:border-muted-foreground/50"
-                    >
-                    <div class="flex justify-between">
-                        <p class="">{{ item?.course?.name }}</p>
-                        <div class="flex gap-2">
-                        <p
-                            class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
-                        >
-                            {{ item?.course?.credits }} creditos
-                        </p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between">
-                        <p class="text-muted-foreground">
-                        Dificultad: <span class="font-black">{{ item?.difficulty }}</span>
-                        </p>
-                        <p class="text-muted-foreground">
-                        Calificación: <span class="font-black">{{ item?.score }}</span>
-                        </p>
-                    </div>
-                    </div>
-                </a>
-                </div>
+                <app-course-card [item]="item" />
             }
         } @else if (filter === 1) {
             @for (item of coursesTakenOfCareer; track $index) {
-                <div
-                class="w-full ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                <a
-                    routerLink="/dashboard/cursos/{{ item?.course_id }}"
-                    class="text-muted-foreground flex gap-2 place-items-center hover:text-foreground cursor-pointer"
-                >
-                    <div
-                    class="py-2 px-4 border grid gap-2 border-muted bg-background w-full rounded parent hover:border-muted-foreground/50"
-                    >
-                    <div class="flex justify-between">
-                        <p class="">{{ item?.course?.name }}</p>
-                        <div class="flex gap-2">
-                        <p
-                            class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
-                        >
-                            {{ item?.course?.credits }} creditos
-                        </p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between">
-                        <p class="text-muted-foreground">
-                        Dificultad: <span class="font-black">{{ item?.difficulty }}</span>
-                        </p>
-                        <p class="text-muted-foreground">
-                        Calificación: <span class="font-black">{{ item?.score }}</span>
-                        </p>
-                    </div>
-                    </div>
-                </a>
-                </div>
+                <app-course-card [item]="item" />
             }
         } @else if (filter === 2 && optativeCourses) {
             @for (item of optativeCourses; track $index) {
-                <div
-                class="w-full ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                >
-                <a
-                    routerLink="/dashboard/cursos/{{ item?.course_id }}"
-                    class="text-muted-foreground flex gap-2 place-items-center hover:text-foreground cursor-pointer"
-                >
-                    <div
-                    class="py-2 px-4 border grid gap-2 border-muted bg-background w-full rounded parent hover:border-muted-foreground/50"
-                    >
-                    <div class="flex justify-between">
-                        <p class="">{{ item?.course?.name }}</p>
-                        <div class="flex gap-2">
-                        <p
-                            class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
-                        >
-                            {{ item?.course?.credits }} creditos
-                        </p>
-                        </div>
-                    </div>
-                    <div class="flex justify-between">
-                        <p class="text-muted-foreground">
-                        Dificultad: <span class="font-black">{{ item?.difficulty }}</span>
-                        </p>
-                        <p class="text-muted-foreground">
-                        Calificación: <span class="font-black">{{ item?.score }}</span>
-                        </p>
-                    </div>
-                    </div>
-                </a>
-                </div>
+                <app-course-card [item]="item" />
             }
         }
     </div>

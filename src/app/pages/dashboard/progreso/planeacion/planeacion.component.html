@@ -6,7 +6,8 @@
         Planeación de carga academica
       </h1>
       <p class="text-md text-muted-foreground">
-        En esta sección puedes ver las materias que te falta por cursar y planear tu siguiente semestre.
+        En esta sección puedes ver las materias que te falta por cursar y
+        planear tu siguiente semestre.
       </p>
     </div>
     <div class="flex gap-4">
@@ -18,84 +19,126 @@
       </a>
     </div>
   </div>
-
-  @if (remainingCourses?.length === 0) {
-  <section
-    class="mt-8 bg-background rounded p-8 grid place-items-center h-full gap-4 border border-border overflow-scroll no-scrollbar"
-  >
-    <div class="text-muted-foreground text-xl flex flex-col gap-2">
-      <p class="flex gap-2 place-items-center">
-        Parece que no tienes materias pendientes por cursar, ¡Felicidades!
-        <svg class="w-6 fill-muted-foreground" data-testid="geist-icon" stroke-linejoin="round" viewBox="0 0 16 16" style="color: currentcolor;"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM4.5 8.97498H3.875V9.59998C3.875 11.4747 5.81046 12.8637 7.99817 12.8637C10.1879 12.8637 12.125 11.4832 12.125 9.59998V8.97498H11.5H4.5ZM7.99817 11.6137C6.59406 11.6137 5.63842 10.9482 5.28118 10.225H10.7202C10.3641 10.9504 9.40797 11.6137 7.99817 11.6137Z"></path>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.15295 4.92093L5.375 3.5L4.59705 4.92093L3 5.21885L4.11625 6.39495L3.90717 8L5.375 7.30593L6.84283 8L6.63375 6.39495L7.75 5.21885L6.15295 4.92093ZM11.403 4.92093L10.625 3.5L9.84705 4.92093L8.25 5.21885L9.36625 6.39495L9.15717 8L10.625 7.30593L12.0928 8L11.8837 6.39495L13 5.21885L11.403 4.92093Z"></path></svg>
-      </p>
-      <p>
-        Consulta a tu coordinación para empezar con el tramite de titulación.
-      </p>
-    </div>
-  </section>
+  @if (showResults) {
+    <app-planeacion-resultados 
+      [typeOfResult]="typeOfResult"
+    />
   } @else {
-  <section
-    class="mt-8 bg-background rounded p-8 grid grid-cols-2 content-start h-full gap-4 border border-border overflow-scroll no-scrollbar"
-  >
-    @for (item of remainingCourses; track $index) {
-    <label
-      for="{{ item?.course_id }}"
-      class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+  
+    @if (remainingCourses?.length === 0) {
+    <section
+      class="mt-8 bg-background rounded p-8 grid place-items-center h-full gap-4 border border-border overflow-scroll no-scrollbar"
     >
-      <input
-        id="{{ item?.course_id }}"
-        type="checkbox"
-        value=""
-        class="hidden peer"
-      />
-      <div
-        class="py-2 px-4 border grid gap-2 border-muted bg-background w-full rounded parent peer-checked:[&>div>div>p:nth-child(1)]:bg-muted-foreground peer-checked:[&>div>div>p:nth-child(2)]:bg-muted-foreground group hover:border-muted-foreground/50 peer-checked:border-muted-foreground"
+      <div class="text-muted-foreground text-xl flex flex-col gap-2">
+        <p class="flex gap-2 place-items-center">
+          Parece que no tienes materias pendientes por cursar, ¡Felicidades!
+          <svg
+            class="w-6 fill-muted-foreground"
+            data-testid="geist-icon"
+            stroke-linejoin="round"
+            viewBox="0 0 16 16"
+            style="color: currentcolor"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM4.5 8.97498H3.875V9.59998C3.875 11.4747 5.81046 12.8637 7.99817 12.8637C10.1879 12.8637 12.125 11.4832 12.125 9.59998V8.97498H11.5H4.5ZM7.99817 11.6137C6.59406 11.6137 5.63842 10.9482 5.28118 10.225H10.7202C10.3641 10.9504 9.40797 11.6137 7.99817 11.6137Z"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M6.15295 4.92093L5.375 3.5L4.59705 4.92093L3 5.21885L4.11625 6.39495L3.90717 8L5.375 7.30593L6.84283 8L6.63375 6.39495L7.75 5.21885L6.15295 4.92093ZM11.403 4.92093L10.625 3.5L9.84705 4.92093L8.25 5.21885L9.36625 6.39495L9.15717 8L10.625 7.30593L12.0928 8L11.8837 6.39495L13 5.21885L11.403 4.92093Z"
+            ></path>
+          </svg>
+        </p>
+        <p>
+          Consulta a tu coordinación para empezar con el tramite de titulación.
+        </p>
+      </div>
+    </section>
+    } @else {
+    <section
+      class="mt-8 relative bg-background rounded p-8 grid grid-cols-2 content-start h-full gap-4 border border-border overflow-scroll no-scrollbar"
+    >
+      @for (item of remainingCourses; track $index) {
+      <label
+        for="{{ item?.course_id }}"
+        class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
       >
-        <div class="flex justify-between">
-          <p class="">{{ item?.course?.name }}</p>
-          <div class="flex gap-2">
-            <p
-              class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
-            >
-              4 HPS
-            </p>
-            <p
-              class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
-            >
-              {{ item?.course?.credits }} creditos
-            </p>
+        <input
+          id="{{ item?.course_id }}"
+          type="checkbox"
+          value=""
+          class="hidden peer"
+          (change)="toggleCourse(item)"
+        />
+        <div
+          class="border flex gap-4 border-muted bg-background w-full rounded parent peer-checked:[&>div>div>div>p:nth-child(1)]:bg-muted-foreground peer-checked:[&>div>div>div>p:nth-child(2)]:bg-muted-foreground group hover:border-muted-foreground/50 peer-checked:border-muted-foreground"
+        >
+          <p
+            class="grid rounded-l place-items-center bg-muted-foreground group-hover:bg-foreground p-2 text-muted font-bold transition duration-300"
+          >
+            {{ item?.course_id }}
+          </p>
+          <div class="grid gap-2 w-full py-2 px-4">
+            <div class="flex justify-between">
+              <p class="truncate w-[60ch]">{{ item?.course?.name }}</p>
+              <div class="flex gap-2">
+                <p
+                  class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
+                >
+                  4 HPS
+                </p>
+                <p
+                  class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
+                >
+                  {{ item?.course?.credits }} creditos
+                </p>
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-muted-foreground">
+                Dificultad promedio:
+                <span class="font-black">{{ item?.course.avg_difficulty }}</span>
+              </p>
+              <a
+                routerLink="/dashboard/cursos/{{ item?.course_id }}"
+                class="text-muted-foreground flex gap-2 place-items-center hover:text-foreground cursor-pointer"
+              >
+                Ver más de la materia
+                <svg
+                  data-testid="geist-icon"
+                  height="16"
+                  stroke-linejoin="round"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  style="color: currentcolor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.53033 2.21968L9 1.68935L7.93934 2.75001L8.46967 3.28034L12.4393 7.25001H1.75H1V8.75001H1.75H12.4393L8.46967 12.7197L7.93934 13.25L9 14.3107L9.53033 13.7803L14.6036 8.70711C14.9941 8.31659 14.9941 7.68342 14.6036 7.2929L9.53033 2.21968Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="flex justify-between">
-          <p class="text-muted-foreground">
-            Dificultad promedio: <span class="font-black">84</span>
-          </p>
-          <a
-            routerLink="/dashboard/cursos/{{ item?.course_id }}"
-            class="text-muted-foreground flex gap-2 place-items-center hover:text-foreground cursor-pointer"
-          >
-            Ver más de la materia
-            <svg
-              data-testid="geist-icon"
-              height="16"
-              stroke-linejoin="round"
-              viewBox="0 0 16 16"
-              width="16"
-              style="color: currentcolor"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M9.53033 2.21968L9 1.68935L7.93934 2.75001L8.46967 3.28034L12.4393 7.25001H1.75H1V8.75001H1.75H12.4393L8.46967 12.7197L7.93934 13.25L9 14.3107L9.53033 13.7803L14.6036 8.70711C14.9941 8.31659 14.9941 7.68342 14.6036 7.2929L9.53033 2.21968Z"
-                fill="currentColor"
-              ></path>
-            </svg>
-          </a>
-        </div>
+      </label>
+      }
+      <div
+        class="flex absolute col-span-2 justify-end w-full bottom-4 right-4 gap-4 mt-8"
+      >
+        <button
+          class="button-gray inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 shrink-0"
+          type="submit"
+          (click)="simulateSemester()"
+        >
+          Simular semestre
+        </button>
       </div>
-    </label>
+    </section>
     }
-  </section>
   }
 </div>

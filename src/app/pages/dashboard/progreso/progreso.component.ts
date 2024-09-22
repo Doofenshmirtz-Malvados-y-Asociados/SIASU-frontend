@@ -18,6 +18,7 @@ import {
   ApexDataLabels,
 } from "ng-apexcharts";
 import { CommonModule } from '@angular/common';
+import { CourseCardComponent } from './components/course-card/course-card.component';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -41,7 +42,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-progreso',
   standalone: true,
-  imports: [RouterLink, NgApexchartsModule, CommonModule],
+  imports: [RouterLink, NgApexchartsModule, CommonModule, CourseCardComponent],
   templateUrl: './progreso.component.html',
   styles: `:host {
     display: block;
