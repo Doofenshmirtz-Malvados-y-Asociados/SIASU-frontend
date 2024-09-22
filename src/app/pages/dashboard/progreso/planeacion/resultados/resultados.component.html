@@ -1,0 +1,23 @@
+<section
+  class="mt-8 bg-background rounded p-8 flex place-items-center h-full gap-4 border border-border"
+>
+  @if (typeOfResult === 0) {
+    <div class="m-auto text-center flex flex-col gap-2 ">
+      <p class="text-3xl animate-slidein200 opacity-0">Todo parece bien</p>
+      <p class="text-muted-foreground text-xl animate-slidein1200 opacity-0">Tu carga horaria prevista parece no ser excedida, y la dificultad de los cursos que planeas tomar no es tan alta como para representar un problema.</p>
+      <p class="text-muted-foreground animate-slidein3500 opacity-0">SIASU creé en tí y creé que puedes con esto.</p>
+    </div>
+  } @else if (typeOfResult === 1) {
+    <div class="m-auto text-center flex flex-col gap-2">
+      <p class="text-3xl animate-slidein200 opacity-0">Tal vez quieras reconsiderar tu semestre</p>
+      <p class="text-muted-foreground text-xl animate-slidein1200 opacity-0">La dificultad promedio de las materias que planeas cursar es demasiado alta, combinado a la carga horaria que planeas, tal vez sea mejor que cambies tu plan.</p>
+      <p class="text-muted-foreground animate-slidein3500 opacity-0">Si aún crees que puedes cursar este semestre como lo planeas, consulta a tu tutor o a tu coordinador de carrera.</p>
+    </div>
+  } @else {
+    <div class="m-auto text-center flex flex-col gap-2">
+      <p class="text-3xl animate-slidein200 opacity-0">Nos parece que tu carga horaria esta excedida</p>
+      <p class="text-muted-foreground text-xl animate-slidein1200 opacity-0">Llevar muchas clases en un solo semestre puede adelantarte, pero también puede desgastarte. Claramente es importante tU carrera, pero también lo eres tú. Además del tiempo de clases, planea tiempo para trasladarte al campus, para realizar actividad física, para dormir bien y también para descansar.</p>
+      <p class="text-muted-foreground animate-slidein3500 opacity-0">Si aún crees que puedes cursar este semestre como lo planeas, consulta a tu tutor o a tu coordinador de carrera.</p>
+    </div>
+  }
+</section>

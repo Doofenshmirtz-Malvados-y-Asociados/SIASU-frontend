@@ -1,0 +1,32 @@
+<div class="w-full ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 group ">
+  <a
+    routerLink="/dashboard/cursos/{{ item?.course_id }}"
+    class="text-muted-foreground flex gap-2 place-items-center hover:text-foreground cursor-pointer transition duration-300"
+  >
+    <div
+      class="border flex gap-4 border-muted bg-background w-full rounded parent hover:border-muted-foreground/50"
+    >
+      <p class="grid rounded-l place-items-center bg-muted-foreground group-hover:bg-foreground p-2 text-muted font-bold transition duration-300">{{item?.course_id}}</p>
+      <div class="grid gap-2 w-full py-2 px-4">
+        <div class="flex justify-between">
+          <p class="">{{ item?.course?.name }}</p>
+          <div class="flex gap-2">
+            <p
+              class="rounded-full bg-muted-foreground/50 px-2 text-muted group-hover:bg-muted-foreground/80"
+            >
+              {{ item?.course?.credits }} creditos
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-start gap-8">
+          <p class="text-muted-foreground">
+            Dificultad: <span class="font-black">{{ item?.difficulty }}</span>
+          </p>
+          <p class="text-muted-foreground">
+            Calificación: <span class="font-black">{{ item?.score }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

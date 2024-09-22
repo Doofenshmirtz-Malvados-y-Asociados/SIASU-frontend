@@ -1,0 +1,95 @@
+<div class="w-full h-full flex flex-col p-12">
+  <!-- Heading of the page -->
+  <div class="h-fit w-full py-4 flex justify-between">
+    <div class="grid gap-2">
+      <h1 class="text-3xl font-bold text-foreground">Progreso del alumno</h1>
+      <p class="text-md text-muted-foreground">
+        En esta sección puedes ver tu progreso de la carrera, ver materias que
+        cursaste y planear tu siguiente semestre.
+      </p>
+    </div>
+    <div class="flex gap-4">
+      <a
+        routerLink="planeacion"
+        class="button-gray inline-flex my-auto items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 shrink-0"
+      >
+        Planear siguiente semestre
+      </a>
+      <a
+        routerLink="planeacion/actualizar"
+        class="button-gray inline-flex my-auto items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 px-4 py-2 shrink-0"
+      >
+        Actualizar progreso
+      </a>
+    </div>
+  </div>
+
+  <section
+    class="mt-8 bg-background rounded p-8 grid grid-cols-5 grid-rows-3 content-start h-full gap-4 border border-border overflow-scroll no-scrollbar"
+  >
+    @if (chartOptions) {
+        <div
+            class="p-4 flex flex-col justify-between border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300"
+        >
+            <p>Progreso de la malla</p>
+            <div class="w-full h-full flex place-items-center">
+                <div class="w-1/2 h-full grid place-items-center pt-2">
+                    <div class="m-auto">
+                        <apx-chart
+                        [series]="chartOptions.series"
+                        [labels]="chartOptions.labels"
+                        [chart]="chartOptions.chart"
+                        [plotOptions]="chartOptions.plotOptions"
+                        [xaxis]="chartOptions.xaxis"
+                        [yaxis]="chartOptions.yaxis"
+                        [stroke]="chartOptions.stroke"
+                        [fill]="chartOptions.fill"
+                        [title]="chartOptions.title"
+                        [tooltip]="chartOptions.tooltip"
+                        [legend]="chartOptions.legend"
+                        [theme]="chartOptions.theme"
+                        [colors]="chartOptions.colors"
+                        [grid]="chartOptions.grid"
+                        [dataLabels]="chartOptions.dataLabels"
+                        ></apx-chart>
+                    </div>
+                </div>
+                <p class="text-5xl">{{percentageTaken}}%</p>
+            </div>
+        </div>
+        <div class="row-start-2 col-start-1 p-4 flex flex-col justify-between border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300">
+            <p>Progreso de optativas/especializantes</p>
+            <p class="grid place-items-center text-5xl">{{optativeCredits}}</p>
+            <p>creditos</p>
+        </div>
+    }
+    <div class="row-start-3 col-start-1 gap-2 p-4 flex flex-col border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300">
+        <p>Filtros</p>
+        <div class="flex flex-col place-items-center gap-1 m-auto p-2 rounded text-foreground font-bold *:w-full *:rounded *:p-2">
+            <button (click)="toggleFilter(0)" [classList]="filter === 0 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Todos los cursos</button>
+            <button (click)="toggleFilter(1)" [classList]="filter === 1 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Solo de la Carrera</button>
+            <button (click)="toggleFilter(2)" [classList]="filter === 2 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Optativas/Especializantes</button>
+        </div>
+    </div>
+
+    <div class="row-start-1 col-span-4 col-start-2 row-span-3 grid gap-5 mb-2 content-start">
+        @if (coursesTaken.length === 0) {
+            <div class="w-full grid place-items-center">
+                <p class="text-muted-foreground">No has cursado ninguna materia</p>
+            </div>
+        } @else if (filter === 0) {
+            @for (item of coursesTaken; track $index) {
+                <app-course-card [item]="item" />
+            }
+        } @else if (filter === 1) {
+            @for (item of coursesTakenOfCareer; track $index) {
+                <app-course-card [item]="item" />
+            }
+        } @else if (filter === 2 && optativeCourses) {
+            @for (item of optativeCourses; track $index) {
+                <app-course-card [item]="item" />
+            }
+        }
+    </div>
+  </section>
+</div>
