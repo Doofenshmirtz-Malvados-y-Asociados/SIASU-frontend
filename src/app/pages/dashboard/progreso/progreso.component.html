@@ -73,7 +73,11 @@
     </div>
 
     <div class="row-start-1 col-span-4 col-start-2 row-span-3 grid gap-5 mb-2 content-start">
-        @if (filter === 0) {
+        @if (coursesTaken.length === 0) {
+            <div class="w-full grid place-items-center">
+                <p class="text-muted-foreground">No has cursado ninguna materia</p>
+            </div>
+        } @else if (filter === 0) {
             @for (item of coursesTaken; track $index) {
                 <div
                 class="w-full ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -141,7 +145,7 @@
                 </a>
                 </div>
             }
-        } @else if (filter === 2) {
+        } @else if (filter === 2 && optativeCourses) {
             @for (item of optativeCourses; track $index) {
                 <div
                 class="w-full ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
