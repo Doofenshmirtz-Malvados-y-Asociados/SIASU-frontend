@@ -1,0 +1,72 @@
+<div class="h-full p-12">
+    <div class="h-fit py-4 border-b border-border content-center space-y-2">
+        <h1 class="text-3xl font-bold text-foreground">Bienvenido {{user?.name}}</h1>
+        <p class="text-md text-muted-foreground">
+            En esta sección podrás ver un resumen rápido de tus datos en esta página, junto con algunas sugerencias.
+        </p>
+    </div>
+    <div class="h-5/6 flex flex-wrap rounded-md border border-border bg-background overflow-scroll no-scrollbar p-8">
+        <div class="box-data rounded-md m-auto h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar ">
+            <div class="text-justify h-full w-full">
+                @if (response === null) {
+                    <p>Parece que en esta cuenta aún no se ha contestado un examen vocacional, si deseas saber cual sería la carrera más próxima a tus gustos y a lo que sabes hacer, presiona el siguiente botón.</p>
+                    <div class="relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'">
+                        <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ea580c_0%,#c026d3_25%,#7c3aed_50%,#c026d3_75%,#ea580c_100%)]"></span>
+                        <a routerLink="/dashboard/vocacional/examen" class='inline-flex h-full w-full items-center justify-center rounded-full bg-background group-hover:bg-background/50 transition-all duration-300 px-4 py-2 text-md font-medium text-gray-50 backdrop-blur-3xl'>
+                            Tomar examen
+                        </a>
+                    </div>
+                } @else {
+                    @if (!response?.suggested_career) {
+                        <p>Parece que tus resultados aún están procesandose, favor de esperar un tiempo a que se procesen tus respuestas.</p>
+                    } @else {
+                        <p>Tus resultados han sido procesados con éxito, favor de ir a la sección de vocacional para conocerlos a más detalle.</p>
+                        <div class="min-h-[20rem] col-span-2 row-span-6 p-4 flex justify-between border border-border">
+                            <div class="rounded-md chart-container grid place-items-center">
+                                <apx-chart [series]="chartVocationalOptions.series" [chart]="chartVocationalOptions.chart" [xaxis]="chartVocationalOptions.xaxis"
+                                    [yaxis]="chartVocationalOptions.yaxis" [title]="chartVocationalOptions.title" [theme]="chartVocationalOptions.theme"></apx-chart>
+                            </div>
+                        </div>
+                        <div class="relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'">
+                            <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ea580c_0%,#c026d3_25%,#7c3aed_50%,#c026d3_75%,#ea580c_100%)]"></span>
+                            <a routerLink="/dashboard/vocacional" class='inline-flex h-full w-full items-center justify-center rounded-full bg-background group-hover:bg-background/50 transition-all duration-300 px-4 py-2 text-md font-medium text-gray-50 backdrop-blur-3xl'>
+                                Conocer resultados
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="box-data rounded-md m-auto h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar ">
+            <div class="text-justify h-full w-full">
+                @if (profile === null) {
+                    <p>Parece que aún no se ha realizado un análisis de tu perfil para obtener recomendaciones para un perfil profesional.</p>
+                    <div class="relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'">
+                        <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ea580c_0%,#c026d3_25%,#7c3aed_50%,#c026d3_75%,#ea580c_100%)]"></span>
+                        <a routerLink="/dashboard/profesion" class='inline-flex h-full w-full items-center justify-center rounded-full bg-background group-hover:bg-background/50 transition-all duration-300 px-4 py-2 text-md font-medium text-gray-50 backdrop-blur-3xl'>
+                            Ir a la página de perfil profesional
+                        </a>
+                    </div>
+                } @else {
+                    @if (!profile?.recommendation) {
+                        <p>Parece que tu perfil profesional aún está siendo procesado.</p>
+                    } @else {
+                        <p>Tu perfil profesional ha sido procesado, aquí tienes un gráfico, para más información da clic en el botón de abajo.</p>
+                        <div class="min-h-[20rem] col-span-2 row-span-6 p-4 flex justify-between border border-border">
+                            <div class="rounded-md chart-container grid place-items-center">
+                                <apx-chart [series]="chartProfesionalOptions.series" [chart]="chartProfesionalOptions.chart" [xaxis]="chartProfesionalOptions.xaxis"
+                                    [yaxis]="chartProfesionalOptions.yaxis" [title]="chartProfesionalOptions.title" [theme]="chartProfesionalOptions.theme"></apx-chart>
+                            </div>
+                        </div>
+                        <div class="relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'">
+                            <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ea580c_0%,#c026d3_25%,#7c3aed_50%,#c026d3_75%,#ea580c_100%)]"></span>
+                            <a routerLink="/dashboard/profesion/resultados" class='inline-flex h-full w-full items-center justify-center rounded-full bg-background group-hover:bg-background/50 transition-all duration-300 px-4 py-2 text-md font-medium text-gray-50 backdrop-blur-3xl'>
+                                Ver perfil profesional
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

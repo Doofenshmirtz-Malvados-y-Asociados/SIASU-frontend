@@ -16,6 +16,7 @@ import { ResultadosComponent } from './pages/dashboard/examen/resultados/resulta
 import { PlaneacionComponent } from './pages/dashboard/progreso/planeacion/planeacion.component';
 import { ActualizarComponent } from './pages/dashboard/progreso/planeacion/actualizar/actualizar.component';
 import { ProgresoComponent } from './pages/dashboard/progreso/progreso.component';
+import { HomeComponent } from './pages/dashboard/home/home.component';
 
 
 export const routes: Routes = [
@@ -40,6 +41,11 @@ export const routes: Routes = [
         component: DashboardComponent,
         canActivate: [isAuthenticatedGuard],
         children: [
+            {
+                path: '',
+                title: 'Home',
+                component: HomeComponent
+            },
             { 
                 path: 'profesion',
                 title: 'Perfil Profesional',

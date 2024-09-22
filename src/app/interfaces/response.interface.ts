@@ -1,6 +1,6 @@
 export interface Response {
-    _id: string,
+    _id?: string,
     user?: string,
-    responses: number[],
-    suggested_career: string
+    responses?: number[],
+    suggested_career?: string
 }
