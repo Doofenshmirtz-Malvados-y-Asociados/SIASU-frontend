@@ -101,7 +101,7 @@ export class ExamenComponent {
       "Controlar las emociones",
       "Redactar",
       "Explicar cosas complejas a los demás",
-      "Resolver de problemas lógicos",
+      "Resolver problemas lógicos",
       "Percibir tonalidades de un mismo color primario",
       "Hacer manualidades",
       "Aprender términos técnicos",
@@ -159,7 +159,7 @@ export class ExamenComponent {
       this.notificationService.add("Sección capacidades", "Faltan por contestar preguntas en la sección de capacidades", 'error');
     } else {
       const response = [...this.answers['Te gusta...'], ...this.answers['Eres...'], ...this.answers['Tienes capacidad para...']]
-      this.http.post('http://localhost:3000/response/create', {user: this.user?.email, responses: response})
+      this.http.post('http://localhost:3000/response', {user: this.user?.email, responses: response})
         .pipe(
           map(user => !!user),
           catchError(e => of(false))
