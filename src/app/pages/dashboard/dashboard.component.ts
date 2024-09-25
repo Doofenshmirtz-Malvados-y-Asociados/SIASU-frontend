@@ -28,10 +28,13 @@ export class DashboardComponent {
   private authClient: AuthService = inject(AuthService)
   
   user = this.authClient.currentUser()
-  response = this.responseClient.getResponseByUser(this.user!.email)
-
+  response: any;
 
   onLogout() {
     this.authClient.logout()
+  }
+
+  ngOnInit(): void {
+    this.responseClient.getResponseByUser(this.user!.email).subscribe((res) => {this.response = res})
   }
 }
