@@ -17,6 +17,7 @@ import { PlaneacionComponent } from './pages/dashboard/progreso/planeacion/plane
 import { ActualizarComponent } from './pages/dashboard/progreso/planeacion/actualizar/actualizar.component';
 import { ProgresoComponent } from './pages/dashboard/progreso/progreso.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
+import { ContestadoComponent } from './pages/dashboard/vocacional/contestado/contestado.component';
 
 
 export const routes: Routes = [
@@ -95,6 +96,11 @@ export const routes: Routes = [
                 path: 'vocacional',
                 title: 'Vocacional',
                 component: VocacionalComponent
+            },
+            {
+                path: 'vocacional/contestado',
+                title: 'Vocacional',
+                component: ContestadoComponent
             },
             {
                 path: 'vocacional/examen',

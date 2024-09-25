@@ -1,0 +1,7 @@
+:host{
+    width: 100%;
+}
+
+.grid-template {
+    grid-template-columns: repeat(auto-fit, 30rem);
+}
