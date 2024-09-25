@@ -1,33 +1,31 @@
 <div class="h-full p-12">
     <div class="h-fit py-4 content-center">
         <h1 class="text-3xl font-bold text-foreground">{{data.alias}}</h1>
-    </div>
-    <div class="h-5/6 space-y-8">
-        <div class="h-[8%] flex w-full text-center border-b-2 space-x-2 border-border text-lg font-semibold py-1">
+        <div class="h-[8%] flex w-full text-center border-b-2 space-x-2 border-border text-lg font-semibold py-2">
             <span [ngClass]="['w-5/12 text-left content-center', getClassContent()]">{{data.name}}</span>
             <span class="w-3/12 content-center">Duración:
                 <span [ngClass]="['', getClassContent()]">{{data.length}} semestres</span>
             </span>
-            <span class="w-3/12 content-center">Creditos: 
+            <span class="w-3/12 content-center">Creditos:
                 <span [ngClass]="[getClassTitle()]">{{data.credits}}</span>
             </span>
             <a routerLink="../" class="w-20 nav-item content-center fill-secondary-foreground duration-200 rounded-lg">
-                <mat-icon >class</mat-icon>
+                <mat-icon>class</mat-icon>
             </a>
             <a routerLink="../" class="w-20 nav-item content-center fill-secondary-foreground duration-200 rounded-lg">
-                <mat-icon >list</mat-icon>
+                <mat-icon>list</mat-icon>
             </a>
         </div>
-        <div class="h-5/6 grid grid-cols-5 gap-8 rounded-md border border-border bg-background overflow-scroll no-scrollbar p-8">
-            @for(course of courses; track course.courseId) {
-                <div [ngClass]="['relative h-[10vh] flex', getClassBackground(course.semester), 'rounded-lg font-bold text-center overflow-hidden no-scrollbar duration-200 hover:scale-105']">
-                    <img class="absolute w-full min-h-full bg-origin-border opacity-30 brightness-[4]" src="./../../../../assets/bg-minicourse.jpg" alt="background"/>
-                    <div class="absolute flex h-full w-full p-2">
-                        <p [ngClass]="['w-1/12 h-full content-start text-lg text-left', getClassText(course.semester)]">{{course.semester}}</p>
-                        <a [routerLink]="['../../cursos/',course.course_id]" [ngClass]="['w-11/12 h-full content-center text-base overflow-scroll no-scrollbar', getClassText(course.semester)] ">{{course.course.name}}</a>
-                    </div>
+    </div>
+    <div class="h-5/6 grid grid-cols-5 gap-8 rounded-md border border-border bg-background overflow-scroll no-scrollbar p-8">
+        @for(course of courses; track course.courseId) {
+            <div [ngClass]="['relative h-[10vh] flex', getClassBackground(course.semester), 'rounded-lg font-bold text-center overflow-hidden no-scrollbar duration-200 hover:scale-105']">
+                <img class="absolute w-full min-h-full bg-origin-border opacity-30 brightness-[4]" src="./../../../../assets/bg-minicourse.jpg" alt="background"/>
+                <div class="absolute flex h-full w-full p-2">
+                    <p [ngClass]="['w-1/12 h-full content-start text-lg text-left', getClassText(course.semester)]">{{course.semester}}</p>
+                    <a [routerLink]="['../../cursos/',course.course_id]" [ngClass]="['w-11/12 h-full content-center text-base overflow-scroll no-scrollbar', getClassText(course.semester)] ">{{course.course.name}}</a>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
