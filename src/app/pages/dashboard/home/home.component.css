@@ -3,5 +3,9 @@
 }
 
 .box-data{
-    width: 45rem;
+    width: 30rem;
+}
+
+.grid-template {
+    grid-template-columns: repeat(auto-fit, 30rem);
 }
