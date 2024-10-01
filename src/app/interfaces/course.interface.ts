@@ -3,5 +3,6 @@ export interface Course {
     name: string,
     credits: number
     description?: string,
-    link?: string
+    link?: string,
+    avg_difficulty: number
 }

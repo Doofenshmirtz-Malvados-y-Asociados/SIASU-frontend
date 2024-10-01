@@ -7,7 +7,7 @@
                 <span [ngClass]="[getClassTitle()]">{{course_data.credits}}</span>
             </span>
             <span class="w-1/3 content-center">Dificultad promedio: 
-                <span class="bg-foreground text-background px-2 py-1 rounded-full">89</span>
+                <span class="bg-foreground text-background px-2 py-1 rounded-full">{{course_data.avg_difficulty}}</span>
             </span>
         </div>
     </div>
@@ -15,10 +15,10 @@
         <section class="h-full flex flex-col w-1/3 pr-4 static overflow-y-auto no-scrollbar">
             <h3 class="text-3xl font-semibold py-4">Carreras</h3>
             @for(career of careers; track career.career_id) {
-                <a [routerLink]="['../../carreras/',career.career_id]" class="border-b border-border text-muted-foreground text-xl content-center pt-4 pb-2">{{career.career.alias}} - {{career.career.name}}</a>
+                <a [routerLink]="['../../carreras/',career.career_id]" class="border-b border-border text-muted-foreground text-xl content-center pt-4 pb-2 hover:text-foreground">{{career.career.alias}} - {{career.career.name}}</a>
             }
         </section>
-        <section class="h-full w-2/3 border-l-2 border-border py-4 pl-4 overflow-y-auto no-scrollbar">
+        <form class="h-full w-2/3 border-l-2 border-border py-4 pl-4 overflow-y-auto no-scrollbar" [formGroup]="commentsForm" (submit)="onSubmit(course_data.id)">
             <p class="text-muted-foreground text-justify">
                 {{course_data.description}}
             </p>
@@ -27,14 +27,14 @@
                 Ver plan de estudios ->
             </a>
             <div class="py-4 w-full">
-                <textarea class="w-full bg-card border border-border p-2 text-sm" placeholder="¿Qué fue lo que viste en esta materia?"></textarea>
+                <textarea formControlName="content" class="w-full bg-card border border-border p-2 text-sm" placeholder="¿Qué fue lo que viste en esta materia?"></textarea>
+                <button type="submit">Enviar comentario</button>
             </div>
             <div class="w-full h-1/2 bg-card border border-border text-muted-foreground grid place-items-center">
                 <p class="flex place-items-center gap-2">Aun no hay comentarios
                     <svg data-testid="geist-icon" height="16" stroke-linejoin="round" viewBox="0 0 16 16" width="16" style="color: currentcolor;"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 8C14.5 11.5899 11.5899 14.5 8 14.5C4.41015 14.5 1.5 11.5899 1.5 8C1.5 4.41015 4.41015 1.5 8 1.5C11.5899 1.5 14.5 4.41015 14.5 8ZM16 8C16 12.4183 12.4183 16 8 16C3.58172 16 0 12.4183 0 8C0 3.58172 3.58172 0 8 0C12.4183 0 16 3.58172 16 8ZM5.75 7.75C6.30228 7.75 6.75 7.30228 6.75 6.75C6.75 6.19772 6.30228 5.75 5.75 5.75C5.19772 5.75 4.75 6.19772 4.75 6.75C4.75 7.30228 5.19772 7.75 5.75 7.75ZM11.25 6.75C11.25 7.30228 10.8023 7.75 10.25 7.75C9.69771 7.75 9.25 7.30228 9.25 6.75C9.25 6.19772 9.69771 5.75 10.25 5.75C10.8023 5.75 11.25 6.19772 11.25 6.75ZM11.5249 11.2622L11.8727 11.7814L10.8342 12.4771L10.4863 11.9578C9.94904 11.1557 9.0363 10.6298 8.00098 10.6298C6.96759 10.6298 6.05634 11.1537 5.51863 11.9533L5.16986 12.4719L4.13259 11.7744L4.48137 11.2558C5.2414 10.1256 6.53398 9.37982 8.00098 9.37982C9.47073 9.37982 10.7654 10.1284 11.5249 11.2622Z" fill="currentColor"></path></svg>
                 </p>
-                
             </div>
-        </section>
+        </form>
     </div>
 </div>
