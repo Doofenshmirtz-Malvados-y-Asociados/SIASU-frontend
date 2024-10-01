@@ -14,7 +14,7 @@
         <div class="border border-border col-span-1 rounded p-4 grid gap-0 place-items-center">
             <div class="text-muted-foreground">
                 <p>Tus ultimas recomendaciones fueron generadas:</p>
-                <p>{{formatedDate}}</p>
+                <p>{{formattedDate}}</p>
             </div>
         </div>
 
@@ -25,9 +25,17 @@
                     <p class="w-1/2">Carrera</p>
                     <p class="w-1/4">Afinidad</p>
                     <p class="w-1/4">Salario promedio</p>
-                    <p class="w-1/4">Saber más</p>
                 </div>
-                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                @for (item of path_info; track $index) {
+                    <a class="h-full" [routerLink]="item.href">
+                        <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                            <p class="w-1/2">{{item.name}}</p>
+                            <p class="w-1/4">{{(item.afinitty || 0) * 100}}%</p>
+                            <p class="w-1/4">${{item.salary}}</p>
+                        </div>
+                    </a>
+                }
+                <!-- <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
                     <p class="w-1/2">Desarrollador Backend</p>
                     <p class="w-1/4">99</p>
                     <p class="w-1/4">$27,632</p>
@@ -62,14 +70,16 @@
                     <p class="w-1/4">12</p>
                     <p class="w-1/4">$26,357</p>
                     <p class="w-1/4">-></p>
-                </div>
+                </div> -->
             </div>
         </div>
         
         <div class="min-h-[40rem] col-span-2 row-span-6 p-4 flex justify-between border border-border">
             <div class="rounded-md chart-container grid place-items-center">
-                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
-                    [yaxis]="chartOptions.yaxis" [title]="chartOptions.title" [theme]="chartOptions.theme"></apx-chart>
+                @if (chartOptions) {
+                    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
+                        [yaxis]="chartOptions.yaxis" [title]="chartOptions.title" [theme]="chartOptions.theme"></apx-chart>
+                }
             </div>
         </div>
         
