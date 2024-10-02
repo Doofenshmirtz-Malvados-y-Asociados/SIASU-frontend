@@ -113,9 +113,9 @@ export class ExamenComponent {
   };
 
   answers: Record<string, number[]> = {
-    "Te gusta...": new Array(this.questions['Te gusta...'].length).fill(3),
-    "Eres...": new Array(this.questions['Eres...'].length).fill(3),
-    "Tienes capacidad para...": new Array(this.questions['Tienes capacidad para...'].length).fill(3)
+    "Te gusta...": new Array(this.questions['Te gusta...'].length).fill(0),
+    "Eres...": new Array(this.questions['Eres...'].length).fill(0),
+    "Tienes capacidad para...": new Array(this.questions['Tienes capacidad para...'].length).fill(0)
   }
 
   resetFetchStatus() {
