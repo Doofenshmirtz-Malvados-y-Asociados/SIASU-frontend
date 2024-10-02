@@ -27,7 +27,7 @@
                     <p class="w-1/4">Salario promedio</p>
                 </div>
                 @for (item of path_info; track $index) {
-                    <a class="h-full" [routerLink]="item.href">
+                    <a class="h-full" routerLink="/dashboard/profesion/info-profesion/{{item.href}}">
                         <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
                             <p class="w-1/2">{{item.name}}</p>
                             <p class="w-1/4">{{(item.afinitty || 0) * 100}}%</p>
@@ -35,42 +35,6 @@
                         </div>
                     </a>
                 }
-                <!-- <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                    <p class="w-1/2">Desarrollador Backend</p>
-                    <p class="w-1/4">99</p>
-                    <p class="w-1/4">$27,632</p>
-                    <p class="w-1/4">-></p>
-                </div>
-                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                    <p class="w-1/2">Cientifico de Datos</p>
-                    <p class="w-1/4">92</p>
-                    <p class="w-1/4">$40,498</p>
-                    <p class="w-1/4">-></p>
-                </div>
-                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                    <p class="w-1/2">Desarrollador Frontend</p>
-                    <p class="w-1/4">46</p>
-                    <p class="w-1/4">$19,954</p>
-                    <p class="w-1/4">-></p>
-                </div>
-                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                    <p class="w-1/2">UI/UX</p>
-                    <p class="w-1/4">45</p>
-                    <p class="w-1/4">$26,631</p>
-                    <p class="w-1/4">-></p>
-                </div>
-                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                    <p class="w-1/2">DBA</p>
-                    <p class="w-1/4">24</p>
-                    <p class="w-1/4">$26,816</p>
-                    <p class="w-1/4">-></p>
-                </div>
-                <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                    <p class="w-1/2">Desarrollo Movil</p>
-                    <p class="w-1/4">12</p>
-                    <p class="w-1/4">$26,357</p>
-                    <p class="w-1/4">-></p>
-                </div> -->
             </div>
         </div>
         

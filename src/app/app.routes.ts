@@ -18,6 +18,7 @@ import { ActualizarComponent } from './pages/dashboard/progreso/planeacion/actua
 import { ProgresoComponent } from './pages/dashboard/progreso/progreso.component';
 import { HomeComponent } from './pages/dashboard/home/home.component';
 import { ContestadoComponent } from './pages/dashboard/vocacional/contestado/contestado.component';
+import { InfoProfesionComponent } from './pages/dashboard/profesion/info-profesion/info-profesion.component';
 
 
 export const routes: Routes = [
@@ -56,6 +57,11 @@ export const routes: Routes = [
                 path: 'profesion/resultados',
                 title: 'Resultados de Perfil Profesional',
                 component: ResultadosProfesionComponent
+            },
+            { 
+                path: 'profesion/info-profesion/:clave',
+                title: 'Información de Profesión',
+                component: InfoProfesionComponent
             },
             {
                 path: 'configuracion',
