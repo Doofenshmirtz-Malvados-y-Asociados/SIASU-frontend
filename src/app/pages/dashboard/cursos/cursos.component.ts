@@ -7,6 +7,7 @@ import { ToastNotificationsService } from '../../../components/toast-notificatio
 import { Comment } from '../../../interfaces/comment.interface';
 import { Course } from '../../../interfaces/course.interface';
 import { CareerCourseService } from '../../../services/carreraCurso.service';
+import { CommentService } from '../../../services/comentario.service';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../auth/auth.service';
 
@@ -14,18 +15,19 @@ import { AuthService } from '../../../auth/auth.service';
   selector: 'app-cursos',
   standalone: true,
   imports: [NgClass, RouterLink, ReactiveFormsModule],
-  providers: [CareerCourseService, CourseService],
+  providers: [CareerCourseService, CourseService, CommentService],
   templateUrl: './cursos.component.html',
   styleUrl: './cursos.component.css'
 })
 export class CursosComponent {
   constructor(
-    private http: HttpClient,
-    private authClient: AuthService = inject(AuthService),
-    private notificationService: ToastNotificationsService = inject(ToastNotificationsService),
+    private readonly http: HttpClient,
+    private readonly authClient: AuthService = inject(AuthService),
+    private readonly notificationService: ToastNotificationsService = inject(ToastNotificationsService),
     private readonly courseClient: CourseService, 
+    private readonly commentClient: CommentService,
     private readonly careerCourseClient: CareerCourseService,
-    private activateRoute: ActivatedRoute,
+    private readonly activateRoute: ActivatedRoute,
   ) {}
 
   user = this.authClient.currentUser()
@@ -34,6 +36,7 @@ export class CursosComponent {
   color: string = ""
   course_id = this.activateRoute.snapshot.paramMap.get('id')
   course_data: Course = { id: "", name: "", credits: 0, avg_difficulty: 0 }
+  course_comments: any
   
   commentsForm = new FormGroup({
     content: new FormControl('', [Validators.required, Validators.minLength(6)])
@@ -41,24 +44,41 @@ export class CursosComponent {
 
   onSubmit(page: string) {
     let now = new Date()
-    let id = this.user?.email?.toString + "@" + now.toDateString
-    console.log(page)
-    this.http.post('http://localhost:3000/comment', {
-      id: id,
-      user: this.user?.email,
-      content: this.commentsForm.value?.content,
-      page: page
-    })
-    .subscribe(
-      success => {
-        if (success) {
-          this.notificationService.add("Comentario guardado", "a ver", "success")
+    let id = this.user?.email?.toString() + "/" + now.toISOString()
+    if (!this.commentsForm.value.content) {
+      this.notificationService.add("Comentario no guardado", "Su comentario es invalido", "error")
+    } else {
+      this.http.post('http://localhost:3000/comment', {
+        id: id,
+        user: this.user?.email,
+        content: this.commentsForm.value?.content,
+        page: page
+      })
+      .subscribe(
+        success => {
+          if (success) {
+            this.notificationService.add("Comentario guardado", "a ver", "success")
+            window.location.reload()
+          }
+          else {
+            this.notificationService.add("Comentario no guardado", "a ver", "error")
+          }
         }
-        else {
-          this.notificationService.add("Comentario no guardado", "a ver", "error")
-        }
-      }
-    )
+      )
+    }
+  }
+
+  sliceId(comment_id: string) {
+    let index: number = comment_id.indexOf("@")
+    let name: string = comment_id.slice(0, index)
+    return name
+  }
+
+  sliceDate(comment_id: string) {
+    let index: number = comment_id.indexOf("/")
+    let date: string = comment_id.slice(index + 1, -5)
+    date = date.replace("T", " ")
+    return date
   }
 
   ngOnInit() {
@@ -74,6 +94,13 @@ export class CursosComponent {
 
     this.careerCourseClient.getByFilter(undefined, this.course_id!).subscribe({
       next: res => {this.careers = res},
+      error: error => {
+        console.error("Error: ", error)
+      }
+    })
+
+    this.commentClient.getCommentByPage(this.course_id!).subscribe({
+      next: res => {this.course_comments= res},
       error: error => {
         console.error("Error: ", error)
       }
