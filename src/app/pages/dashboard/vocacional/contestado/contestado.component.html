@@ -29,11 +29,13 @@
                         <p class="w-1/4">Afinidad</p>
                     </div>
                     @for (suggested of response?.suggested_career; track $index) {
-                        <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                            <p class="w-1/2">{{carreras[$index]}}</p>
-                            <p class="w-1/4">{{acronimos[$index]}}</p>
-                            <p class="w-1/4">{{suggested}}</p>
-                        </div>
+                        <a [routerLink]="redireccion[$index]" class="h-full">
+                            <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                                <p class="w-1/2">{{carreras[$index]}}</p>
+                                <p class="w-1/4">{{acronimos[$index]}}</p>
+                                <p class="w-1/4">{{suggested}}</p>
+                            </div>
+                        </a>
                     }
                 </div>
             </div>
