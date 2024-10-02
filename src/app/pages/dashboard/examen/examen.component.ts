@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../../auth/auth.service';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, of } from 'rxjs';
 import { ToastNotificationsService } from '../../../components/toast-notifications/services/toast-notifications.service';
 import { SuccessPopupComponent } from "../../../components/success-popup/success-popup.component";
 import { ErrorPopupComponent } from "../../../components/error-popup/error-popup.component";
@@ -39,7 +38,7 @@ export class ExamenComponent {
 
   typeOfQuestions = "Te gusta...";
   indexQuestion: number = 0;
-  
+  sugCareer: string = "";
 
   questions: Record<string, string[]> = {
     "Te gusta...": [
@@ -160,20 +159,31 @@ export class ExamenComponent {
     } else {
       const response = [...this.answers['Te gusta...'], ...this.answers['Eres...'], ...this.answers['Tienes capacidad para...']]
       this.http.post('http://localhost:3000/response', {user: this.user?.email, responses: response})
-        .pipe(
-          map(user => !!user),
-          catchError(e => of(false))
-        )
-        .subscribe(
-          success => {
-            if (success) {
-              this.fetchStatus.set('completed');
+        .subscribe({
+          next: (res: any) => {
+            this.fetchStatus.set('completed');
+            switch(res.suggested_career.indexOf(Math.max(...res.suggested_career))) {
+              case(0):
+                this.sugCareer = "/dashboard/vocacional/resultados/2"
+                break
+              case(1):
+                this.sugCareer = "/dashboard/vocacional/resultados/4"
+                break
+              case(2):
+                this.sugCareer = "/dashboard/vocacional/resultados/5"
+                break
+              case(3):
+                this.sugCareer = "/dashboard/vocacional/resultados/6"
+                break
+              case(4):
+                this.sugCareer = "/dashboard/vocacional/resultados/7"
+                break
             }
-            else {
-              this.fetchStatus.set('error');
-            }
+          },
+          error: error => {
+            this.fetchStatus.set('error');
           }
-        )
+        })
     }
   }
 }

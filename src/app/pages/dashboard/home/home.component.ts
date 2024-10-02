@@ -4,6 +4,8 @@ import { AuthService } from '../../../auth/auth.service';
 import { ResponseService } from '../../../services/respuestas.service';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexGrid, ApexLegend, ApexPlotOptions, ApexStroke, ApexTheme, ApexTitleSubtitle, ApexTooltip, ApexXAxis, ApexYAxis, NgApexchartsModule } from 'ng-apexcharts';
 import { ProgresoService } from '../progreso/progreso.service';
+import { HttpClient } from '@angular/common/http';
+import { getCareerProfessionalProfiles } from '../../../shared/career_dict';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -47,113 +49,39 @@ export type ChartProgressOptions = {
 })
 export class HomeComponent {
   constructor(
-    private readonly responseClient: ResponseService
+    private readonly responseClient: ResponseService,
+    private readonly http: HttpClient
   ) {}
   private authClient: AuthService = inject(AuthService);
   private progresoService: ProgresoService = inject(ProgresoService);
 
   response: any;
-  user = this.authClient.currentUser();
+  user : any = this.authClient.currentUser();
+  path_info: any = getCareerProfessionalProfiles(this.user?.career_id)
   profile: any = null;
   coursesTaken: any = []
   coursesOfCareer: any = []
   coursesTakenOfCareer: any = []
   optativeCourses: any = []
+  preddiction: any
 
   percentageTaken: number = 0
   optativeCredits: number = 0
 
   chartProgressOptions?: ChartProgressOptions
 
-  chartProfesionalOptions: ChartOptions = {
-    series: [
-      {
-        name: "Afinidad",
-        data: [46, 99, 24, 45, 12, 92]
-      }
-    ],
-    chart: {
-      width: '100%',
-      height: '100%',
-      type: "radar",
-      background: 'transparent',
-      toolbar: {
-        show: false
-      },
-      animations: {
-        enabled: true,
-        easing: 'easeinout',
-        speed: 800,
-        animateGradually: {
-            enabled: true,
-            delay: 3000
-        },
-        dynamicAnimation: {
-            enabled: true,
-            speed: 350
-        }
-      }
-    },
-    title: {
-    },
-    xaxis: {
-      categories: ["Desarrollo FrontEnd", "Desarrollo Backend", "DBA", "UI/UX", "Desarrollo Movil", "Cientifico de datos"]
-    },
-    yaxis: {
-      show: false,
-    },
-    theme: {
-      mode: 'dark',
-      palette: 'palette11'
-    }
-  };
+  chartProfesionalOptions?: ChartOptions;
 
-  chartVocationalOptions: ChartOptions = {
-    series: [
-      {
-        name: "Afinidad",
-        data: [99, 87, 90, 92, 70, 30, 50]
-      }
-    ],
-    chart: {
-      width: '100%',
-      height: '100%',
-      type: "radar",
-      background: 'transparent',
-      toolbar: {
-        show: false
-      },
-      animations: {
-        enabled: true,
-        easing: 'easeinout',
-        speed: 800,
-        animateGradually: {
-            enabled: true,
-            delay: 3000
-        },
-        dynamicAnimation: {
-            enabled: true,
-            speed: 350
-        }
-      }
-    },
-    title: {
-    },
-    xaxis: {
-      categories: ["INCO", "ICOM", "INNI", "INFO", "INRO", "INCE", "INBI"]
-    },
-    yaxis: {
-      show: false,
-    },
-    theme: {
-      mode: 'dark',
-      palette: 'palette11'
-    }
-  };
+  chartVocationalOptions?: ChartOptions;
 
   ngOnInit(): void {
-    this.responseClient.getResponseByUser(this.user!.email).subscribe(res => {this.response = res})
-    this.profile = {"recommendation": "hola"}
+    this.responseClient.getResponseByUser(this.user!.email)
+    .subscribe({
+      next: (res) => {
+        this.response = res;
+        this.initSugerencias(res?.suggested_career);
+      }
+    })
     this.progresoService.getCoursesTaken()
       .subscribe({
         next: ([coursesOfCareer, coursesTaken]) => {
@@ -164,6 +92,62 @@ export class HomeComponent {
         },
         error: (e) => console.error(e)
       })
+    this.http.get(`http://localhost:3000/response/professional_path/${this.user?.email}`).subscribe({
+        next: (data: any) => {
+  
+          for (let i = 0; i < data?.affinities.length; i++) {
+            this.path_info[i].afinitty = data?.affinities[i]
+          }
+          this.preddiction = data
+          this.chartInit()
+        },
+        error: (e) => console.error(e)
+      })
+  }
+
+  initSugerencias(sugerencias: any): void {
+    this.chartVocationalOptions = {
+      series: [
+        {
+          name: "Afinidad",
+          data: sugerencias
+        }
+      ],
+      chart: {
+        width: '100%',
+        height: '100%',
+        type: "radar",
+        background: 'transparent',
+        toolbar: {
+          show: false
+        },
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 800,
+          animateGradually: {
+              enabled: true,
+              delay: 3000
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 350
+          }
+        }
+      },
+      title: {
+      },
+      xaxis: {
+        categories: ["ICOM", "INFO", "INRO", "INCE", "INBI"]
+      },
+      yaxis: {
+        show: false,
+      },
+      theme: {
+        mode: 'dark',
+        palette: 'palette11'
+      }
+    };
   }
 
   initDashboard(coursesOfCareer: any, coursesTaken: any): void {
@@ -244,6 +228,52 @@ export class HomeComponent {
       },
       dataLabels: {
         enabled: false
+      }
+    };
+  }
+
+  chartInit() {
+    this.chartProfesionalOptions = {
+      series: [
+        {
+          name: "Afinidad",
+          data: this.preddiction?.affinities
+        }
+      ],
+      chart: {
+        width: '100%',
+        height: '100%',
+        type: "radar",
+        background: 'transparent',
+        toolbar: {
+          show: false
+        },
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 800,
+          animateGradually: {
+              enabled: true,
+              delay: 3000
+          },
+          dynamicAnimation: {
+              enabled: true,
+              speed: 350
+          }
+        }
+      },
+      title: {
+      },
+      xaxis: {
+        categories: this.path_info.map(({name}: any) => name),
+        labels: {show : false}
+      },
+      yaxis: {
+        show: false,
+      },
+      theme: {
+        mode: 'dark',
+        palette: 'palette11'
       }
     };
   }
