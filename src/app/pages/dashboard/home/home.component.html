@@ -22,12 +22,14 @@
                             <p>Parece que tus resultados aún están procesandose, favor de esperar un tiempo a que se procesen tus respuestas.</p>
                         } @else {
                             <p>Tus resultados han sido procesados con éxito, favor de ir a la sección de vocacional para conocerlos a más detalle.</p>
-                            <div class="min-h-[20rem] col-span-2 row-span-6 p-4 flex justify-between ">
-                                <div class="rounded-md chart-container grid place-items-center">
-                                    <apx-chart [series]="chartVocationalOptions.series" [chart]="chartVocationalOptions.chart" [xaxis]="chartVocationalOptions.xaxis"
-                                        [yaxis]="chartVocationalOptions.yaxis" [title]="chartVocationalOptions.title" [theme]="chartVocationalOptions.theme"></apx-chart>
+                            @if (chartVocationalOptions){
+                                <div class="min-h-[20rem] col-span-2 row-span-6 p-4 flex justify-between ">
+                                    <div class="rounded-md chart-container grid place-items-center">
+                                        <apx-chart [series]="chartVocationalOptions.series" [chart]="chartVocationalOptions.chart" [xaxis]="chartVocationalOptions.xaxis"
+                                            [yaxis]="chartVocationalOptions.yaxis" [title]="chartVocationalOptions.title" [theme]="chartVocationalOptions.theme"></apx-chart>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                             <div class="relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'">
                                 <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ea580c_0%,#c026d3_25%,#7c3aed_50%,#c026d3_75%,#ea580c_100%)]"></span>
                                 <a routerLink="/dashboard/vocacional" class='inline-flex h-full w-full items-center justify-center rounded-full bg-background group-hover:bg-background/50 transition-all duration-300 px-4 py-2 text-md font-medium text-gray-50 backdrop-blur-3xl'>
@@ -53,18 +55,21 @@
                             <p>Parece que tu perfil profesional aún está siendo procesado.</p>
                         } @else {
                             <p>Tu perfil profesional ha sido procesado, aquí tienes un gráfico, para más información da clic en el botón de abajo.</p>
-                            <div class="min-h-[20rem] col-span-2 row-span-6 p-4 flex justify-between ">
-                                <div class="rounded-md chart-container grid place-items-center">
-                                    <apx-chart [series]="chartProfesionalOptions.series" [chart]="chartProfesionalOptions.chart" [xaxis]="chartProfesionalOptions.xaxis"
-                                        [yaxis]="chartProfesionalOptions.yaxis" [title]="chartProfesionalOptions.title" [theme]="chartProfesionalOptions.theme"></apx-chart>
+                            @if (chartProfesionalOptions) {
+                                <div class="min-h-[20rem] col-span-2 row-span-6 flex justify-between ">
+                                    <div class="rounded-md chart-container grid place-items-center">
+                                        <apx-chart [series]="chartProfesionalOptions.series" [chart]="chartProfesionalOptions.chart" [xaxis]="chartProfesionalOptions.xaxis"
+                                            [yaxis]="chartProfesionalOptions.yaxis" [title]="chartProfesionalOptions.title" [theme]="chartProfesionalOptions.theme"></apx-chart>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                             <div class="relative mt-8 h-12 overflow-hidden group rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50'">
                                 <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#ea580c_0%,#c026d3_25%,#7c3aed_50%,#c026d3_75%,#ea580c_100%)]"></span>
                                 <a routerLink="/dashboard/profesion/resultados" class='inline-flex h-full w-full items-center justify-center rounded-full bg-background group-hover:bg-background/50 transition-all duration-300 px-4 py-2 text-md font-medium text-gray-50 backdrop-blur-3xl'>
                                     Ver perfil profesional
                                 </a>
                             </div>
+                            
                         }
                     }
                 </div>

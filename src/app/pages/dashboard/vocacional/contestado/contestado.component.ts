@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ResponseService } from '../../../../services/respuestas.service';
 import { AuthService } from '../../../../auth/auth.service';
 import { ApexAxisChartSeries, ApexChart, ApexTheme, ApexTitleSubtitle, ApexXAxis, ApexYAxis, NgApexchartsModule } from 'ng-apexcharts';
+import { RouterLink } from '@angular/router';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -15,7 +16,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-contestado',
   standalone: true,
-  imports: [NgApexchartsModule],
+  imports: [NgApexchartsModule, RouterLink],
   providers: [
     ResponseService
   ],
@@ -30,8 +31,9 @@ export class ContestadoComponent {
   
   user = this.authClient.currentUser()
   response: any;
-  carreras: string[] =  ["Ingeniería en Computación", "Ingeniería en Computación", "Ingeniería en informática", "Ingeniería en informática", "Ingeniería Robótica", "Ingeniería en Comunicaciones y Electrónica", "Ingeniería en Biomédica"];
-  acronimos: string[] = ["INCO", "ICOM", "INNI", "INFO", "INRO", "INCE", "INBI"]
+  carreras: string[] =  ["Ingeniería en Computación", "Ingeniería en informática", "Ingeniería Robótica", "Ingeniería en Comunicaciones y Electrónica", "Ingeniería en Biomédica"];
+  acronimos: string[] = ["ICOM", "INFO", "INRO", "INCE", "INBI"]
+  redireccion: string[] = ["/dashboard/carreras/2", "/dashboard/carreras/4", "/dashboard/carreras/5", "/dashboard/carreras/6", "/dashboard/carreras/7"]
 
 
   chartVocationalOptions?: ChartOptions;
@@ -79,7 +81,7 @@ export class ContestadoComponent {
       title: {
       },
       xaxis: {
-        categories: ["INCO", "ICOM", "INNI", "INFO", "INRO", "INCE", "INBI"]
+        categories: ["ICOM", "INFO", "INRO", "INCE", "INBI"]
       },
       yaxis: {
         show: false,

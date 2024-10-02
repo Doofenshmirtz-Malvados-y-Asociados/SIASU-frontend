@@ -114,7 +114,7 @@ export const routes: Routes = [
                 component: ExamenComponent
             },
             {
-                path: 'vocacional/resultados',
+                path: 'vocacional/resultados/:id',
                 title: 'Resultados del Examen Vocacional',
                 component: ResultadosComponent
             },
