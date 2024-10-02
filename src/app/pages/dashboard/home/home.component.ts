@@ -82,7 +82,6 @@ export class HomeComponent {
         this.initSugerencias(res?.suggested_career);
       }
     })
-    this.profile = {"recommendation": "hola"}
     this.progresoService.getCoursesTaken()
       .subscribe({
         next: ([coursesOfCareer, coursesTaken]) => {
@@ -99,7 +98,6 @@ export class HomeComponent {
           for (let i = 0; i < data?.affinities.length; i++) {
             this.path_info[i].afinitty = data?.affinities[i]
           }
-  
           this.preddiction = data
           this.chartInit()
         },
