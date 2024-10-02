@@ -7,9 +7,7 @@ import { Comment } from "../interfaces/comment.interface";
 export class CommentService {
     constructor(private http: HttpClient) {}
 
-    public create()
-
-    public getComment(id: string): Observable<Comment> {
-        return this.http.get<Comment>(`http://localhost:3000/course/${id}`)
+    public getCommentByPage(id: string): Observable<Comment> {
+        return this.http.get<Comment>(`http://localhost:3000/comment/findByPage/${id}`)
     }
 }
