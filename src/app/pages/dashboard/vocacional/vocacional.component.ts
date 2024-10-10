@@ -20,7 +20,7 @@ export class VocacionalComponent {
     private readonly responseClient: ResponseService,
     private readonly router: Router
   ) {}
-  private authClient: AuthService = inject(AuthService)
+  private readonly authClient: AuthService = inject(AuthService)
   
   user = this.authClient.currentUser()
 

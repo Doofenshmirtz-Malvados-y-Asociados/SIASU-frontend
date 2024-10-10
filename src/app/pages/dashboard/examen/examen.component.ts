@@ -26,17 +26,17 @@ type fetchType = 'notSend' | 'completed' | 'error';
 })
 export class ExamenComponent {
   constructor(
-    private authClient: AuthService,
+    private readonly authClient: AuthService,
   ) {}
 
   @ViewChild('questionType') questionType!: ElementRef;
-  private http: HttpClient = inject(HttpClient);
-  private notificationService: ToastNotificationsService = inject(ToastNotificationsService);
+  private readonly http: HttpClient = inject(HttpClient);
+  private readonly notificationService: ToastNotificationsService = inject(ToastNotificationsService);
 
   fetchStatus = signal<fetchType>('notSend');
   user = this.authClient.currentUser();
 
-  typeOfQuestions = "Te gusta...";
+  typeOfQuestions = "Me gusta";
   indexQuestion: number = 0;
   sugCareer: string = "";
 
@@ -141,7 +141,7 @@ export class ExamenComponent {
       "Soy hábil para influir en las personas.",
       "Soy optimista, alegre, positivo."
     ],
-    "Considero que tengo la capacidad de realizar las siguientes actividades:": [
+    "Considero que tengo la capacidad de realizar las siguientes actividades": [
       "Utilizar herramientas, aparatos y máquinas para el trabajo.",
       "Participar en concursos de ciencia.",
       "Trabajar con figuras tridimensionales.",
@@ -207,7 +207,7 @@ export class ExamenComponent {
       "Seguir mis propios intereses.",
       "Organizar actividades en defensa del cuidado del ambiente."
     ],
-    "Me gustaría desempeñarme en un lugar donde:": [
+    "Me gustaría desempeñarme en un lugar donde": [
       "Utilice diferentes máquinas y herramientas.",
       "Observe e investigue.",
       "Ordene datos.",
@@ -254,9 +254,10 @@ export class ExamenComponent {
   };
 
   answers: Record<string, number[]> = {
-    "Te gusta...": new Array(this.questions['Te gusta...'].length).fill(0),
-    "Eres...": new Array(this.questions['Eres...'].length).fill(0),
-    "Tienes capacidad para...": new Array(this.questions['Tienes capacidad para...'].length).fill(0)
+    "Me gusta": new Array(this.questions['Me gusta'].length).fill(0),
+    "Considero que": new Array(this.questions['Considero que'].length).fill(0),
+    "Considero que tengo la capacidad de realizar las siguientes actividades": new Array(this.questions['Considero que tengo la capacidad de realizar las siguientes actividades'].length).fill(0),
+    "Me gustaría desempeñarme en un lugar donde": new Array(this.questions['Me gustaría desempeñarme en un lugar donde'].length).fill(0)
   }
 
   resetFetchStatus() {
@@ -291,14 +292,16 @@ export class ExamenComponent {
   }
   
   onSubmit() {
-    if(this.answers['Te gusta...'].filter((answer) => answer === 0).length > 0){
+    if(this.answers['Me gusta'].filter((answer) => answer === 0).length > 0){
       this.notificationService.add("Sección gustos", "Faltan por contestar preguntas en la sección de gustos", 'error');
-    } else if(this.answers['Eres...'].filter((answer) => answer === 0).length > 0){
+    } else if(this.answers['Considero que'].filter((answer) => answer === 0).length > 0){
       this.notificationService.add("Sección personalidad", "Faltan por contestar preguntas en la sección de personalidad", 'error');
-    } else if(this.answers['Tienes capacidad para...'].filter((answer) => answer === 0).length > 0){
+    } else if(this.answers['Considero que tengo la capacidad de realizar las siguientes actividades'].filter((answer) => answer === 0).length > 0){
       this.notificationService.add("Sección capacidades", "Faltan por contestar preguntas en la sección de capacidades", 'error');
+    } else if(this.answers['Me gustaría desempeñarme en un lugar donde'].filter((answer) => answer === 0).length > 0){
+      this.notificationService.add("Sección capacidades", "Faltan por contestar preguntas en la sección laboral", 'error');
     } else {
-      const response = [...this.answers['Te gusta...'], ...this.answers['Eres...'], ...this.answers['Tienes capacidad para...']]
+      const response = [...this.answers['Me gusta'], ...this.answers['Considero que'], ...this.answers['Considero que tengo la capacidad de realizar las siguientes actividades:'], ...this.answers['Me gustaría desempeñarme en un lugar donde']]
       this.http.post('http://localhost:3000/response', {user: this.user?.email, responses: response})
         .subscribe({
           next: (res: any) => {
