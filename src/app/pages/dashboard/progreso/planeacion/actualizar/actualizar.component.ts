@@ -55,15 +55,25 @@ export class ActualizarComponent implements OnInit {
       this.fileName = file.name;
       const formData = new FormData();
       formData.append("file", file);
+      formData.append("career_id", String(this.user?.career_id));
+      formData.append("user_email", String(this.user?.email));
 
       this.httpClient.post("http://localhost:3000/utils/load", formData)
         .subscribe({
           next: (res: any) => {
-            res.forEach((course: Course) => {
-              this.addItem(course.id, course.name, course.score, course.difficulty, course.takenAt);
-            })
-
-            this.changeTypeOfLoad(2)
+            if (res.length === 0) {
+              this.toastClient.add("Ninguna materia que agregar", "Se te regresará automaticamente a la página anterior", "error")
+          
+              setTimeout(() => {
+                this.router.navigate(['/dashboard/progreso']);
+              }, 3000);
+            } else {
+              res.forEach((course: Course) => {
+                this.addItem(course.id, course.name, course.score, course.difficulty, course.takenAt);
+              })
+  
+              this.changeTypeOfLoad(2)
+            }
           },
           error: error => console.error("Error: ", error),
         })
