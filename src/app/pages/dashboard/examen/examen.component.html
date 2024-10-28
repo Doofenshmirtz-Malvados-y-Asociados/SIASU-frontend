@@ -56,7 +56,7 @@
             </label>
         </div>
         <div class="absolute bottom-[60px] border rounded-2xl border-yellow-800 h-7 flex justify-center" style="width: calc(100% - 1rem);">
-            @for (answer of answers[typeOfQuestions]; track answer){
+            @for (answer of answers[typeOfQuestions]; track $index){
                 <button (click)="change($index)" [ngClass]="['border-yellow-800 w-full', firstLastPosition($first, $last), indexAnswer($index)]"></button>
             }
         </div>

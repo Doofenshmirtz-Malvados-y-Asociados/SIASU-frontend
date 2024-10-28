@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../../auth/auth.service';
@@ -24,7 +24,7 @@ type fetchType = 'notSend' | 'completed' | 'error';
   templateUrl: './examen.component.html',
   styleUrl: './examen.component.css'
 })
-export class ExamenComponent {
+export class ExamenComponent implements OnInit {
   constructor(
     private readonly authClient: AuthService,
   ) {}
@@ -252,13 +252,21 @@ export class ExamenComponent {
       "Resuelva problemas de manera práctica."
     ]
   };
-
+  
   answers: Record<string, number[]> = {
     "Me gusta": new Array(this.questions['Me gusta'].length).fill(0),
     "Considero que": new Array(this.questions['Considero que'].length).fill(0),
     "Considero que tengo la capacidad de realizar las siguientes actividades": new Array(this.questions['Considero que tengo la capacidad de realizar las siguientes actividades'].length).fill(0),
     "Me gustaría desempeñarme en un lugar donde": new Array(this.questions['Me gustaría desempeñarme en un lugar donde'].length).fill(0)
   }
+
+  ngOnInit(): void {
+    const prevAnswers = localStorage.getItem("answers");
+
+    if (prevAnswers)
+      this.answers = JSON.parse(prevAnswers);
+  }
+
 
   resetFetchStatus() {
     this.fetchStatus.set('notSend')
@@ -285,10 +293,22 @@ export class ExamenComponent {
   onChange(typeOfQuestion: string) {
     this.typeOfQuestions = typeOfQuestion;
     this.indexQuestion = 0;
+
+    // Save current progress on LocalStorage
+    this.backupOnLocalStorage();
+    console.log("onChange")
   }
   
   change(index: number) {
     this.indexQuestion = index;
+    
+    // Save current progress on LocalStorage
+    this.backupOnLocalStorage();
+    console.log("change")
+  }
+
+  backupOnLocalStorage() {
+    localStorage.setItem("answers", JSON.stringify(this.answers));
   }
   
   onSubmit() {
@@ -301,7 +321,7 @@ export class ExamenComponent {
     } else if(this.answers['Me gustaría desempeñarme en un lugar donde'].filter((answer) => answer === 0).length > 0){
       this.notificationService.add("Sección capacidades", "Faltan por contestar preguntas en la sección laboral", 'error');
     } else {
-      const response = [...this.answers['Me gusta'], ...this.answers['Considero que'], ...this.answers['Considero que tengo la capacidad de realizar las siguientes actividades:'], ...this.answers['Me gustaría desempeñarme en un lugar donde']]
+      const response = [...this.answers['Me gusta'], ...this.answers['Considero que'], ...this.answers['Considero que tengo la capacidad de realizar las siguientes actividades'], ...this.answers['Me gustaría desempeñarme en un lugar donde']]
       this.http.post('http://localhost:3000/response', {user: this.user?.email, responses: response})
         .subscribe({
           next: (res: any) => {
@@ -322,6 +342,9 @@ export class ExamenComponent {
               case(4):
                 this.sugCareer = "/dashboard/vocacional/resultados/7"
                 break
+              default:
+                  this.sugCareer = "/dashboard/"
+                  break
             }
           },
           error: error => {
