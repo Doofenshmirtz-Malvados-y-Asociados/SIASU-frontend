@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastNotificationsService } from '../../../components/toast-notifications/services/toast-notifications.service';
 import { SuccessPopupComponent } from "../../../components/success-popup/success-popup.component";
 import { ErrorPopupComponent } from "../../../components/error-popup/error-popup.component";
+import { InfoPopupComponent } from '../../../components/info-popup/info-popup.component';
 
 type fetchType = 'notSend' | 'completed' | 'error';
 
@@ -19,7 +20,8 @@ type fetchType = 'notSend' | 'completed' | 'error';
     ReactiveFormsModule,
     MatIconModule,
     SuccessPopupComponent,
-    ErrorPopupComponent
+    ErrorPopupComponent,
+    InfoPopupComponent
 ],
   templateUrl: './examen.component.html',
   styleUrl: './examen.component.css'
@@ -34,6 +36,7 @@ export class ExamenComponent implements OnInit {
   private readonly notificationService: ToastNotificationsService = inject(ToastNotificationsService);
 
   fetchStatus = signal<fetchType>('notSend');
+  popUpActive = signal<boolean>(false);
   user = this.authClient.currentUser();
 
   typeOfQuestions = "Me gusta";
@@ -352,5 +355,9 @@ export class ExamenComponent implements OnInit {
           }
         })
     }
+  }
+
+  help() {
+    this.popUpActive.set(true)
   }
 }

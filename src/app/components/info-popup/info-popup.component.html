@@ -1,0 +1,20 @@
+<div class="absolute z-20 w-1/2 h-1/2 p-4 text-center bg-neutral-950 border-2 border-gray-400/30 rounded-lg text-gray-300 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2">
+    <div class="relative h-full flex flex-col justify-between">
+        <p class="font-bold text-2xl">Información sobre el examen</p>
+        <p class="mt-4 text-sm text-justify">El examen vocacional de la Universidad de Guadalajara tiene como objetivo apoyar a los estudiantes en la elección de su carrera profesional. Este test, denominado "Recurso Universitario para Transitar al Nivel Superior", se compone de 202 preguntas, divididas en tres categorías principales: personalidad, inteligencias múltiples, y ambientes laborales. A través de este cuestionario, se generan resultados que muestran la afinidad del estudiante con diferentes carreras, clasificadas en baja, media y alta afinidad.</p>
+        <p class="text-sm text-justify">El fundamento de este cuestionario se basa en el análisis de intereses y habilidades. Evalúa factores como la satisfacción personal en el estudio y en el trabajo, los tipos de personalidad según el modelo de John Holland, que incluye categorías como el perfil realista, investigador, artístico, social, emprendedor y convencional, los cuales se combinan para formar un perfil vocacional único. Además, se miden habilidades clave relacionadas con áreas como la mecánica, creatividad, liderazgo, manejo de datos, entre otras, que son esenciales para diferentes campos profesionales.</p>
+        <div class="place-content-center flex">
+            <a href="https://guiadecarreras.udg.mx/app_carreras/bienvenida.php" class='border-b-2 border-gray-400/30 w-fit'>
+                Página del éxamen vocacional de la UDG
+            </a>
+        </div>
+        
+        <button (click)="toggleFn(toggleValue)" class="group relative text-center w-40 h-12 mt-4 mx-auto overflow-hidden overflow-x-hidden rounded-md bg-gray-700/40 px-8 py-2 text-gray-400 hover:text-white transition-all duration-300">
+            <span class="relative z-10">Ok</span>
+            <span class="absolute inset-0 overflow-hidden rounded-md">
+                <span class="absolute left-0 aspect-square w-full origin-center -translate-x-full rounded-full bg-gradient-to-r from-gray-900 to-gray-600 transition-all duration-500 group-hover:-translate-x-0 group-hover:scale-150"></span>
+            </span>
+        </button>
+    </div>
+</div>
+<div class="absolute top-0 left-0 cursor-not-allowed z-10 w-full h-full bg-black/70"></div>

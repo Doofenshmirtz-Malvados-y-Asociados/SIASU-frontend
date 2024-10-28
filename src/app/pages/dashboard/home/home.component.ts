@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../auth/auth.service';
 import { ResponseService } from '../../../services/respuestas.service';
@@ -6,6 +6,8 @@ import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexGrid, Ape
 import { ProgresoService } from '../progreso/progreso.service';
 import { HttpClient } from '@angular/common/http';
 import { getCareerProfessionalProfiles } from '../../../shared/career_dict';
+import { InfoPopupComponent } from '../../../components/info-popup/info-popup.component';
+
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -39,7 +41,8 @@ export type ChartProgressOptions = {
   standalone: true,
   imports: [
     RouterLink,
-    NgApexchartsModule
+    NgApexchartsModule,
+    InfoPopupComponent
   ],
   providers: [
     ResponseService
@@ -64,6 +67,7 @@ export class HomeComponent {
   coursesTakenOfCareer: any = []
   optativeCourses: any = []
   preddiction: any
+  popUpActive = signal<boolean>(false);
 
   percentageTaken: number = 0
   optativeCredits: number = 0
@@ -276,6 +280,10 @@ export class HomeComponent {
         palette: 'palette11'
       }
     };
+  }
+
+  help() {
+    this.popUpActive.set(true)
   }
 
 }

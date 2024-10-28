@@ -1,13 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { ResponseService } from '../../../services/respuestas.service';
 import { AuthService } from '../../../auth/auth.service';
+import { InfoPopupComponent } from '../../../components/info-popup/info-popup.component';
 
 @Component({
   selector: 'app-vocacional',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    InfoPopupComponent
   ],
   providers: [
     ResponseService
@@ -23,6 +25,7 @@ export class VocacionalComponent {
   private readonly authClient: AuthService = inject(AuthService)
   
   user = this.authClient.currentUser()
+  popUpActive = signal<boolean>(false);
 
   ngOnInit(): void {
     this.responseClient.getResponseByUser(this.user!.email).subscribe({
@@ -35,5 +38,9 @@ export class VocacionalComponent {
 
   redirectToResults() {
     this.router.navigateByUrl('/dashboard/vocacional/contestado')
+  }
+
+  help() {
+    this.popUpActive.set(true)
   }
 }
