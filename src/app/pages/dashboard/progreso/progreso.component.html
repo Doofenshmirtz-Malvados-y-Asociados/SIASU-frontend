@@ -25,11 +25,13 @@
   </div>
 
   <section
-    class="mt-8 bg-background rounded p-8 grid grid-cols-5 grid-rows-3 content-start h-full gap-4 border border-border overflow-scroll no-scrollbar"
+    class="mt-8 bg-background rounded p-8 flex content-start h-full gap-4 border border-border overflow-scroll no-scrollbar"
   >
-    @if (chartOptions) {
+    <section class="flex flex-col justify-between gap-4 w-1/3">
+
+      @if (chartOptions) {
         <div
-            class="p-4 flex flex-col justify-between border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300"
+            class="min-h-fit h-1/2 min-w-fit w-full p-4 flex flex-col justify-between border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300"
         >
             <p>Progreso de la malla</p>
             <div class="w-full h-full flex place-items-center">
@@ -57,22 +59,18 @@
                 <p class="text-5xl">{{percentageTaken}}%</p>
             </div>
         </div>
-        <div class="row-start-2 col-start-1 p-4 flex flex-col justify-between border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300">
-            <p>Progreso de optativas/especializantes</p>
-            <p class="grid place-items-center text-5xl">{{optativeCredits}}</p>
-            <p>creditos</p>
-        </div>
-    }
-    <div class="row-start-3 col-start-1 gap-2 p-4 flex flex-col border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300">
-        <p>Filtros</p>
-        <div class="flex flex-col place-items-center gap-1 m-auto p-2 rounded text-foreground font-bold *:w-full *:rounded *:p-2">
-            <button (click)="toggleFilter(0)" [classList]="filter === 0 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Todos los cursos</button>
-            <button (click)="toggleFilter(1)" [classList]="filter === 1 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Solo de la Carrera</button>
-            <button (click)="toggleFilter(2)" [classList]="filter === 2 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Optativas/Especializantes</button>
-        </div>
-    </div>
+      }
+      <div class="min-h-fit h-1/2 min-w-fit w-full gap-2 p-4 flex flex-col border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300">
+          <p>Ordenar</p>
+          <div class="flex flex-col place-items-center gap-1 m-auto p-2 rounded text-foreground font-bold w-full *:w-full *:rounded *:p-2">
+              <button (click)="toggleFilter(0)" [classList]="filter === 0 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Por defecto</button>
+              <button (click)="toggleFilter(1)" [classList]="filter === 1 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Alfabéticamente</button>
+              <button (click)="toggleFilter(2)" [classList]="filter === 2 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Calificación</button>
+          </div>
+      </div>
+    </section>
 
-    <div class="row-start-1 col-span-4 col-start-2 row-span-3 grid gap-5 mb-2 content-start">
+    <div class="grid gap-5 content-start p-2 overflow-scroll no-scrollbar w-full">
         @if (coursesTaken.length === 0) {
             <div class="w-full grid place-items-center">
                 <p class="text-muted-foreground">No has cursado ninguna materia</p>
@@ -82,11 +80,11 @@
                 <app-course-card [item]="item" />
             }
         } @else if (filter === 1) {
-            @for (item of coursesTakenOfCareer; track $index) {
+            @for (item of coursesTaken | orderByName; track $index ) {
                 <app-course-card [item]="item" />
             }
         } @else if (filter === 2 && optativeCourses) {
-            @for (item of optativeCourses; track $index) {
+            @for (item of coursesTaken | orderByScore; track $index) {
                 <app-course-card [item]="item" />
             }
         }

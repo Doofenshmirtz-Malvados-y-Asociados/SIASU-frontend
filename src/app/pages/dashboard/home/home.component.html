@@ -9,9 +9,15 @@
         </div>
     </div>
     <div class="h-5/6 rounded-md border border-border bg-background overflow-scroll no-scrollbar p-8">
-        <div class="h-fit grid place-content-center grid-template gap-4">
+        <div
+            class="rounded-md border border-border bg-black justify-center overflow-scroll p-8 no-scrollbar"
+        >
+            <p class="text-center text-muted-foreground">Agradecemos que seas parte de las pruebas de SIASU, limitamos algunas funcionalidades debido a que estamos recolectando datos para entrenar nuestra Inteligencia Artificial</p>
+        </div>
+        <div class="mt-4 h-fit w-full grid place-content-between grid-template gap-4">
+
             <div
-                class="box-data rounded-md h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar {{response === null || response?.suggested_career.length === 0 ? 'row-span-1' : 'row-span-2'}}">
+                class="w-full h-full rounded-md min-h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar {{response === null || response?.suggested_career.length === 0 ? 'row-span-1' : 'row-span-2'}}">
                 <div class="text-justify">
                     @if (response === null) {
                     <div class="place-content-end flex mb-4"><button
@@ -31,7 +37,7 @@
                     </div>
                     } @else {
                     @if (response?.suggested_career.length === 0) {
-                    <p>Parece que tus resultados aún están procesandose, favor de esperar un tiempo a que se procesen
+                    <p>Parece que tus resultados aún están procesándose, favor de esperar un tiempo a que se procesen
                         tus respuestas.</p>
                     } @else {
                     <p>Tus resultados han sido procesados con éxito, favor de ir a la sección de vocacional para
@@ -61,7 +67,7 @@
             </div>
             @if (user?.career_id !== undefined) {
                 <div
-                    class="box-data rounded-md h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar  {{profile === null || !profile?.recommendation ? 'row-span-1' : 'row-span-2'}}">
+                    class="w-full h-full rounded-md min-h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar  {{profile === null || !profile?.recommendation ? 'row-span-1' : 'row-span-2'}}">
                     <div class="text-justify">
                         @if (preddiction === null) {
                         <p>Parece que aún no se ha realizado un análisis de tu perfil para obtener recomendaciones para un
@@ -102,7 +108,7 @@
                 </div>
                 @if (chartProgressOptions) {
                 <div
-                    class="box-data rounded-md h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar row-span-1">
+                    class="w-full h-full rounded-md min-h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar row-span-1">
                     <div class="text-justify">
                         <p>Progreso de la malla</p>
                         <div class="w-full h-full flex place-items-center">
@@ -126,7 +132,7 @@
                 }
             } @else {
                 <div
-                    class="box-data rounded-md h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar row-span-1">
+                    class="w-full h-full rounded-md min-h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar row-span-1">
                     <div class="text-justify">
                         <p class="text-center mb-4 font-bold">Explora las carreras que DIVTIC ofrece para ti</p>
                         
