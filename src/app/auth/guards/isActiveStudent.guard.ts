@@ -1,17 +1,16 @@
 import { inject } from '@angular/core';
 import { Router, type CanActivateFn } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { AuthStatus } from '../interfaces/authStatus.enum';
 
 
-export const isAuthenticatedGuard: CanActivateFn = async (route, state) => {
+export const isActiveStudent: CanActivateFn = async (route, state) => {
   const router = inject( Router )
   const authClient = inject( AuthService )
 
   await authClient.verifyToken().toPromise()
 
-  if (authClient.authStatus() === AuthStatus.notAuthenticated) {
-    router.navigateByUrl('/login')
+  if (authClient.currentUser()?.career_id === undefined) {
+    router.navigateByUrl('/dashboard')
     return false
   }
 

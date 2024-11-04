@@ -19,6 +19,7 @@ import { ProgresoComponent } from './pages/dashboard/progreso/progreso.component
 import { HomeComponent } from './pages/dashboard/home/home.component';
 import { ContestadoComponent } from './pages/dashboard/vocacional/contestado/contestado.component';
 import { InfoProfesionComponent } from './pages/dashboard/profesion/info-profesion/info-profesion.component';
+import { isActiveStudent } from './auth/guards/isActiveStudent.guard';
 
 
 export const routes: Routes = [
@@ -51,17 +52,20 @@ export const routes: Routes = [
             { 
                 path: 'profesion',
                 title: 'Perfil Profesional',
-                component: ProfesionComponent
+                component: ProfesionComponent,
+                canActivate: [isActiveStudent]
             },
             { 
                 path: 'profesion/resultados',
                 title: 'Resultados de Perfil Profesional',
-                component: ResultadosProfesionComponent
+                component: ResultadosProfesionComponent,
+                canActivate: [isActiveStudent]
             },
             { 
                 path: 'profesion/info-profesion/:clave',
                 title: 'Información de Profesión',
-                component: InfoProfesionComponent
+                component: InfoProfesionComponent,
+                canActivate: [isActiveStudent]
             },
             {
                 path: 'configuracion',
@@ -71,17 +75,20 @@ export const routes: Routes = [
             {
                 path: 'progreso',
                 title: 'Progreso',
-                component: ProgresoComponent
+                component: ProgresoComponent,
+                canActivate: [isActiveStudent]
             },
             {
                 path: 'progreso/planeacion',
                 title: 'Planeación',
-                component: PlaneacionComponent
+                component: PlaneacionComponent,
+                canActivate: [isActiveStudent]
             },
             {
                 path: 'progreso/planeacion/actualizar',
                 title: 'Actualizar progreso de carrera',
-                component: ActualizarComponent
+                component: ActualizarComponent,
+                canActivate: [isActiveStudent]
             },
             {
                 path: 'carreras',
