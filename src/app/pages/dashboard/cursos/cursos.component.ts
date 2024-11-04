@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { CourseService } from '../../../services/curso.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastNotificationsService } from '../../../components/toast-notifications/services/toast-notifications.service';
 import { Comment } from '../../../interfaces/comment.interface';
 import { Course } from '../../../interfaces/course.interface';
@@ -11,6 +11,8 @@ import { CommentService } from '../../../services/comentario.service';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../auth/auth.service';
 
+const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("token")}`)
+  
 @Component({
   selector: 'app-cursos',
   standalone: true,
@@ -46,22 +48,22 @@ export class CursosComponent {
     let now = new Date()
     let id = this.user?.email?.toString() + "/" + now.toISOString()
     if (!this.commentsForm.value.content) {
-      this.notificationService.add("Comentario no guardado", "Su comentario es invalido", "error")
+      this.notificationService.add("Comentario no guardado", "Su comentario es invalido.", "error")
     } else {
       this.http.post('http://localhost:3000/comment', {
         id: id,
         user: this.user?.email,
         content: this.commentsForm.value?.content,
         page: page
-      })
+      }, {headers})
       .subscribe(
         success => {
           if (success) {
-            this.notificationService.add("Comentario guardado", "a ver", "success")
+            this.notificationService.add("Comentario guardado", "El comentario se ha guardado con exito.", "success")
             window.location.reload()
           }
           else {
-            this.notificationService.add("Comentario no guardado", "a ver", "error")
+            this.notificationService.add("Comentario no guardado", "Error al guardar el comentario.", "error")
           }
         }
       )

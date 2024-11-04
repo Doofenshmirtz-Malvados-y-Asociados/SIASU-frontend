@@ -4,10 +4,11 @@ import { AuthService } from '../../../auth/auth.service';
 import { ResponseService } from '../../../services/respuestas.service';
 import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexGrid, ApexLegend, ApexPlotOptions, ApexStroke, ApexTheme, ApexTitleSubtitle, ApexTooltip, ApexXAxis, ApexYAxis, NgApexchartsModule } from 'ng-apexcharts';
 import { ProgresoService } from '../progreso/progreso.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getCareerProfessionalProfiles } from '../../../shared/career_dict';
 import { InfoPopupComponent } from '../../../components/info-popup/info-popup.component';
 
+const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("token")}`)
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -96,7 +97,7 @@ export class HomeComponent {
         },
         error: (e) => console.error(e)
       })
-    this.http.get(`http://localhost:3000/response/professional_path/${this.user?.email}`).subscribe({
+    this.http.get(`http://localhost:3000/response/professional_path/${this.user?.email}`, {headers}).subscribe({
         next: (data: any) => {
   
           for (let i = 0; i < data?.affinities.length; i++) {

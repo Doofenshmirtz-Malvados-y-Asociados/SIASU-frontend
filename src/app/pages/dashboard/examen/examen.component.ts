@@ -3,13 +3,14 @@ import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angul
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../../auth/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastNotificationsService } from '../../../components/toast-notifications/services/toast-notifications.service';
 import { SuccessPopupComponent } from "../../../components/success-popup/success-popup.component";
 import { ErrorPopupComponent } from "../../../components/error-popup/error-popup.component";
 import { InfoPopupComponent } from '../../../components/info-popup/info-popup.component';
 
 type fetchType = 'notSend' | 'completed' | 'error';
+const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("token")}`)
 
 @Component({
   selector: 'app-examen',
@@ -325,7 +326,7 @@ export class ExamenComponent implements OnInit {
       this.notificationService.add("Sección capacidades", "Faltan por contestar preguntas en la sección laboral", 'error');
     } else {
       const response = [...this.answers['Me gusta'], ...this.answers['Considero que'], ...this.answers['Considero que tengo la capacidad de realizar las siguientes actividades'], ...this.answers['Me gustaría desempeñarme en un lugar donde']]
-      this.http.post('http://localhost:3000/response', {user: this.user?.email, responses: response})
+      this.http.post('http://localhost:3000/response', {user: this.user?.email, responses: response}, {headers})
         .subscribe({
           next: (res: any) => {
             this.fetchStatus.set('completed');

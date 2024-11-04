@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
 
+const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem("token")}`)
 
 interface accountData {
   email: string;
@@ -26,7 +27,7 @@ export class UserConfigService {
   changeAccountSettings(accountData: accountData) {
     return this.http.patch(`http://localhost:3000/user/${accountData.email}`, {
       name: accountData.name
-    })
+    }, {headers})
       .pipe(
         map(user => !!user),
         catchError(e => of(false))
@@ -34,7 +35,7 @@ export class UserConfigService {
   }
   
   changeCareerSettings(careerSettings: careerSettings) {
-    return this.http.post(`http://localhost:3000/career-user`, careerSettings)
+    return this.http.post(`http://localhost:3000/career-user`, careerSettings, {headers})
       .pipe(
         map(user => !!user),
         catchError(e => of(false))
