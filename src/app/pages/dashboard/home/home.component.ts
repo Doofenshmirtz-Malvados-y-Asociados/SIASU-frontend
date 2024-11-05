@@ -119,7 +119,7 @@ export class HomeComponent {
         }
       ],
       chart: {
-        width: '100%',
+        width: '99%',
         height: '100%',
         type: "radar",
         background: 'transparent',
@@ -137,6 +137,12 @@ export class HomeComponent {
           dynamicAnimation: {
               enabled: true,
               speed: 350
+          }
+        },
+        events: {
+          mounted: (chart: any, options: any) => {
+            options.config.chart.width = '100%';
+            chart.windowResizeHandler();
           }
         }
       },

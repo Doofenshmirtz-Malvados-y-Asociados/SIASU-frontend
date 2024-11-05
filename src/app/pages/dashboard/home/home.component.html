@@ -44,7 +44,7 @@
                         conocerlos a más detalle.</p>
                     @if (chartVocationalOptions){
                     <div class="min-h-[20rem] col-span-2 row-span-6 p-4 flex justify-between ">
-                        <div class="rounded-md chart-container grid place-items-center">
+                        <div class="rounded-md chart-container grid place-items-center transition-all duration-300">
                             <apx-chart [series]="chartVocationalOptions.series" [chart]="chartVocationalOptions.chart"
                                 [xaxis]="chartVocationalOptions.xaxis" [yaxis]="chartVocationalOptions.yaxis"
                                 [title]="chartVocationalOptions.title"
