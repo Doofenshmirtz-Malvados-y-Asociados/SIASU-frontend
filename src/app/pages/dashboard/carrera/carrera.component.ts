@@ -17,11 +17,11 @@ import { MatIconModule } from '@angular/material/icon'
 export class CarreraComponent {
   constructor(
     private readonly careerClient: CareerService,
-    private activatedRoute: ActivatedRoute,
-    private careerCourseClient: CareerCourseService
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly careerCourseClient: CareerCourseService
   ) {}
 
-  private authClient: AuthService = inject(AuthService)
+  private readonly authClient: AuthService = inject(AuthService)
 
   user = this.authClient.currentUser()
   career_id = this.activatedRoute.snapshot.paramMap.get('id')

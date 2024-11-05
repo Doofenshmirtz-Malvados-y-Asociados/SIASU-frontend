@@ -25,7 +25,7 @@ export class DashboardComponent {
   constructor(
     private readonly responseClient: ResponseService
   ) {}
-  private authClient: AuthService = inject(AuthService)
+  private readonly authClient: AuthService = inject(AuthService)
   
   user = this.authClient.currentUser()
   response: any;

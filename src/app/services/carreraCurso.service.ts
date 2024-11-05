@@ -6,7 +6,7 @@ import { Career } from '../interfaces/career.interface';
 @Injectable()
 export class CareerCourseService {
 
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
 
     params = new HttpParams();
 

@@ -6,10 +6,10 @@ import { Career } from '../interfaces/career.interface';
 @Injectable()
 export class CareerService {
 
-    constructor(private http: HttpClient) {}
+    constructor(private readonly http: HttpClient) {}
 
     public getCareers(): Observable<Career> {
-        return this.http.get<Career>("http://localhost:3000/career/")
+        return this.http.get<Career>("http://localhost:3000/career/",)
     }
 
     public getCareer(id: string): Observable<Career> {
