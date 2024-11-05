@@ -43,6 +43,7 @@ export type ChartOptions = {
   selector: 'app-progreso',
   standalone: true,
   imports: [RouterLink, NgApexchartsModule, CommonModule, CourseCardComponent],
+  providers: [ProgresoService],
   templateUrl: './progreso.component.html',
   styles: `:host {
     display: block;
@@ -51,7 +52,7 @@ export type ChartOptions = {
   }`
 })
 export class ProgresoComponent implements OnInit {
-  private progresoService: ProgresoService = inject(ProgresoService)
+  constructor (private readonly progresoService: ProgresoService) {}
 
   coursesTaken: any = []
   coursesOfCareer: any = []

@@ -44,7 +44,8 @@ export type ChartProgressOptions = {
     InfoPopupComponent
   ],
   providers: [
-    ResponseService
+    ResponseService,
+    ProgresoService
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -52,10 +53,11 @@ export type ChartProgressOptions = {
 export class HomeComponent {
   constructor(
     private readonly responseClient: ResponseService,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly progresoService: ProgresoService
   ) {}
   private authClient: AuthService = inject(AuthService);
-  private progresoService: ProgresoService = inject(ProgresoService);
+  
 
   response: any;
   user : any = this.authClient.currentUser();
