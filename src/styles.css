@@ -167,3 +167,33 @@ body,html {
   filter:  grayscale(100%) brightness(10000000%) contrast(10000000%);
   opacity: .3;
 }
+
+.trabajo:hover {
+  visibility: hidden;
+}
+
+.toBeReplaced:hover::after {
+  visibility: visible;
+  content: "Chamba";
+  color: white;
+}
+
+.changing-colors {
+  background-color: rgb(124 58 237 / 0.5);
+  filter: blur(200px);
+  animation: ChangingColors 3s infinite ease-in reverse;
+}
+
+@keyframes ChangingColors {
+  0% {
+    background-color: #7c3aed80;
+  }
+  
+  25% {
+    background-color: #c026d380;
+  }
+  
+  50% {
+    background-color: #ea580c80;
+  }
+}

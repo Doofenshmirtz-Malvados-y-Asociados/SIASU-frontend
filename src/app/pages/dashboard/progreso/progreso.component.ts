@@ -19,6 +19,8 @@ import {
 } from "ng-apexcharts";
 import { CommonModule } from '@angular/common';
 import { CourseCardComponent } from './components/course-card/course-card.component';
+import { OrderByNamePipe } from './pipes/order-by-name.pipe';
+import { OrderByScorePipe } from './pipes/order-by-score.pipe';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -42,7 +44,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-progreso',
   standalone: true,
-  imports: [RouterLink, NgApexchartsModule, CommonModule, CourseCardComponent],
+  imports: [RouterLink, NgApexchartsModule, CommonModule, CourseCardComponent, OrderByNamePipe, OrderByScorePipe],
   providers: [ProgresoService],
   templateUrl: './progreso.component.html',
   styles: `:host {

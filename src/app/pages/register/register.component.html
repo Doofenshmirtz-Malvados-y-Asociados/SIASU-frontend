@@ -102,13 +102,13 @@
         @if (fetchStatus() === 'completed') {
             <SuccessPopUp 
                 title="¡Registro Exitoso!"
-                aditionalInfo="Revisa tu correo para activar tu cuenta. Si no lo encuentras revisa tu carpeta de SPAM por un correo del equipo de SIASU."
+                aditionalInfo="Felicidades, inicia sesión para empezar a utilizar SIASU."
                 redirectTo="/login"
             />
         } @else if (fetchStatus() === 'error') {
             <ErrorPopUp 
                 title="Tenemos dificultades"
-                aditionalInfo="Tu solicitud no ha podido ser completada, todos tenemos malos dias, intenta de nuevo en unos momentos."
+                aditionalInfo="Tu solicitud no ha podido ser completada, todos tenemos malos días, intenta de nuevo en unos momentos."
                 toggleValue="notSend"
                 [toggleFn]="fetchStatus.set"
             />

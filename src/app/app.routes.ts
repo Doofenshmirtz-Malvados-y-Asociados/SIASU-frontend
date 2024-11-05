@@ -20,6 +20,7 @@ import { HomeComponent } from './pages/dashboard/home/home.component';
 import { ContestadoComponent } from './pages/dashboard/vocacional/contestado/contestado.component';
 import { InfoProfesionComponent } from './pages/dashboard/profesion/info-profesion/info-profesion.component';
 import { isActiveStudent } from './auth/guards/isActiveStudent.guard';
+import { InProgressComponent } from './pages/dashboard/in-progress/in-progress.component';
 
 
 export const routes: Routes = [
@@ -52,20 +53,23 @@ export const routes: Routes = [
             { 
                 path: 'profesion',
                 title: 'Perfil Profesional',
-                component: ProfesionComponent,
-                canActivate: [isActiveStudent]
+                // component: ProfesionComponent,
+                // canActivate: [isActiveStudent],
+                redirectTo: 'work-in-progress'
             },
             { 
                 path: 'profesion/resultados',
                 title: 'Resultados de Perfil Profesional',
-                component: ResultadosProfesionComponent,
-                canActivate: [isActiveStudent]
+                // component: ResultadosProfesionComponent,
+                // canActivate: [isActiveStudent],
+                redirectTo: 'work-in-progress'
             },
             { 
                 path: 'profesion/info-profesion/:clave',
                 title: 'Información de Profesión',
-                component: InfoProfesionComponent,
-                canActivate: [isActiveStudent]
+                // component: InfoProfesionComponent,
+                // canActivate: [isActiveStudent],
+                redirectTo: 'work-in-progress'
             },
             {
                 path: 'configuracion',
@@ -113,7 +117,8 @@ export const routes: Routes = [
             {
                 path: 'vocacional/contestado',
                 title: 'Vocacional',
-                component: ContestadoComponent
+                // component: ContestadoComponent,
+                redirectTo: 'work-in-progress'
             },
             {
                 path: 'vocacional/examen',
@@ -123,7 +128,13 @@ export const routes: Routes = [
             {
                 path: 'vocacional/resultados/:id',
                 title: 'Resultados del Examen Vocacional',
-                component: ResultadosComponent
+                // component: ResultadosComponent,
+                redirectTo: 'work-in-progress'
+            },
+            {
+                path: 'work-in-progress',
+                title: 'Trabajo en progreso',
+                component: InProgressComponent
             },
         ]
     }

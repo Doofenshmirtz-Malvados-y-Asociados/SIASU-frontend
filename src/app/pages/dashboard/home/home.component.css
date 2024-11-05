@@ -2,10 +2,10 @@
     width: 100%;
 }
 
-.box-data{
+.box-data {
     width: 30rem;
 }
 
 .grid-template {
-    grid-template-columns: repeat(auto-fit, 30rem);
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
 }
