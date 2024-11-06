@@ -40,8 +40,6 @@ export class PlaneacionComponent implements OnInit {
     } else {
       this.selectedCourses[course.course_id] = course.course.avg_difficulty
     }
-
-    console.log(this.selectedCourses)
   }
 
   simulateSemester() {

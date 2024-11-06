@@ -1,23 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { CareerService } from '../../../services/carrera.service';
-import { Career } from '../../../interfaces/career.interface';
-import { ResponseService } from '../../../services/respuestas.service';
 import { AuthService } from '../../../auth/auth.service';
-import { User } from '../../../auth/interfaces/user.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carreras',
   standalone: true,
   imports: [RouterLink],
-  providers: [CareerService, ResponseService],
+  providers: [CareerService],
   templateUrl: './carreras.component.html',
   styleUrl: './carreras.component.css'
 })
 export class CarrerasComponent {
-  constructor(private readonly careerClient: CareerService, private readonly responseClient: ResponseService) {}
+  constructor(private readonly careerClient: CareerService) {}
   
-  private authClient: AuthService = inject(AuthService)
+  private readonly authClient: AuthService = inject(AuthService)
 
   data: any
   user = this.authClient.currentUser()
@@ -30,10 +27,5 @@ export class CarrerasComponent {
         console.error('Error: ', error)
       }
     });
-    
-    if (!this.user?.career_id) {
-      this.responseClient.getResponseByUser(this.user!.email).subscribe(res => {this.response = res})
-      console.log(this.response)
-    }
   }
 }

@@ -299,7 +299,6 @@ export class ExamenComponent implements OnInit {
 
     // Save current progress on LocalStorage
     this.backupOnLocalStorage();
-    console.log("onChange")
   }
   
   change(index: number) {
@@ -307,7 +306,6 @@ export class ExamenComponent implements OnInit {
     
     // Save current progress on LocalStorage
     this.backupOnLocalStorage();
-    console.log("change")
   }
 
   backupOnLocalStorage() {

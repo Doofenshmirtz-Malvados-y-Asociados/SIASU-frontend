@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class OrderByNamePipe implements PipeTransform {
   transform(value: any[]): any[] {
-    console.log(value)
     return value.toSorted((n1, n2) => {
       if (n1.course.name < n2.course.name) {
         return -1;

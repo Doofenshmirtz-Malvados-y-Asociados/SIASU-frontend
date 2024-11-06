@@ -87,7 +87,9 @@ export class HomeComponent {
         this.initSugerencias(res?.suggested_career);
       }
     })
-    this.progresoService.getCoursesTaken()
+
+    if (this.user.career_id != undefined) {
+      this.progresoService.getCoursesTaken()
       .subscribe({
         next: ([coursesOfCareer, coursesTaken]) => {
           this.coursesOfCareer = coursesOfCareer
@@ -97,6 +99,8 @@ export class HomeComponent {
         },
         error: (e) => console.error(e)
       })
+    }
+
     this.http.get(`http://localhost:3000/response/professional_path/${this.user?.email}`).subscribe({
         next: (data: any) => {
   

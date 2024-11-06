@@ -39,9 +39,9 @@ export class CarreraComponent {
     })
 
     this.careerCourseClient.getByFilter(Number(this.career_id!)).subscribe({
-      next: res => {this.courses = res},
+      next: res => { this.courses = res; },
       error: error => {
-        console.error("Error: ", error) 
+        console.error("Error: ", error);
       }
     })
 
