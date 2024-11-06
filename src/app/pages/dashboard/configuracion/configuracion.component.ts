@@ -5,12 +5,13 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { matchValues } from '../../../shared/MatchValues.directive';
 import { UserConfigService } from './services/user-config.service';
 import { ToastNotificationsService } from '../../../components/toast-notifications/services/toast-notifications.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-configuracion',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './configuracion.component.html',
   styles: `
     :host {

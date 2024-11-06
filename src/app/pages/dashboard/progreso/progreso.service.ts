@@ -3,11 +3,11 @@ import { inject, Injectable } from '@angular/core';
 import { AuthService } from '../../../auth/auth.service';
 import { firstValueFrom, forkJoin } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'any'
+})
 export class ProgresoService {
-  private http: HttpClient = inject(HttpClient)
-  private auth: AuthService = inject(AuthService)
-
+  constructor(private readonly http: HttpClient,  private readonly auth: AuthService) {}
 
   getCoursesRemaining() {
     const email = this.auth.currentUser()?.email

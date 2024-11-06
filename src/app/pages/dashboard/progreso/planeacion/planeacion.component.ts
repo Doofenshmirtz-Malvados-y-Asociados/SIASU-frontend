@@ -16,7 +16,7 @@ import { ResultadosComponent } from "./resultados/resultados.component";
   }`
 })
 export class PlaneacionComponent implements OnInit {
-  private progresoService: ProgresoService = inject(ProgresoService)
+  constructor(private readonly progresoService: ProgresoService) {}
   private toastService: ToastNotificationsService = inject(ToastNotificationsService)
 
   remainingCourses: any = []
