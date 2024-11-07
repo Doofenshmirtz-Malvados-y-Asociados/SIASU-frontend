@@ -58,7 +58,7 @@ export class ActualizarComponent implements OnInit {
       formData.append("career_id", String(this.user?.career_id));
       formData.append("user_email", String(this.user?.email));
 
-      this.httpClient.post("http://localhost:3000/utils/load", formData)
+      this.httpClient.post("http://34.125.135.185:3000/utils/load", formData)
         .subscribe({
           next: (res: any) => {
             if (res.length === 0) {
@@ -116,7 +116,7 @@ export class ActualizarComponent implements OnInit {
       return { course_id: id, ...rest, user_email: this.user?.email }
     })
 
-    this.httpClient.post("http://localhost:3000/course-user/bulk", data)
+    this.httpClient.post("http://34.125.135.185:3000/course-user/bulk", data)
       .subscribe({
         next: (res: any) => {
           this.toastClient.add("Materias agregadas con exito", "Se te regresará automaticamente a la página anterior", "success")

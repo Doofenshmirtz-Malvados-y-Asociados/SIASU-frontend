@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   register(payload: RegisterInputUser): Observable<boolean> {
-    return this.http.post('http://localhost:3000/auth/register', payload)
+    return this.http.post('http://34.125.135.185:3000/auth/register', payload)
       .pipe(
         map(user => !!user),
         catchError(e => of(false))
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<boolean> {
-    return this.http.post<LoginResponse>('http://localhost:3000/auth/login', {email: email, password: password})
+    return this.http.post<LoginResponse>('http://34.125.135.185:3000/auth/login', {email: email, password: password})
       .pipe(
         tap(({user, token}) => this.setAuthentication(user, token)),
         map(token => !!token),
@@ -59,7 +59,7 @@ export class AuthService {
 
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
 
-    return this.http.get<LoginResponse>('http://localhost:3000/auth/verify', {headers})
+    return this.http.get<LoginResponse>('http://34.125.135.185:3000/auth/verify', {headers})
       .pipe(
         tap(({user, token}) => this.setAuthentication(user, token)),
         map(token => !!token),
@@ -71,7 +71,7 @@ export class AuthService {
   }
 
   changePassword(password: string): Observable<boolean> {
-    return this.http.post(`http://localhost:3000/auth/changePassword`, {
+    return this.http.post(`http://34.125.135.185:3000/auth/changePassword`, {
       email: this.currentUser()?.email,
       password: password
     })
