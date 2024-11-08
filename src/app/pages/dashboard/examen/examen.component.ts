@@ -323,7 +323,7 @@ export class ExamenComponent implements OnInit {
       this.notificationService.add("Sección capacidades", "Faltan por contestar preguntas en la sección laboral", 'error');
     } else {
       const response = [...this.answers['Me gusta'], ...this.answers['Considero que'], ...this.answers['Considero que tengo la capacidad de realizar las siguientes actividades'], ...this.answers['Me gustaría desempeñarme en un lugar donde']]
-      this.http.post('http://34.125.135.185:3000/response', {user: this.user?.email, responses: response})
+      this.http.post('http://34.16.239.188:3000/response', {user: this.user?.email, responses: response})
         .subscribe({
           next: (res: any) => {
             this.fetchStatus.set('completed');

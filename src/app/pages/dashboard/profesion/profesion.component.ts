@@ -21,7 +21,7 @@ export class ProfesionComponent implements OnInit {
   career_id = this.auth.currentUser()?.career_id
 
   ngOnInit(): void {
-    this.http.get(`http://34.125.135.185:3000/response/professional_path/${this.user_email}`).subscribe({
+    this.http.get(`http://34.16.239.188:3000/response/professional_path/${this.user_email}`).subscribe({
       next: (data) => {
         if(data !== null) this.redirectToResults()
       },
@@ -30,7 +30,7 @@ export class ProfesionComponent implements OnInit {
   }
 
   generateResults() {
-    this.http.post(`http://34.125.135.185:3000/ai/professional_path/`, {
+    this.http.post(`http://34.16.239.188:3000/ai/professional_path/`, {
       user_email: this.user_email,
       career_id: this.career_id,
     }).subscribe({

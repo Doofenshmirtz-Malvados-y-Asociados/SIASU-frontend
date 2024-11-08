@@ -13,6 +13,6 @@ export class CareerCourseService {
     public getByFilter(career_id?: number, course_id?: string): Observable<Career> {
         this.params = career_id ? this.params.append('career_id', career_id) : this.params.append('career_id', 0)
         this.params = course_id ? this.params.append('course_id', course_id): this.params
-        return this.http.get<Career>("http://34.125.135.185:3000/career-course/filter", { params: this.params })
+        return this.http.get<Career>("http://34.16.239.188:3000/career-course/filter", { params: this.params })
     }
 }

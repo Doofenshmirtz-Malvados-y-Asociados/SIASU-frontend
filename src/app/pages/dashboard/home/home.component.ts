@@ -101,7 +101,7 @@ export class HomeComponent {
       })
     }
 
-    this.http.get(`http://34.125.135.185:3000/response/professional_path/${this.user?.email}`).subscribe({
+    this.http.get(`http://34.16.239.188:3000/response/professional_path/${this.user?.email}`).subscribe({
         next: (data: any) => {
   
           for (let i = 0; i < data?.affinities.length; i++) {

@@ -13,15 +13,15 @@ export class ProgresoService {
     const email = this.auth.currentUser()?.email
     const career_id = this.auth.currentUser()?.career_id
 
-    return this.http.get(`http://34.125.135.185:3000/course-user/remaining?user_email=${email}&career_id=${career_id}`)
+    return this.http.get(`http://34.16.239.188:3000/course-user/remaining?user_email=${email}&career_id=${career_id}`)
   }
 
   getCoursesTaken() {
     const email = this.auth.currentUser()?.email
     const career_id = this.auth.currentUser()?.career_id
 
-    const coursesOfCareer = this.http.get(`http://34.125.135.185:3000/career-course/filter?career_id=${career_id}`)
-    const coursesTaken = this.http.get(`http://34.125.135.185:3000/course-user/filter?user_email=${email}`)
+    const coursesOfCareer = this.http.get(`http://34.16.239.188:3000/career-course/filter?career_id=${career_id}`)
+    const coursesTaken = this.http.get(`http://34.16.239.188:3000/course-user/filter?user_email=${email}`)
 
     return forkJoin([coursesOfCareer, coursesTaken])
   }

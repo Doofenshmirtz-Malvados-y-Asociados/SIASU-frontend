@@ -47,7 +47,7 @@ export class CursosComponent {
     if (!this.commentsForm.value.content) {
       this.notificationService.add("Comentario no guardado", "Su comentario es invalido.", "error")
     } else {
-      this.http.post('http://34.125.135.185:3000/comment', {
+      this.http.post('http://34.16.239.188:3000/comment', {
         id: id,
         user: this.user?.email,
         content: this.commentsForm.value?.content,
