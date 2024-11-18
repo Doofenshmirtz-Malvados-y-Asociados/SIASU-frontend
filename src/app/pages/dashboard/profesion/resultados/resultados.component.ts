@@ -4,7 +4,6 @@ import { ApexAxisChartSeries, ApexChart, ApexTheme, ApexTitleSubtitle, ApexXAxis
 import { CareerIDToAlias } from '../../../../interfaces/careerIdtoAlias.enum';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { career_path_info, getCareerProfessionalProfiles } from "../../../../shared/career_dict";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -32,37 +31,42 @@ export class ResultadosProfesionComponent implements OnInit {
   user_email = this.auth.currentUser()?.email
   career_id: any = this.auth.currentUser()?.career_id
 
-  path_info: any = getCareerProfessionalProfiles(this.career_id)
+  path_data: any[] = []
+  affinities: any[] = []
 
-  preddiction: any
-  
-  formattedDate: string = ''
-
-  // TODO: Add professional path data from API
 
   ngOnInit(): void {
     this.http.get(`http://localhost:3000/ai/professional_path/${this.user_email}`).subscribe({
       next: (data: any) => {
-
-        console.log(data.affinities[0])
-        let i = 0;
-
         Object.values(data?.affinities[0]).forEach((affinity) => {
-          this.path_info[i].afinitty = affinity;
-          i++;
+          this.affinities.push(affinity);
         })
-
-        this.formattedDate = new Date(data?.createdAt).toLocaleDateString()
-        this.preddiction = data
-        this.chartInit()
       },
       error: (e) => console.error(e)
     })
+
+    this.http.get(`http://localhost:3000/career-path/filter?career_id=${this.career_id}`).subscribe({
+      next: (data: any) => {
+        let i = 0;
+
+        this.path_data = data.map(({path}: any) => {
+          return {
+            name: path.name,
+            affinity: this.affinities[i++],
+            salary: path.salary,
+            href: path.id
+          }
+        })
+
+        this.chartInit()
+      }
+    })
+    
   }
 
   private authService: AuthService = inject(AuthService);
 
-  name = this.authService.currentUser()?.name
+  name = this.authService.currentUser()?.name.split(' ')[0]
   career = CareerIDToAlias[this.authService.currentUser()?.career_id || 0]
   
   
@@ -73,7 +77,7 @@ export class ResultadosProfesionComponent implements OnInit {
       series: [
         {
           name: "Afinidad",
-          data: this.path_info.map(({afinitty}: any) => afinitty)
+          data: this.path_data.map(({affinity}: any) => affinity)
         }
       ],
       chart: {
@@ -90,18 +94,18 @@ export class ResultadosProfesionComponent implements OnInit {
           speed: 800,
           animateGradually: {
               enabled: true,
-              delay: 3000
+              delay: 100
           },
           dynamicAnimation: {
               enabled: true,
               speed: 350
           }
-        }
+        },
       },
       title: {
       },
       xaxis: {
-        categories: this.path_info.map(({name}: any) => name)
+        categories: this.path_data.map(({name}: any) => name)
       },
       yaxis: {
         show: false,

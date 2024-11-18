@@ -10,7 +10,10 @@
             <p class="text-3xl text-foreground font-bold">Descripción</p>
             <p class="whitespace-pre-line">{{professionData?.description}}</p>
         </div>
-        <div class="p-4 flex flex-col justify-center place-items-center text-muted-foreground border border-border rounded hover:border-muted-foreground hover:text-foreground transition duration-300">
+        <div class="p-4 relative flex flex-col justify-center place-items-center text-muted-foreground border border-border rounded hover:border-muted-foreground hover:text-foreground transition duration-300">
+            <div class="absolute top-4 right-4 place-content-end flex group">
+                <button class="text-right w-fit border group-hover:border-muted-foreground group-hover:text-muted-foreground border-gray-400/30 rounded-2xl px-2 text-gray-200/30 transition duration-300" (click)="help()">?</button>
+            </div>
             <p>Promedio de salario:</p>
             <p class="text-5xl font-mono ">${{professionData?.salary}}</p>
         </div>
@@ -36,4 +39,10 @@
             </div>
         </div>
     </section>
+    @if (popUpActive()) {
+        <SalaryInfoPopUp 
+            [toggleValue]="false"
+            [toggleFn]="popUpActive.set"
+        />
+    }
 </div>

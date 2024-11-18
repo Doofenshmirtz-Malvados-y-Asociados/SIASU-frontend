@@ -61,7 +61,10 @@ export class HomeComponent {
 
   response: any;
   user : any = this.authClient.currentUser();
-  path_info: any = getCareerProfessionalProfiles(this.user?.career_id)
+
+  path_data: any[] = []
+  affinities: any[] = []
+
   profile: any = null;
   coursesTaken: any = []
   coursesOfCareer: any = []
@@ -101,17 +104,33 @@ export class HomeComponent {
       })
     }
 
-    this.http.get(`http://localhost:3000/response/professional_path/${this.user?.email}`).subscribe({
+    if (this.user.career_id != undefined) {
+      this.http.get(`http://localhost:3000/ai/professional_path/${this.user!.email}`).subscribe({
         next: (data: any) => {
-  
-          for (let i = 0; i < data?.affinities.length; i++) {
-            this.path_info[i].afinitty = data?.affinities[i]
-          }
-          this.preddiction = data
-          this.chartInit()
+          Object.values(data?.affinities[0]).forEach((affinity) => {
+            this.affinities.push(affinity);
+          })
         },
         error: (e) => console.error(e)
       })
+  
+      this.http.get(`http://localhost:3000/career-path/filter?career_id=${this.user.career_id}`).subscribe({
+        next: (data: any) => {
+          let i = 0;
+  
+          this.path_data = data.map(({path}: any) => {
+            return {
+              name: path.name,
+              affinity: this.affinities[i++],
+              salary: path.salary,
+              href: path.id
+            }
+          })
+          
+          this.chartInit()
+        }
+      })
+    }
   }
 
   initSugerencias(sugerencias: any): void {
@@ -258,7 +277,7 @@ export class HomeComponent {
       series: [
         {
           name: "Afinidad",
-          data: this.preddiction?.affinities
+          data: this.path_data.map(({affinity}: any) => affinity)
         }
       ],
       chart: {
@@ -292,7 +311,7 @@ export class HomeComponent {
       title: {
       },
       xaxis: {
-        categories: this.path_info.map(({name}: any) => name),
+        categories: this.path_data.map(({name}: any) => name),
         labels: {show : false}
       },
       yaxis: {
