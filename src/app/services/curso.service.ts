@@ -8,6 +8,6 @@ export class CourseService {
     constructor(private readonly http: HttpClient) {}
 
     public getCourse(id: string): Observable<Course> {
-        return this.http.get<Course>(`http://34.16.239.188:3000/course/${id}`)
+        return this.http.get<Course>(`http://localhost:3000/course/${id}`)
     }
 }

@@ -101,7 +101,7 @@ export class HomeComponent {
       })
     }
 
-    this.http.get(`http://34.16.239.188:3000/response/professional_path/${this.user?.email}`).subscribe({
+    this.http.get(`http://localhost:3000/response/professional_path/${this.user?.email}`).subscribe({
         next: (data: any) => {
   
           for (let i = 0; i < data?.affinities.length; i++) {
@@ -190,6 +190,12 @@ export class HomeComponent {
         toolbar: {
           show: false
         },
+        events: {
+          mounted: (chart: any, options: any) => {
+            options.config.chart.width = '100%';
+            chart.windowResizeHandler();
+          }
+        }
       },
       plotOptions: {
         bar: {
@@ -274,6 +280,12 @@ export class HomeComponent {
           dynamicAnimation: {
               enabled: true,
               speed: 350
+          }
+        },
+        events: {
+          mounted: (chart: any, options: any) => {
+            options.config.chart.width = '100%';
+            chart.windowResizeHandler();
           }
         }
       },

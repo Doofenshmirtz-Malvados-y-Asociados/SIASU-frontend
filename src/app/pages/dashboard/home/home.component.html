@@ -17,7 +17,7 @@
         <div class="mt-4 h-fit w-full grid place-content-between grid-template gap-4">
 
             <div
-                class="w-full h-full rounded-md min-h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar {{response === null || response?.suggested_career.length === 0 ? 'row-span-1' : 'row-span-2'}}">
+                class="w-full h-full rounded-md min-h-fit border border-border bg-black flex flex-col justify-center overflow-scroll p-8 no-scrollbar {{response === null || response?.suggested_career?.length === 0 ? 'row-span-1' : 'row-span-2'}}">
                 <div class="text-justify">
                     @if (response === null) {
                     <div class="place-content-end flex mb-4"><button
@@ -36,7 +36,7 @@
                         </a>
                     </div>
                     } @else {
-                    @if (response?.suggested_career.length === 0) {
+                    @if (response?.suggested_career?.length === 0) {
                     <p>Parece que tus resultados aún están procesándose, favor de esperar un tiempo a que se procesen
                         tus respuestas.</p>
                     } @else {

@@ -9,7 +9,7 @@ export class ResponseService {
     constructor (private readonly http: HttpClient) {}
     
     public getResponseByUser(user: string): Observable<Response> {
-        return this.http.get<Response>("http://34.16.239.188:3000/response/" + `${user}`)
+        return this.http.get<Response>("http://localhost:3000/response/" + `${user}`)
         
     }
 }

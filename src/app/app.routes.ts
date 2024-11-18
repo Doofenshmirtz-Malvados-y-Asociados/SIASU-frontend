@@ -53,23 +53,23 @@ export const routes: Routes = [
             { 
                 path: 'profesion',
                 title: 'Perfil Profesional',
-                // component: ProfesionComponent,
-                // canActivate: [isActiveStudent],
-                redirectTo: 'work-in-progress'
+                component: ProfesionComponent,
+                canActivate: [isActiveStudent],
+                // redirectTo: 'work-in-progress'
             },
             { 
                 path: 'profesion/resultados',
                 title: 'Resultados de Perfil Profesional',
-                // component: ResultadosProfesionComponent,
-                // canActivate: [isActiveStudent],
-                redirectTo: 'work-in-progress'
+                component: ResultadosProfesionComponent,
+                canActivate: [isActiveStudent],
+                // redirectTo: 'work-in-progress'
             },
             { 
                 path: 'profesion/info-profesion/:clave',
                 title: 'Información de Profesión',
-                // component: InfoProfesionComponent,
-                // canActivate: [isActiveStudent],
-                redirectTo: 'work-in-progress'
+                component: InfoProfesionComponent,
+                canActivate: [isActiveStudent],
+                // redirectTo: 'work-in-progress'
             },
             {
                 path: 'configuracion',
@@ -117,8 +117,8 @@ export const routes: Routes = [
             {
                 path: 'vocacional/contestado',
                 title: 'Vocacional',
-                // component: ContestadoComponent,
-                redirectTo: 'work-in-progress'
+                component: ContestadoComponent,
+                // redirectTo: 'work-in-progress'
             },
             {
                 path: 'vocacional/examen',
@@ -128,8 +128,8 @@ export const routes: Routes = [
             {
                 path: 'vocacional/resultados/:id',
                 title: 'Resultados del Examen Vocacional',
-                // component: ResultadosComponent,
-                redirectTo: 'work-in-progress'
+                component: ResultadosComponent,
+                // redirectTo: 'work-in-progress'
             },
             {
                 path: 'work-in-progress',

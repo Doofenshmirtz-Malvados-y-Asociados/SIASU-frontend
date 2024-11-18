@@ -25,7 +25,7 @@ export class UserConfigService {
   private http: HttpClient = inject(HttpClient)
 
   changeAccountSettings(accountData: accountData) {
-    return this.http.patch(`http://34.16.239.188:3000/user/${accountData.email}`, {
+    return this.http.patch(`http://localhost:3000/user/${accountData.email}`, {
       name: accountData.name
     }, {headers})
       .pipe(
@@ -35,7 +35,7 @@ export class UserConfigService {
   }
   
   changeCareerSettings(careerSettings: careerSettings) {
-    return this.http.post(`http://34.16.239.188:3000/career-user`, careerSettings, {headers})
+    return this.http.post(`http://localhost:3000/career-user`, careerSettings, {headers})
       .pipe(
         map(user => !!user),
         catchError(e => of(false))
