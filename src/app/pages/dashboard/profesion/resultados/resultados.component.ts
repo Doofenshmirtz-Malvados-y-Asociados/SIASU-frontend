@@ -38,13 +38,19 @@ export class ResultadosProfesionComponent implements OnInit {
   
   formattedDate: string = ''
 
+  // TODO: Add professional path data from API
+
   ngOnInit(): void {
-    this.http.get(`http://localhost:3000/response/professional_path/${this.user_email}`).subscribe({
+    this.http.get(`http://localhost:3000/ai/professional_path/${this.user_email}`).subscribe({
       next: (data: any) => {
 
-        for (let i = 0; i < data?.affinities.length; i++) {
-          this.path_info[i].afinitty = data?.affinities[i]
-        }
+        console.log(data.affinities[0])
+        let i = 0;
+
+        Object.values(data?.affinities[0]).forEach((affinity) => {
+          this.path_info[i].afinitty = affinity;
+          i++;
+        })
 
         this.formattedDate = new Date(data?.createdAt).toLocaleDateString()
         this.preddiction = data
@@ -67,7 +73,7 @@ export class ResultadosProfesionComponent implements OnInit {
       series: [
         {
           name: "Afinidad",
-          data: this.preddiction?.affinities
+          data: this.path_info.map(({afinitty}: any) => afinitty)
         }
       ],
       chart: {
