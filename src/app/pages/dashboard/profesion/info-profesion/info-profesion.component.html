@@ -11,7 +11,7 @@
             <p class="whitespace-pre-line">{{professionData?.description}}</p>
         </div>
         <div class="p-4 relative flex flex-col justify-center place-items-center text-muted-foreground border border-border rounded hover:border-muted-foreground hover:text-foreground transition duration-300">
-            <div class="absolute top-4 right-4 place-content-end flex group">
+            <div class="absolute xl:top-4 top-2 xl:right-4 right-2 place-content-end flex group">
                 <button class="text-right w-fit border group-hover:border-muted-foreground group-hover:text-muted-foreground border-gray-400/30 rounded-2xl px-2 text-gray-200/30 transition duration-300" (click)="help()">?</button>
             </div>
             <p>Promedio de salario:</p>
@@ -27,7 +27,7 @@
                 }
             </div>
         </div>
-        <div class="py-4 px-10 flex flex-col row-span-2 col-span-3 text-muted-foreground border border-border rounded hover:border-muted-foreground transition duration-300">
+        <div class="py-4 px-10 flex flex-col row-span-2 col-span-3 text-muted-foreground border border-border rounded hover:border-muted-foreground transition duration-300 overflow-scroll no-scrollbar">
             <p class="text-3xl text-foreground font-bold">Cursos para este perfil profesional:</p>
             <div class="mt-4 flex h-full flex-col gap-4">
                 @for (course of professionData?.courses; track $index) {

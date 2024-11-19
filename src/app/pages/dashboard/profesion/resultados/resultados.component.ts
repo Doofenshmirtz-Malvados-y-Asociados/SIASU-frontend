@@ -29,7 +29,7 @@ export class ResultadosProfesionComponent implements OnInit {
   constructor(private readonly http: HttpClient, private readonly auth: AuthService) {}
   
   user_email = this.auth.currentUser()?.email
-  career_id: any = this.auth.currentUser()?.career_id
+  career_id = this.auth.currentUser()?.career_id
 
   path_data: any[] = []
   affinities: any[] = []
