@@ -1,19 +1,19 @@
 <div class="w-full h-full grid grid-cols-5">
     <div class="flex justify-center col-span-2">
         <div class="h-full w-full p-12 flex flex-col justify-start register-form text-white rounded-lg relative">
-            <div class="w-full absolute xl:top-40 top-20 left-0">
+            <div class="w-full absolute 2xl:top-40 top-20 left-0">
                 <a routerLink="/">
-                    <img class=" m-auto invert xl:w-16 w-12" src="/assets/logo-min.png" />
+                    <img class=" m-auto invert 2xl:w-16 w-12" src="/assets/logo-min.png" />
                 </a>
-                <p class="xl:text-5xl text-2xl mt-4 inter text-center font-semibold tracking-tighter">Registrarme</p>
+                <p class="2xl:text-5xl text-2xl mt-4 inter text-center font-semibold tracking-tighter">Registrarme</p>
             </div>
 
-            <div class="w-full h-1/2 m-auto xl:pt-16 pt-6">
+            <div class="w-full h-1/2 m-auto 2xl:pt-16 pt-6">
                 <p class="text-center mt-6 text-red-300 font-bold italic">
                     {{errorMessage}}
                 </p>
 
-                <form class="flex flex-col mt-6 xl:text-base text-sm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <form class="flex flex-col mt-6 2xl:text-base text-sm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     @if (registerFormPage === 0) {
                         <input 
                             class="ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 my-2 py-2 px-4 bg-secondary rounded-xl border-2 border-border placeholder:italic" 
