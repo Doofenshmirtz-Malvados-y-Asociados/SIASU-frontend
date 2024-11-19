@@ -60,7 +60,7 @@ export class HomeComponent {
   
 
   response: any;
-  user : any = this.authClient.currentUser();
+  user = this.authClient.currentUser();
 
   path_data: any[] = []
   affinities: any[] = []
@@ -91,7 +91,7 @@ export class HomeComponent {
       }
     })
 
-    if (this.user.career_id != undefined) {
+    if (this.user?.career_id != undefined) {
       this.progresoService.getCoursesTaken()
       .subscribe({
         next: ([coursesOfCareer, coursesTaken]) => {
@@ -104,9 +104,17 @@ export class HomeComponent {
       })
     }
 
-    if (this.user.career_id != undefined) {
-      this.http.get(`http://localhost:3000/ai/professional_path/${this.user!.email}`).subscribe({
+    let email = this.user?.email;
+    let career_id = this.user?.career_id;
+    
+    if (this.user?.career_id != undefined) {
+      this.http.get(`http://localhost:3000/ai/professional_path/${email}`).subscribe({
         next: (data: any) => {
+          if (!data || data.length === 0) {
+            this.preddiction = null;
+            return
+          }
+
           Object.values(data?.affinities[0]).forEach((affinity) => {
             this.affinities.push(affinity);
           })
@@ -114,7 +122,7 @@ export class HomeComponent {
         error: (e) => console.error(e)
       })
   
-      this.http.get(`http://localhost:3000/career-path/filter?career_id=${this.user.career_id}`).subscribe({
+      this.http.get(`http://localhost:3000/career-path/filter?career_id=${career_id}`).subscribe({
         next: (data: any) => {
           let i = 0;
   
