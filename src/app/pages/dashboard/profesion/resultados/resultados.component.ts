@@ -38,8 +38,8 @@ export class ResultadosProfesionComponent implements OnInit {
   ngOnInit(): void {
     this.http.get(`http://localhost:3000/ai/professional_path/${this.user_email}`).subscribe({
       next: (data: any) => {
-        Object.values(data?.affinities[0]).forEach((affinity) => {
-          this.affinities.push(affinity);
+        Object.values(data?.affinities[0]).forEach((affinity: any) => {
+          this.affinities.push(+(affinity.toFixed(2)));
         })
       },
       error: (e) => console.error(e)

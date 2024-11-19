@@ -32,7 +32,7 @@
                     <a class="h-full" routerLink="/dashboard/profesion/info-profesion/{{item.href}}">
                         <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
                             <p class="w-1/2">{{item.name}}</p>
-                            <p class="w-1/4">{{(item.affinity || 0) * 100}}%</p>
+                            <p class="w-1/4">{{((item.affinity || 0) * 100).toFixed(0)}}%</p>
                             <p class="w-1/4">${{item.salary}}</p>
                         </div>
                     </a>

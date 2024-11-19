@@ -30,11 +30,17 @@
         <div class="py-4 px-10 flex flex-col row-span-2 col-span-3 text-muted-foreground border border-border rounded hover:border-muted-foreground transition duration-300 overflow-scroll no-scrollbar">
             <p class="text-3xl text-foreground font-bold">Cursos para este perfil profesional:</p>
             <div class="mt-4 flex h-full flex-col gap-4">
-                @for (course of professionData?.courses; track $index) {
-                    <a class="hover:text-foreground transition duration-300 p-2 border border-border hover:border-muted-foreground rounded" [href]="course.href" target="_blank">
-                        <p>{{course.name}}</p>
-                        <p>Por: {{course.publisher}}</p>
-                    </a>
+                @if (professionData?.courses.length !== 0) {
+                    @for (course of professionData?.courses; track $index) {
+                        <a class="hover:text-foreground transition duration-300 p-2 border border-border hover:border-muted-foreground rounded" [href]="course.href" target="_blank">
+                            <p>{{course.name}}</p>
+                            <p>Por: {{course.publisher}}</p>
+                        </a>
+                    }
+                } @else {
+                    <div class="m-auto text-center font-light text-muted-foreground/80">
+                        Lo lamentamos, no pudimos encontrar ningún curso gratuito sobre esta área de especialización :(
+                    </div>
                 }
             </div>
         </div>
