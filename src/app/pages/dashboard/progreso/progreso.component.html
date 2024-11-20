@@ -60,7 +60,7 @@
             </div>
         </div>
       }
-      <div class="min-h-fit h-1/2 min-w-fit w-full gap-2 p-4 flex flex-col border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300">
+      <div class="min-h-fit h-1/2 min-w-fit w-full gap-2 p-4 flex flex-col border border-border text-center text-muted-foreground uppercase font-mono hover:border-muted-foreground hover:text-foreground duration-300 overflow-scroll no-scrollbar">
           <p>Ordenar</p>
           <div class="flex flex-col place-items-center gap-1 m-auto p-2 rounded text-foreground font-bold w-full *:w-full *:rounded *:p-2">
               <button (click)="toggleFilter(0)" [classList]="filter === 0 ? 'link-active text-black hover:text-foreground' : 'nav-item'">Por defecto</button>
@@ -70,7 +70,7 @@
       </div>
     </section>
 
-    <div class="grid gap-5 content-start p-2 overflow-scroll no-scrollbar w-full">
+    <div class="grid gap-5 content-start p-2 overflow-scroll no-scrollbar w-full h-full">
         @if (coursesTaken.length === 0) {
             <div class="w-full grid place-items-center">
                 <p class="text-muted-foreground">No has cursado ninguna materia</p>

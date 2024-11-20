@@ -60,8 +60,11 @@ export class HomeComponent {
   
 
   response: any;
-  user : any = this.authClient.currentUser();
-  path_info: any = getCareerProfessionalProfiles(this.user?.career_id)
+  user = this.authClient.currentUser();
+
+  path_data: any[] = []
+  affinities: any[] = []
+
   profile: any = null;
   coursesTaken: any = []
   coursesOfCareer: any = []
@@ -88,7 +91,7 @@ export class HomeComponent {
       }
     })
 
-    if (this.user.career_id != undefined) {
+    if (this.user?.career_id != undefined) {
       this.progresoService.getCoursesTaken()
       .subscribe({
         next: ([coursesOfCareer, coursesTaken]) => {
@@ -101,17 +104,41 @@ export class HomeComponent {
       })
     }
 
-    this.http.get(`http://34.16.239.188:3000/response/professional_path/${this.user?.email}`).subscribe({
+    let email = this.user?.email;
+    let career_id = this.user?.career_id;
+    
+    if (this.user?.career_id != undefined) {
+      this.http.get(`http://34.16.239.188:3000/ai/professional_path/${email}`).subscribe({
         next: (data: any) => {
-  
-          for (let i = 0; i < data?.affinities.length; i++) {
-            this.path_info[i].afinitty = data?.affinities[i]
+          if (!data || data.length === 0) {
+            this.preddiction = null;
+            return
           }
-          this.preddiction = data
-          this.chartInit()
+
+          Object.values(data?.affinities[0]).forEach((affinity) => {
+            this.affinities.push(affinity);
+          })
         },
         error: (e) => console.error(e)
       })
+  
+      this.http.get(`http://34.16.239.188:3000/career-path/filter?career_id=${career_id}`).subscribe({
+        next: (data: any) => {
+          let i = 0;
+  
+          this.path_data = data.map(({path}: any) => {
+            return {
+              name: path.name,
+              affinity: this.affinities[i++],
+              salary: path.salary,
+              href: path.id
+            }
+          })
+          
+          this.chartInit()
+        }
+      })
+    }
   }
 
   initSugerencias(sugerencias: any): void {
@@ -190,6 +217,12 @@ export class HomeComponent {
         toolbar: {
           show: false
         },
+        events: {
+          mounted: (chart: any, options: any) => {
+            options.config.chart.width = '100%';
+            chart.windowResizeHandler();
+          }
+        }
       },
       plotOptions: {
         bar: {
@@ -252,7 +285,7 @@ export class HomeComponent {
       series: [
         {
           name: "Afinidad",
-          data: this.preddiction?.affinities
+          data: this.path_data.map(({affinity}: any) => affinity)
         }
       ],
       chart: {
@@ -275,12 +308,18 @@ export class HomeComponent {
               enabled: true,
               speed: 350
           }
+        },
+        events: {
+          mounted: (chart: any, options: any) => {
+            options.config.chart.width = '100%';
+            chart.windowResizeHandler();
+          }
         }
       },
       title: {
       },
       xaxis: {
-        categories: this.path_info.map(({name}: any) => name),
+        categories: this.path_data.map(({name}: any) => name),
         labels: {show : false}
       },
       yaxis: {

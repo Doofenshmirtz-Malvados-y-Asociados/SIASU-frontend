@@ -4,7 +4,7 @@ import { ApexAxisChartSeries, ApexChart, ApexTheme, ApexTitleSubtitle, ApexXAxis
 import { CareerIDToAlias } from '../../../../interfaces/careerIdtoAlias.enum';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { career_path_info, getCareerProfessionalProfiles } from "../../../../shared/career_dict";
+import { firstValueFrom } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -30,33 +30,38 @@ export class ResultadosProfesionComponent implements OnInit {
   constructor(private readonly http: HttpClient, private readonly auth: AuthService) {}
   
   user_email = this.auth.currentUser()?.email
-  career_id: any = this.auth.currentUser()?.career_id
+  career_id = this.auth.currentUser()?.career_id
 
-  path_info: any = getCareerProfessionalProfiles(this.career_id)
+  path_data: any[] = []
+  affinities: any = []
 
-  preddiction: any
-  
-  formattedDate: string = ''
 
-  ngOnInit(): void {
-    this.http.get(`http://34.16.239.188:3000/response/professional_path/${this.user_email}`).subscribe({
+  async ngOnInit(): Promise<void> {
+    const data: any = await firstValueFrom(this.http.get(`http://34.16.239.188:3000/ai/professional_path/${this.user_email}`))
+
+    this.affinities = Object.values(data?.affinities[0]).map((affinity: any) => (+(affinity.toFixed(2))))
+
+    this.http.get(`http://34.16.239.188:3000/career-path/filter?career_id=${this.career_id}`).subscribe({
       next: (data: any) => {
+        let i = 0;
+        
+        this.path_data = data.map(({path}: any) => {
+          return {
+            name: path.name,
+            salary: path.salary,
+            href: path.id
+          }
+        })
 
-        for (let i = 0; i < data?.affinities.length; i++) {
-          this.path_info[i].afinitty = data?.affinities[i]
-        }
-
-        this.formattedDate = new Date(data?.createdAt).toLocaleDateString()
-        this.preddiction = data
         this.chartInit()
-      },
-      error: (e) => console.error(e)
+      }
     })
+    
   }
 
   private authService: AuthService = inject(AuthService);
 
-  name = this.authService.currentUser()?.name
+  name = this.authService.currentUser()?.name.split(' ')[0]
   career = CareerIDToAlias[this.authService.currentUser()?.career_id || 0]
   
   
@@ -67,7 +72,7 @@ export class ResultadosProfesionComponent implements OnInit {
       series: [
         {
           name: "Afinidad",
-          data: this.preddiction?.affinities
+          data: this.affinities.map((affinity: any) => affinity)
         }
       ],
       chart: {
@@ -84,18 +89,18 @@ export class ResultadosProfesionComponent implements OnInit {
           speed: 800,
           animateGradually: {
               enabled: true,
-              delay: 3000
+              delay: 100
           },
           dynamicAnimation: {
               enabled: true,
               speed: 350
           }
-        }
+        },
       },
       title: {
       },
       xaxis: {
-        categories: this.path_info.map(({name}: any) => name)
+        categories: this.path_data.map(({name}: any) => name)
       },
       yaxis: {
         show: false,

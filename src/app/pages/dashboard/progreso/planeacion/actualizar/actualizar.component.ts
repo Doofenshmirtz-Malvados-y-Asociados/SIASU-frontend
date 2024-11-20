@@ -62,7 +62,7 @@ export class ActualizarComponent implements OnInit {
         .subscribe({
           next: (res: any) => {
             if (res.length === 0) {
-              this.toastClient.add("Ninguna materia que agregar", "Se te regresará automaticamente a la página anterior", "error")
+              this.toastClient.add("Ninguna materia que agregar", "Se te regresará automáticamente a la página anterior", "error")
           
               setTimeout(() => {
                 this.router.navigate(['/dashboard/progreso']);
@@ -111,22 +111,33 @@ export class ActualizarComponent implements OnInit {
 
   // Método para enviar los datos editados o actualizados
   onSubmit() {
+    let isValid = true
+
     const data = this.dynamicForm.value.items.map((item: any) => {
-      const { id, name, ...rest } = item
-      return { course_id: id, ...rest, user_email: this.user?.email }
+      const { id, name, difficulty, ...rest } = item
+
+      if (difficulty < 0 || difficulty > 100) {
+        isValid = false
+      }
+
+      return { course_id: id, difficulty: difficulty, ...rest, user_email: this.user?.email }
     })
 
-    this.httpClient.post("http://34.16.239.188:3000/course-user/bulk", data)
-      .subscribe({
-        next: (res: any) => {
-          this.toastClient.add("Materias agregadas con exito", "Se te regresará automaticamente a la página anterior", "success")
-          
-          setTimeout(() => {
-            this.router.navigate(['/dashboard/progreso']);
-          }, 3000);
-
-        },
-        error: error => console.error("Error: ", error),
-      })
+    if (isValid) {
+      this.httpClient.post("http://34.16.239.188:3000/course-user/bulk", data)
+        .subscribe({
+          next: (res: any) => {
+            this.toastClient.add("Materias agregadas con éxito", "Se te regresará automáticamente a la página anterior", "success")
+            
+            setTimeout(() => {
+              this.router.navigate(['/dashboard/progreso']);
+            }, 3000);
+  
+          },
+          error: error => console.error("Error: ", error),
+        })
+    } else {
+      this.toastClient.add("Dificultad fuera de rango", "La dificultad de una materia tiene que estar entre 0-100", "error")
+    }
   }
 }

@@ -1,4 +1,4 @@
-<div class="p-12 w-full h-full flex flex-col">
+<div class="xl:p-12 p-8 w-full h-full flex flex-col">
     <!-- Heading of the page -->
     <div class="w-full grid gap-2">
         <h2 class="text-3xl font-bold text-foreground">Resultados de Perfil Profesional</h2>
@@ -6,39 +6,12 @@
             son solo sugerencias, siempre debes de seguir tus sueños</p>
     </div>
 
-    <section class="mt-8 bg-background h-full overflow-hidden grid grid-cols-4 grid-rows-7 gap-4">
-        <div class="border border-border col-span-1 rounded p-4 flex flex-col place-content-center gap-2">
-            <p class="text-xl">{{name}}</p>
-            <p class="text-lg text-muted-foreground">Estudiante de {{career}}</p>
-        </div>
-        <div class="border border-border col-span-1 rounded p-4 grid gap-0 place-items-center">
-            <div class="text-muted-foreground">
-                <p>Tus ultimas recomendaciones fueron generadas:</p>
-                <p>{{formattedDate}}</p>
-            </div>
+    <section class="mt-8 bg-background h-full grid grid-cols-4 grid-rows-7 gap-4 overflow-scroll no-scrollbar">
+        <div class="border border-border col-span-4 rounded p-4 flex flex-col place-content-center gap-2">
+            <p class="xl:text-lg text-base text-muted-foreground"><span class="text-foreground">{{name}}</span>, estudiante de {{career}}, explora algunas de las carreras en las que egresados se desarrollaron. <span class="text-foreground">¡Explora, infórmate y especialízate!</span></p>
         </div>
 
-        <div class="p-4 col-span-2 row-span-7 flex flex-col gap-2 border border-border">
-            <p class="text-3xl sora text-foreground">Reporte:</p>
-            <div class="h-full flex flex-col">
-                <div class="h-20 flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                    <p class="w-1/2">Carrera</p>
-                    <p class="w-1/4">Afinidad</p>
-                    <p class="w-1/4">Salario promedio</p>
-                </div>
-                @for (item of path_info; track $index) {
-                    <a class="h-full" routerLink="/dashboard/profesion/info-profesion/{{item.href}}">
-                        <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
-                            <p class="w-1/2">{{item.name}}</p>
-                            <p class="w-1/4">{{(item.afinitty || 0) * 100}}%</p>
-                            <p class="w-1/4">${{item.salary}}</p>
-                        </div>
-                    </a>
-                }
-            </div>
-        </div>
-        
-        <div class="min-h-[40rem] col-span-2 row-span-6 p-4 flex justify-between border border-border">
+        <div class="xl:min-h-[40rem] min-h-[30rem] col-span-2 row-span-6 p-4 flex justify-between border border-border">
             <div class="rounded-md chart-container grid place-items-center">
                 @if (chartOptions) {
                     <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [xaxis]="chartOptions.xaxis"
@@ -46,6 +19,27 @@
                 }
             </div>
         </div>
+
+        <div class="p-4 col-span-2 row-span-6 xl:min-h-[40rem] min-h-[30rem] h-full flex flex-col gap-2 border border-border">
+            <p class="text-3xl sora text-foreground">Reporte:</p>
+            <div class="h-full min-h-fit flex flex-col">
+                <div class="h-20 flex place-items-center gap-4 border border-border bg-muted-foreground/20 px-4 py-2 hover:bg-muted">
+                    <p class="w-1/2">Carrera</p>
+                    <p class="w-1/4">Afinidad</p>
+                    <p class="w-1/4">Salario promedio</p>
+                </div>
+                @for (item of path_data; track $index) {
+                    <a class="h-full" routerLink="/dashboard/profesion/info-profesion/{{item.href}}">
+                        <div class="h-full flex place-items-center gap-4 border border-border px-4 py-2 hover:bg-muted">
+                            <p class="w-1/2">{{item.name}}</p>
+                            <p class="w-1/4">{{((affinities[$index] || 0) * 100).toFixed(0)}}%</p>
+                            <p class="w-1/4">${{item.salary}}</p>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+        
         
 
     </section>
