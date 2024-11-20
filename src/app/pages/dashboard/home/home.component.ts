@@ -108,7 +108,7 @@ export class HomeComponent {
     let career_id = this.user?.career_id;
     
     if (this.user?.career_id != undefined) {
-      this.http.get(`http://localhost:3000/ai/professional_path/${email}`).subscribe({
+      this.http.get(`http://34.16.239.188:3000/ai/professional_path/${email}`).subscribe({
         next: (data: any) => {
           if (!data || data.length === 0) {
             this.preddiction = null;
@@ -122,7 +122,7 @@ export class HomeComponent {
         error: (e) => console.error(e)
       })
   
-      this.http.get(`http://localhost:3000/career-path/filter?career_id=${career_id}`).subscribe({
+      this.http.get(`http://34.16.239.188:3000/career-path/filter?career_id=${career_id}`).subscribe({
         next: (data: any) => {
           let i = 0;
   

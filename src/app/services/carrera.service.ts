@@ -9,10 +9,10 @@ export class CareerService {
     constructor(private readonly http: HttpClient) {}
 
     public getCareers(): Observable<Career> {
-        return this.http.get<Career>("http://localhost:3000/career/",)
+        return this.http.get<Career>("http://34.16.239.188:3000/career/",)
     }
 
     public getCareer(id: string): Observable<Career> {
-        return this.http.get<Career>(`http://localhost:3000/career/${id}`)
+        return this.http.get<Career>(`http://34.16.239.188:3000/career/${id}`)
     }
 }

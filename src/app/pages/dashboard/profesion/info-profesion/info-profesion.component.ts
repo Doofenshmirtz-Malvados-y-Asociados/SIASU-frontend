@@ -31,7 +31,7 @@ export class InfoProfesionComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.http.get(`http://localhost:3000/career-path/filter?path_id=${params["clave"]}&career_id=${this.career_id}`).subscribe({
+      this.http.get(`http://34.16.239.188:3000/career-path/filter?path_id=${params["clave"]}&career_id=${this.career_id}`).subscribe({
         next: (data: any) => {
           this.professionData = data[0]?.path
 

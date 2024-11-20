@@ -4,6 +4,7 @@ import { ApexAxisChartSeries, ApexChart, ApexTheme, ApexTitleSubtitle, ApexXAxis
 import { CareerIDToAlias } from '../../../../interfaces/careerIdtoAlias.enum';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -32,27 +33,21 @@ export class ResultadosProfesionComponent implements OnInit {
   career_id = this.auth.currentUser()?.career_id
 
   path_data: any[] = []
-  affinities: any[] = []
+  affinities: any = []
 
 
-  ngOnInit(): void {
-    this.http.get(`http://localhost:3000/ai/professional_path/${this.user_email}`).subscribe({
-      next: (data: any) => {
-        Object.values(data?.affinities[0]).forEach((affinity: any) => {
-          this.affinities.push(+(affinity.toFixed(2)));
-        })
-      },
-      error: (e) => console.error(e)
-    })
+  async ngOnInit(): Promise<void> {
+    const data: any = await firstValueFrom(this.http.get(`http://34.16.239.188:3000/ai/professional_path/${this.user_email}`))
 
-    this.http.get(`http://localhost:3000/career-path/filter?career_id=${this.career_id}`).subscribe({
+    this.affinities = Object.values(data?.affinities[0]).map((affinity: any) => (+(affinity.toFixed(2))))
+
+    this.http.get(`http://34.16.239.188:3000/career-path/filter?career_id=${this.career_id}`).subscribe({
       next: (data: any) => {
         let i = 0;
-
+        
         this.path_data = data.map(({path}: any) => {
           return {
             name: path.name,
-            affinity: this.affinities[i++],
             salary: path.salary,
             href: path.id
           }
@@ -77,7 +72,7 @@ export class ResultadosProfesionComponent implements OnInit {
       series: [
         {
           name: "Afinidad",
-          data: this.path_data.map(({affinity}: any) => affinity)
+          data: this.affinities.map((affinity: any) => affinity)
         }
       ],
       chart: {
